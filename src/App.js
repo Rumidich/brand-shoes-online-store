@@ -1,7 +1,19 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import Navbar from "./components/NavBar/NavBar";
+import ProductsContextProvider from "./contexts/productsContext";
+import Routing from "./Routing";
+import "antd/dist/antd.css";
 
 const App = () => {
-  return <div>Brand Shoes Online Store</div>;
+  return (
+    <ProductsContextProvider>
+      <BrowserRouter>
+        <Navbar />
+        <Routing />
+      </BrowserRouter>
+    </ProductsContextProvider>
+  );
 };
 
 export default App;

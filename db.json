@@ -1,0 +1,88 @@
+{
+  "products": [
+    {
+      "title": "shoe1",
+      "price": 234,
+      "description": "brand new",
+      "category": "mens",
+      "image": "https://www.skechers.com/dw/image/v2/BDCN_PRD/on/demandware.static/-/Library-Sites-SkechersSharedLibrary/default/dw6c5cb804/images/grid/SKX53894_WebsiteContentGridImages_Collections_750%C3%97664_Uno.jpg?sw=356",
+      "id": 1
+    },
+    {
+      "title": "shoe2",
+      "price": 2345,
+      "description": "brand new",
+      "category": "kids",
+      "image": "https://i0.wp.com/i.blogs.es/45e203/zapatillas1/450_1000.jpeg?ssl=1",
+      "id": 2
+    },
+    {
+      "title": "shoe3",
+      "price": 2345,
+      "description": "brand new",
+      "category": "womens",
+      "image": "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//77/MTA-3223201/skechers_skechers-d-lites-men-s-sneakers-shoes---black_full27.jpg",
+      "id": 3
+    },
+    {
+      "title": "Sneakers-8",
+      "price": 7345,
+      "description": "Cool",
+      "category": "mens",
+      "image": "https://5.imimg.com/data5/JE/CE/QJ/SELLER-24989634/nike-air-max-tavas-sports-shoes-500x500.jpg",
+      "id": 4
+    },
+    {
+      "title": "Sneakers-5",
+      "price": 3347,
+      "description": "Cool",
+      "category": "mens",
+      "image": "https://5.imimg.com/data5/ANDROID/Default/2021/1/OD/RM/BM/36974239/img-20210124-wa0122-jpg-500x500.jpg",
+      "id": 5
+    },
+    {
+      "title": "Sneakers-6",
+      "price": 5245,
+      "description": "Cool",
+      "category": "mens",
+      "image": "https://i.pinimg.com/736x/50/7c/bb/507cbbf1e9804e924de41d8fb14fff1c.jpg",
+      "id": 6
+    },
+    {
+      "title": "Sneakers-7",
+      "price": 1345,
+      "description": "Cool",
+      "category": "mens",
+      "image": "https://i.pinimg.com/originals/8e/1a/03/8e1a036d079273a4dc4f2fd3d5887ea3.jpg",
+      "id": 7
+    },
+    {
+      "title": "Nike Cortez to Air Force 1 ",
+      "price": "4000",
+      "description": "Best Nike shoes 2022: Cortez to Air Force 1 ",
+      "category": "Men",
+      "image": "https://media.gq-magazine.co.uk/photos/621cb9ff5360fdaea34263af/3:2/w_1620,h_1080,c_limit/24022022_A_01.jpeg",
+      "id": 8
+    }
+  ],
+  "comments": [
+    {
+      "nick": "Ruslan",
+      "postId": 1,
+      "comment": "comment1",
+      "id": 1
+    },
+    {
+      "nick": "Ulan",
+      "postId": 2,
+      "comment": "comment2",
+      "id": 2
+    },
+    {
+      "nick": "Abai",
+      "postId": 3,
+      "comment": "comment3",
+      "id": 3
+    }
+  ]
+}
