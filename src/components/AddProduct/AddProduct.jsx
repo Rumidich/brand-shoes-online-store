@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useState } from "react";
 import { useContext } from "react";
 
@@ -73,6 +74,6 @@ const AddProduct = () => {
       </Link>
     </Space>
   );
-};
+    };
 
 export default AddProduct;
