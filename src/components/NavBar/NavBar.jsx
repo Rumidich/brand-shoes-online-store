@@ -1,7 +1,14 @@
-import { ShoppingOutlined, SettingOutlined } from "@ant-design/icons";
-import { Menu } from "antd";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import {
+  ShoppingOutlined,
+  SettingOutlined,
+  HeartOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { Button, Menu, Input, Affix } from "antd";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { authContext } from "../../contexts/authContext";
+import Loader from "../Loader/Loader";
 const items = [
   {
     label: <Link to="/">Main</Link>,
@@ -52,19 +59,65 @@ const items = [
 
 const Navbar = () => {
   const [current, setCurrent] = useState("mail");
+  const navigate = useNavigate();
+  // const { checkAuth, loading, handleLogout } = useContext(authContext);
+  // useEffect(() => {
+  //   if (localStorage.getItem("tokens")) {
+  //     checkAuth();
+  //   }
+  // }, []);
 
   const onClick = e => {
     console.log("click ", e);
     setCurrent(e.key);
   };
+  const [container, setContainer] = useState(null);
+
+  // if (loading) {
+  //   return <Loader />;
+  // }
 
   return (
-    <Menu
-      onClick={onClick}
-      selectedKeys={[current]}
-      mode="horizontal"
-      items={items}
-    />
+    <>
+      {/* {currentUser ? ( */}
+      <div className="scrollable-container" ref={setContainer}>
+        <div className="background">
+          <Button onClick={() => navigate("/products")}>Products</Button>
+          <Button onClick={() => navigate("/add")}>Add Product</Button>
+          <Button>Logout</Button>
+          <Affix target={() => window}>
+            <Menu
+              mode="horizontal"
+              defaultSelectedKeys={["mail"]}
+              style={{
+                // position: "sticky",
+                display: "flex",
+                justifyContent: "flex-end",
+              }}>
+              <Menu.Item>
+                <UserOutlined />
+              </Menu.Item>
+              <Menu.Item
+                key="shop"
+                icon={<HeartOutlined style={{}} />}></Menu.Item>
+              <Menu.Item icon={<ShoppingOutlined style={{}} />}></Menu.Item>
+            </Menu>
+          </Affix>
+        </div>
+      </div>
+      {/* ) : ( */}
+      <div>
+        <Button onClick={() => navigate("/login")}>Login</Button>
+        <Button onClick={() => navigate("/register")}>Register</Button>
+      </div>
+      {/* )} */}
+      <Menu
+        style={{ display: "flex", justifyContent: "space-around" }}
+        onClick={onClick}
+        selectedKeys={[current]}
+        mode="horizontal"
+        items={items}></Menu>
+    </>
   );
 };
 

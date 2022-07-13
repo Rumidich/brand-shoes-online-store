@@ -9,6 +9,7 @@ const INIT_STATE = {
   comments: [],
   oneComment: null,
   pages: 0,
+  categories: [],
 };
 
 function reducer(state = INIT_STATE, action) {
@@ -23,13 +24,13 @@ function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         comments: action.payload,
-
-        comments: action.payload,
-        pages: Math.ceil(action.payload.headers["x-total-count"] / 2),
-
       };
+    case "GET_CATEGORIES":
+      return { ...state, categories: action.payload };
+
     case "GET_ONE_PRODUCT":
       return { ...state, oneProduct: action.payload };
+
     case "GET_ONE_COMMENT":
       return { ...state, oneComment: action.payload };
     default:
