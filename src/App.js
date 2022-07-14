@@ -4,15 +4,18 @@ import Navbar from "./components/NavBar/NavBar";
 import ProductsContextProvider from "./contexts/productsContext";
 import Routing from "./Routing";
 import "antd/dist/antd.css";
+import AuthContextProvider from "./contexts/authContext";
 
 const App = () => {
   return (
-    <ProductsContextProvider>
-      <BrowserRouter>
-        <Navbar />
-        <Routing />
-      </BrowserRouter>
-    </ProductsContextProvider>
+    <AuthContextProvider>
+      <ProductsContextProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Routing />
+        </BrowserRouter>
+      </ProductsContextProvider>
+    </AuthContextProvider>
   );
 };
 

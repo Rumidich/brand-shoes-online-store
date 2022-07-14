@@ -4,7 +4,7 @@ import {
   HeartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Button, Menu, Input, Affix } from "antd";
+import { Button, Menu, Affix, Typography } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../contexts/authContext";
@@ -52,7 +52,7 @@ const items = [
     ],
   },
   {
-    label: <Link to="/store">Shop</Link>,
+    label: <Link to="/products">Shop</Link>,
     key: "alipay",
   },
 ];
@@ -60,31 +60,38 @@ const items = [
 const Navbar = () => {
   const [current, setCurrent] = useState("mail");
   const navigate = useNavigate();
+  const { currentUser, checkAuth, loading, handleLogout } =
+    useContext(authContext);
+
   // const { checkAuth, loading, handleLogout } = useContext(authContext);
-  // useEffect(() => {
-  //   if (localStorage.getItem("tokens")) {
-  //     checkAuth();
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (localStorage.getItem("tokens")) {
+      checkAuth();
+    }
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  // const [container, setContainer] = useState(null);
 
   const onClick = e => {
     console.log("click ", e);
     setCurrent(e.key);
   };
-  const [container, setContainer] = useState(null);
-
-  // if (loading) {
-  //   return <Loader />;
-  // }
 
   return (
     <>
       {/* {currentUser ? ( */}
-      <div className="scrollable-container" ref={setContainer}>
+      <div
+      // className="scrollable-container" ref={setContainer}
+      >
         <div className="background">
           <Button onClick={() => navigate("/products")}>Products</Button>
           <Button onClick={() => navigate("/add")}>Add Product</Button>
-          <Button>Logout</Button>
+          <Button onClick={() => handleLogout(navigate)}>Logout</Button>
+          <Typography>{currentUser}</Typography>
           <Affix target={() => window}>
             <Menu
               mode="horizontal"

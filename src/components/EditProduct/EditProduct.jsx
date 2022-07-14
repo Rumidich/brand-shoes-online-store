@@ -1,12 +1,17 @@
+import { CameraOutlined } from "@ant-design/icons";
 import { Button, Input, Typography } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { productsContext } from "../../contexts/productsContext";
-import Loader from "../Loader/Loader";
 
 const EditProduct = () => {
-  const { getOneProduct, oneProduct, updateProduct } =
-    useContext(productsContext);
+  const {
+    getCategories,
+    categories,
+    getOneProduct,
+    oneProduct,
+    updateProduct,
+  } = useContext(productsContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const { Title } = Typography;
@@ -15,34 +20,38 @@ const EditProduct = () => {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [image, setImage] = useState("");
+  const [size, setSize] = useState("");
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
+    getCategories();
     getOneProduct(id);
   }, []);
   useEffect(() => {
     if (oneProduct) {
       setTitle(oneProduct.title);
-      setDescription(oneProduct.description);
       setPrice(oneProduct.price);
-      setCategory(oneProduct.category);
+      setDescription(oneProduct.description);
+      setCategory(oneProduct.category.id);
+      setSize(oneProduct.size);
       setImage(oneProduct.image);
     }
   }, [oneProduct]);
 
   function handleSave() {
-    const updatedProduct = {
-      title,
-      price,
-      description,
-      category,
-      image,
-    };
-    updateProduct(id, updatedProduct);
-    navigate("/shop");
+    let editedProduct = new FormData();
+    editedProduct.append("title", title);
+    editedProduct.append("description", description);
+    editedProduct.append("price", price);
+    editedProduct.append("category", category);
+    editedProduct.append("size", size);
+    if (image) {
+      editedProduct.append("image", image);
+    }
+    updateProduct(id, editedProduct, navigate);
   }
 
-  return oneProduct ? (
+  return (
     <div style={{ maxWidth: "40%" }}>
       <Title level={4}>Update Product</Title>
       <Input
@@ -78,12 +87,19 @@ const EditProduct = () => {
         defaultValue={image}
         value={image}
         label="Image"
-        onChange={e => setImage(e.target.value)}
+        onChange={e => setImage(e.target.files[0])}
       />
+      <Input
+        placeholder="Size"
+        defaultValue={size}
+        value={size}
+        label="Size"
+        onChange={e => setSize(e.target.value)}
+      />
+      <CameraOutlined />
+      {image ? <Typography variant="span">{image.name}</Typography> : null}
       <Button onClick={handleSave}>Save</Button>
     </div>
-  ) : (
-    <Loader />
   );
 };
 

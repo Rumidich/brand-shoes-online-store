@@ -5,15 +5,17 @@ import { productsContext } from "../../contexts/productsContext";
 import {
   DeleteOutlined,
   EditOutlined,
+  LikeOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { Avatar, Card } from "antd";
+import { Avatar, Card, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 
 const { Meta } = Card;
 
 export const ProductCard = ({ item }) => {
-  const { deleteProduct, updateProduct } = useContext(productsContext);
+  const { deleteProduct, toggleLike, toggleFavorites } =
+    useContext(productsContext);
   const navigate = useNavigate();
   return (
     <Card
@@ -22,10 +24,8 @@ export const ProductCard = ({ item }) => {
       }}
       cover={<img alt="example" src={item.image} />}
       actions={[
-        <SettingOutlined
-          key="setting"
-          onClick={() => navigate(`/details/${item.id}`)}
-        />,
+        <LikeOutlined key="like" onClick={() => toggleLike(item.id)} />,
+
         <EditOutlined
           key="edit"
           onClick={() => navigate(`/edit/${item.id}`)}
@@ -35,6 +35,18 @@ export const ProductCard = ({ item }) => {
           onClick={() => deleteProduct(item.id)}
         />,
       ]}>
+      {/* <p> */}
+      <Typography>
+        Title: {item.title} <br />
+        Brand: {item.brand} <br />
+        Price: {item.price} <br />
+        Size: {item.size} <br />
+        Category: {item.category.title} <br />
+        {/* Reviews: {item.reviews.length} <br /> */}
+        Likes: {item.likes} <br />
+      </Typography>
+      {/* </p> */}
+
       <Meta
         avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
         title={item.title}

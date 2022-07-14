@@ -3,21 +3,17 @@ import axios from "axios";
 
 export const authContext = React.createContext();
 
-const PRODUCTS_API = " http://localhost:8000/products";
-const COMMENTS_API = "http://localhost:8000/comments";
+const API = "https://morning-depths-08273.herokuapp.com";
 
 const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  async function handleRegister(formData, navigate) {
+  async function handleRegistration(formData, navigate) {
     setLoading(true);
     try {
-      const res = await axios.post(
-        `${PRODUCTS_API}/account/register/`,
-        formData
-      );
+      const res = await axios.post(`${API}/account/registration/`, formData);
       // console.log(res);
       navigate("/register-success");
     } catch (err) {
@@ -29,14 +25,12 @@ const AuthContextProvider = ({ children }) => {
 
   async function handleLogin(formData, email, navigate) {
     try {
-      const res = await axios.post(`${PRODUCTS_API}/account/login/`, formData);
+      const res = await axios.post(`${API}/account/login/`, formData);
       localStorage.setItem("tokens", JSON.stringify(res.data));
       localStorage.setItem("email", email);
       setCurrentUser(email);
       navigate("/products");
-      // console.log(res);
     } catch (err) {
-      // console.log(err);
       setError([err.response.data.detail]);
     }
   }
@@ -53,7 +47,7 @@ const AuthContextProvider = ({ children }) => {
         },
       };
       const res = await axios.post(
-        `${PRODUCTS_API}/account/token/refresh/`,
+        `${API}/account/refresh/`,
         {
           refresh: tokens.refresh,
         },
@@ -89,7 +83,7 @@ const AuthContextProvider = ({ children }) => {
         error,
         loading,
         setError,
-        handleRegister,
+        handleRegistration,
         handleLogin,
         checkAuth,
         handleLogout,

@@ -1,6 +1,7 @@
-import { Button, Input, Typography } from "antd";
+import { Alert, Button, Input, Typography } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { authContext } from "../../contexts/authContext";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Login = () => {
     formData.append("password", password);
     handleLogin(formData, email, navigate);
   }
-  // console.log(error);
+  console.log(error);
 
   useEffect(() => {
     setError(false);
@@ -22,29 +23,29 @@ const Login = () => {
 
   return (
     <div
-      display={"flex"}
-      flexDirection={"column"}
-      marginTop={"50px"}
-      alignItems={"center"}>
-      <Typography variant="h5" color={"gold"}>
-        Login
-      </Typography>
-      <Input
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-        variant="outlined"
-        label="Email"
-      />
-      <Input
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-        variant="outlined"
-        label="Password"
-      />
-      <Input />
-      <Button variant="contained" onClick={handleSave} color={"error"}>
-        Login
-      </Button>
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        marginTop: "30px",
+        marginLeft: "300px",
+        marginRight: "300px",
+      }}>
+      <Typography>Login</Typography>
+      {error ? <Alert>{error}</Alert> : null}
+      <div style={{ marginTop: "20px", marginBottom: "20px" }}>
+        <Input
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="Email"
+        />
+        <Input
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+        <Button onClick={handleSave}>Login</Button>
+      </div>
     </div>
   );
 };
