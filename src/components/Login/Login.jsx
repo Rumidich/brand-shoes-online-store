@@ -1,4 +1,5 @@
-import { Alert, Button, Input, Typography } from "antd";
+import { Alert, Button, Container, TextField, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../../contexts/authContext";
@@ -22,31 +23,33 @@ const Login = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        marginTop: "30px",
-        marginLeft: "300px",
-        marginRight: "300px",
-      }}>
-      <Typography>Login</Typography>
-      {error ? <Alert>{error}</Alert> : null}
-      <div style={{ marginTop: "20px", marginBottom: "20px" }}>
-        <Input
+    <Container maxWidth="sm">
+      <Box
+        display={"flex"}
+        flexDirection={"column"}
+        marginTop={"50px"}
+        alignItems={"center"}>
+        <Typography variant="h5" color={"gold"}>
+          Login
+        </Typography>
+        {error ? <Alert severity="error">{error}</Alert> : null}
+        <TextField
           value={email}
           onChange={e => setEmail(e.target.value)}
-          placeholder="Email"
+          variant="outlined"
+          label="Email"
         />
-        <Input
+        <TextField
           value={password}
           onChange={e => setPassword(e.target.value)}
-          placeholder="Password"
+          variant="outlined"
+          label="Password"
         />
-        <Button onClick={handleSave}>Login</Button>
-      </div>
-    </div>
+        <Button variant="contained" onClick={handleSave} color={"error"}>
+          Login
+        </Button>
+      </Box>
+    </Container>
   );
 };
 

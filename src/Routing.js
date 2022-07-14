@@ -4,6 +4,7 @@ import AddProduct from "./components/AddProduct/AddProduct";
 import EditProduct from "./components/EditProduct/EditProduct";
 import Loader from "./components/Loader/Loader";
 import Login from "./components/Login/Login";
+import Main from "./components/Main/Main";
 import ProductsList from "./components/ProductsList/ProductsList";
 import Registration from "./components/Registration/Registration";
 import SuccessfullRegister from "./components/SuccessfullRegister/SuccessfullRegister";
@@ -14,20 +15,25 @@ const Routing = () => {
   if (loading) {
     return <Loader />;
   }
+  console.log(currentUser);
+
   return (
     <Routes>
+      <Route path="/" element={<Main />}>
+        Main
+      </Route>
       <Route
         path="/login"
         element={currentUser ? <Navigate to="/products" replace /> : <Login />}
       />
       <Route
-        path="/register"
+        path="/registration"
         element={
           currentUser ? <Navigate to="/products" replace /> : <Registration />
         }
       />
       <Route
-        path="/register-success"
+        path="/successfull-registration"
         element={
           currentUser ? (
             <Navigate to="/products" replace />

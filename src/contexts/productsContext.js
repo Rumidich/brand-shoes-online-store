@@ -66,6 +66,7 @@ const ProductsContextProvider = ({ children }) => {
         },
       };
       const res = await axios(`${API}/category/`, config);
+      console.log(res);
       dispatch({
         type: "GET_CATEGORIES",
         payload: res.data.results,

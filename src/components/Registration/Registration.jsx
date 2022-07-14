@@ -1,5 +1,6 @@
-import { Alert, Button, Input, Typography } from "antd";
-import { useContext, useEffect, useState } from "react";
+import { Alert, Button, TextField, Typography } from "@mui/material";
+import { Box, Container } from "@mui/system";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../../contexts/authContext";
 import Loader from "../Loader/Loader";
@@ -36,45 +37,46 @@ const Registration = () => {
   }
 
   return (
-    <div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          margin: "50px",
-          alignItems: "center",
-        }}>
-        <Typography>Registration</Typography>
+    <Container maxWidth="sm">
+      <Box
+        display={"flex"}
+        flexDirection={"column"}
+        margin={"50px"}
+        alignItems={"center"}>
+        <Typography variant="h5">Register</Typography>
         {error ? (
-          <div>
+          <Box>
             {error.map((item, index) => (
-              <Alert key={item + index}>{item}</Alert>
+              <Alert severity="error" key={item + index}>
+                {" "}
+                {item}
+              </Alert>
             ))}
-          </div>
+          </Box>
         ) : null}
-        <Input
-          value={name}
-          onChange={e => setName(e.target.value)}
-          placeholder="Name"
-        />
-        <Input
+        <TextField
           value={email}
           onChange={e => setEmail(e.target.value)}
-          placeholder="Email"
+          variant="outlined"
+          label="Email"
         />
-        <Input
+        <TextField
           value={password}
           onChange={e => setPassword(e.target.value)}
-          placeholder="Password"
+          variant="outlined"
+          label="Password"
         />
-        <Input
+        <TextField
           value={passwordConfirm}
           onChange={e => setPasswordConfirm(e.target.value)}
-          placeholder="Password confirmation"
+          variant="outlined"
+          label="Password confirmation"
         />
-        <Button onClick={handleSave}>Registration</Button>
-      </div>
-    </div>
+        <Button onClick={handleSave} variant="contained" color="warning">
+          Register
+        </Button>
+      </Box>
+    </Container>
   );
 };
 
