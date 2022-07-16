@@ -55,6 +55,12 @@ const Registration = () => {
           </Box>
         ) : null}
         <TextField
+          value={name}
+          onChange={e => setName(e.target.value)}
+          variant="outlined"
+          label="Name"
+        />
+        <TextField
           value={email}
           onChange={e => setEmail(e.target.value)}
           variant="outlined"

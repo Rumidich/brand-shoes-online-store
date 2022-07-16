@@ -18,6 +18,8 @@ import { authContext } from "../../contexts/authContext";
 import Loader from "../Loader/Loader";
 import ShopIcon from "@mui/icons-material/Shop";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { Button } from "@mui/material";
+import BookmarksIcon from "@mui/icons-material/Bookmarks";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -101,7 +103,7 @@ export default function NavBar() {
       onClose={handleMenuClose}>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+      <MenuItem onClick={() => handleLogout(navigate)}>Log Out</MenuItem>
     </Menu>
   );
 
@@ -134,11 +136,19 @@ export default function NavBar() {
           size="large"
           aria-label="show 17 new notifications"
           color="inherit">
-          <Badge badgeContent={17} color="error">
+          <Badge color="error">
             <AddCircleIcon />
           </Badge>
         </IconButton>
         <p>Add Product</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton size="large" color="inherit">
+          <Badge color="error">
+            <BookmarksIcon />
+          </Badge>
+        </IconButton>
+        <p>Favorites</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -213,6 +223,15 @@ export default function NavBar() {
               <Badge>
                 <AddCircleIcon />
                 <Typography>Add Product</Typography>
+              </Badge>
+            </IconButton>
+            <IconButton
+              onClick={() => navigate("/favorites")}
+              size="large"
+              color="inherit">
+              <Badge>
+                <BookmarksIcon />
+                <Typography>Favorites</Typography>
               </Badge>
             </IconButton>
             <IconButton

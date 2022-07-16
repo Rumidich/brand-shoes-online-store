@@ -30,6 +30,7 @@ const AddProduct = () => {
   useEffect(() => {
     getCategories();
   }, []);
+  console.log(categories);
 
   function handleSave() {
     let newProduct = new FormData();
@@ -83,9 +84,15 @@ const AddProduct = () => {
           value={size}
           onChange={e => setSize(e.target.value)}
         />
+        <TextField
+          label="Brand"
+          variant="outlined"
+          value={brand}
+          onChange={e => setBrand(e.target.value)}
+        />
         {/* <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Category</InputLabel> */}
-        {/* <Select
+          <InputLabel id="demo-simple-select-label">Category</InputLabel>
+          <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={category}

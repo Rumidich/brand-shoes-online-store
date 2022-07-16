@@ -1,60 +1,39 @@
-import { Button, Modal } from "antd";
+import { Container, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { productsContext } from "../../contexts/productsContext";
+import Comments from "../Comments/Comments";
 import Loader from "../Loader/Loader";
 
 const ProductsDetails = () => {
   const { id } = useParams();
-  const { oneProduct, getOneProduct } = useContext(productsContext);
-
-  const [visible, setVisible] = useState(false);
-
-  const showModal = () => {
-    setVisible(true);
-  };
-
-  const handleOk = e => {
-    console.log(e);
-    setVisible(false);
-  };
-
-  const handleCancel = e => {
-    console.log(e);
-    setVisible(false);
-  };
+  const navigate = useNavigate();
+  const { getOneProduct, oneProduct } = useContext(productsContext);
 
   useEffect(() => {
     getOneProduct(id);
   }, []);
+  if (!oneProduct) {
+    return <Loader />;
+  }
+  console.log(oneProduct);
 
-  return oneProduct ? (
-    <>
-      <Button type="primary" onClick={showModal}>
-        Open for Details
-      </Button>
-      <Modal
-        title="Basic Modal"
-        visible={visible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        okButtonProps={{
-          disabled: true,
-        }}
-        cancelButtonProps={{
-          disabled: true,
-        }}>
-        <p>{oneProduct.title}</p>
-        <p>{oneProduct.description}</p>
-        <p>{oneProduct.price}</p>
-        <p>{oneProduct.category}</p>
-        <p>{oneProduct.image}</p>
-      </Modal>
-    </>
-  ) : (
-    <Loader />
+  return (
+    <Container>
+      <Typography variant="h5">Title: {oneProduct.title}</Typography>
+      <Typography variant="h5">Price: {oneProduct.price}</Typography>
+      <Typography variant="h5">
+        Description: {oneProduct.description}
+      </Typography>
+      <Typography variant="h5">Author: {oneProduct.author}</Typography>
+      <Typography variant="h5">
+        Category: {oneProduct.category.title}
+      </Typography>
+      <img src={oneProduct.image} alt="product" />
+      <Comments comments={oneProduct.comments} />
+    </Container>
   );
 };
 

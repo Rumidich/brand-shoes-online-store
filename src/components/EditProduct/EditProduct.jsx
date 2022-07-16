@@ -34,7 +34,7 @@ const EditProduct = () => {
   const [image, setImage] = useState(null);
 
   useEffect(() => {
-    getCategories();
+    // getCategories();
     getOneProduct(id);
   }, []);
   useEffect(() => {
@@ -42,7 +42,7 @@ const EditProduct = () => {
       setTitle(oneProduct.title);
       setPrice(oneProduct.price);
       setDescription(oneProduct.description);
-      setCategory(oneProduct.category.id);
+      // setCategory(oneProduct.category.id);
       setSize(oneProduct.size);
       setImage(oneProduct.image);
     }
@@ -53,7 +53,7 @@ const EditProduct = () => {
     editedProduct.append("title", title);
     editedProduct.append("description", description);
     editedProduct.append("price", price);
-    editedProduct.append("category", category);
+    // editedProduct.append("category", category);
     editedProduct.append("size", size);
     if (image) {
       editedProduct.append("image", image);
@@ -89,7 +89,13 @@ const EditProduct = () => {
           value={size}
           onChange={e => setSize(e.target.value)}
         />
-        <FormControl fullWidth>
+        {/* <TextField
+          label="Category"
+          variant="outlined"
+          value={size}
+          onChange={e => setCategory(e.target.value)}
+        /> */}
+        {/* <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -103,7 +109,7 @@ const EditProduct = () => {
               </MenuItem>
             ))}
           </Select>
-        </FormControl>
+        </FormControl> */}
         <Box>
           <IconButton
             color="primary"

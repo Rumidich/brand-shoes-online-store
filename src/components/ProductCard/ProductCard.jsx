@@ -43,19 +43,21 @@ export default function ProductCard({ item }) {
 
   return (
     <Card sx={{ maxWidth: 345, margin: "20px" }}>
-      {/* <CardHeader
+      <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {item.author.slice(0, 1)}
+            {/* {item.author.slice(0, 1)} */}
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings">
+          <IconButton
+            aria-label="settings"
+            onClick={() => navigate(`/products/${item.id}`)}>
             <MoreVertIcon />
           </IconButton>
         }
         title={item.author}
-      /> */}
+      />
       <CardMedia
         component="img"
         height="194"
@@ -69,29 +71,29 @@ export default function ProductCard({ item }) {
           Size: {item.size} <br />
           Description: {item.description} <br />
           Category: {item.category.title} <br />
-          {/* Reviews: {item.reviews.length} <br /> */}
-          Likes: {item.likes} <br />
+          Comments: {item.comments.length} <br />
+          Likes: {item.like} <br />
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton onClick={() => toggleFavorites(item.id)}>
-          {item.favorite_by_user ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+        <IconButton onClick={() => toggleFavorites(item.favorites.id)}>
+          {item.favorites ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
 
-        <IconButton onClick={() => toggleLike(item.id)}>
-          {item.likes}
-          <FavoriteIcon color={item.liked_by_user ? "error" : "black"} />
+        <IconButton onClick={() => toggleLike(item.like.id)}>
+          {item.like}
+          <FavoriteIcon color={item.like ? "error" : "black"} />
         </IconButton>
-        {item.is_author ? (
-          <>
-            <IconButton onClick={() => deleteProduct(item.id)}>
-              <DeleteIcon />
-            </IconButton>
-            <IconButton onClick={() => navigate(`/edit/${item.id}`)}>
-              <EditIcon />
-            </IconButton>
-          </>
-        ) : null}
+        {/* {item.is_author ? ( */}
+        <>
+          <IconButton onClick={() => deleteProduct(item.id)}>
+            <DeleteIcon />
+          </IconButton>
+          <IconButton onClick={() => navigate(`/edit/${item.id}`)}>
+            <EditIcon />
+          </IconButton>
+        </>
+        {/* ) : null} */}
 
         <ExpandMore
           expand={expanded}
