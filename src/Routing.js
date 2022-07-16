@@ -17,7 +17,7 @@ const Routing = () => {
   if (loading) {
     return <Loader />;
   }
-  console.log(currentUser);
+  // console.log(currentUser);
 
   return (
     <Routes>

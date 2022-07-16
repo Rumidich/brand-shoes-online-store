@@ -20,6 +20,10 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { productsContext } from "../../contexts/productsContext";
 import { useNavigate } from "react-router-dom";
 
+import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
+import { cartContext } from "../../contexts/cartContext";
+import { useFocusEffect } from "@chakra-ui/react";
+
 const ExpandMore = styled(props => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -32,6 +36,9 @@ const ExpandMore = styled(props => {
 }));
 
 export default function ProductCard({ item }) {
+  const { checkShoeInCart, addToCart } = React.useContext(cartContext);
+  const [shoeState, setShoeState] = React.useState(checkShoeInCart(item.id));
+
   const navigate = useNavigate();
   const { deleteProduct, toggleLike, toggleFavorites } =
     React.useContext(productsContext);
@@ -41,6 +48,7 @@ export default function ProductCard({ item }) {
     setExpanded(!expanded);
   };
 
+  // console.log(image);
   return (
     <Card sx={{ maxWidth: 345, margin: "20px" }}>
       <CardHeader
@@ -61,7 +69,7 @@ export default function ProductCard({ item }) {
       <CardMedia
         component="img"
         height="194"
-        image={item.image}
+        // image={.image}
         alt="product"
       />
       <CardContent>

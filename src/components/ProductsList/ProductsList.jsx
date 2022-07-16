@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Box, Container, ImageList } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { productsContext } from "../../contexts/productsContext";
 import ProductCard from "../ProductCard/ProductCard";
@@ -15,7 +15,7 @@ const ProductsList = () => {
   useEffect(() => {
     getProducts();
   }, [searchParams]);
-  console.log(products);
+  // console.log(products);
   useEffect(() => {
     getProducts();
   }, []);
@@ -33,6 +33,9 @@ const ProductsList = () => {
         justifyContent={"center"}
         flexDirection={"row"}
         marginTop={"40px"}>
+        {/* {images.map(image => (
+          <Cardimage key={image.id} image={image} />
+        ))} */}
         {products.map(item => (
           <ProductCard key={item.id} item={item} />
         ))}
