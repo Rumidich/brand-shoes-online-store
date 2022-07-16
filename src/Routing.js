@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import AddProduct from "./components/AddProduct/AddProduct";
+import Cart from "./components/Cart/Cart";
 import EditProduct from "./components/EditProduct/EditProduct";
 import Loader from "./components/Loader/Loader";
 import Login from "./components/Login/Login";
@@ -15,7 +16,7 @@ const Routing = () => {
   if (loading) {
     return <Loader />;
   }
-  console.log(currentUser);
+  // console.log(currentUser);
 
   return (
     <Routes>
@@ -55,6 +56,7 @@ const Routing = () => {
         }
       />
       <Route path="/edit/:id" element={<EditProduct />} />
+      <Route path="/cart" element={<Cart />} />
     </Routes>
   );
 };

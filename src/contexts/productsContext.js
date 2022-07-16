@@ -1,5 +1,6 @@
 import React, { useReducer } from "react";
 import axios from "axios";
+import { useFocusEffect } from "@chakra-ui/react";
 
 export const productsContext = React.createContext();
 
@@ -23,6 +24,8 @@ function reducer(state = INIT_STATE, action) {
 
     case "GET_ONE_PRODUCT":
       return { ...state, oneProduct: action.payload };
+    // case "GET_IMAGES":
+    //   return { ...state, images: action.payload };
     default:
       return state;
   }
@@ -66,15 +69,18 @@ const ProductsContextProvider = ({ children }) => {
         },
       };
       const res = await axios(`${API}/category/`, config);
-      console.log(res);
       dispatch({
         type: "GET_CATEGORIES",
         payload: res.data.results,
       });
+      // console.log(res);
     } catch (err) {
       console.log(err);
     }
   }
+  React.useEffect(() => {
+    getCategories();
+  }, []);
   //! Create
   async function addProduct(newProduct, navigate) {
     try {
@@ -199,6 +205,26 @@ const ProductsContextProvider = ({ children }) => {
     }
   }
 
+  // async function getImage() {
+  //   try {
+  //     const tokens = JSON.parse(localStorage.getItem("tokens"));
+  //     //configuration
+  //     const Authorization = `Bearer ${tokens.access}`;
+  //     const config = {
+  //       headers: {
+  //         Authorization,
+  //       },
+  //     };
+  //     const res = await axios(`${API}/image/${window.location.search}`, config);
+  //     dispatch({
+  //       type: "GET_IMAGES",
+  //       payload: res.data.results,
+  //     });
+  //     console.log(res);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
   return (
     <productsContext.Provider
       value={{

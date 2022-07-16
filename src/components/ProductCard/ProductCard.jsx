@@ -20,6 +20,10 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { productsContext } from "../../contexts/productsContext";
 import { useNavigate } from "react-router-dom";
 
+import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
+import { cartContext } from "../../contexts/cartContext";
+import { useFocusEffect } from "@chakra-ui/react";
+
 const ExpandMore = styled(props => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -32,6 +36,9 @@ const ExpandMore = styled(props => {
 }));
 
 export default function ProductCard({ item }) {
+  const { checkShoeInCart, addToCart } = React.useContext(cartContext);
+  const [shoeState, setShoeState] = React.useState(checkShoeInCart(item.id));
+
   const navigate = useNavigate();
   const { deleteProduct, toggleLike, toggleFavorites } =
     React.useContext(productsContext);
@@ -41,6 +48,7 @@ export default function ProductCard({ item }) {
     setExpanded(!expanded);
   };
 
+  // console.log(image);
   return (
     <Card sx={{ maxWidth: 345, margin: "20px" }}>
       {/* <CardHeader
@@ -59,7 +67,7 @@ export default function ProductCard({ item }) {
       <CardMedia
         component="img"
         height="194"
-        image={item.image}
+        // image={.image}
         alt="product"
       />
       <CardContent>
@@ -69,6 +77,7 @@ export default function ProductCard({ item }) {
           Size: {item.size} <br />
           Description: {item.description} <br />
           Category: {item.category.title} <br />
+          Brand: {item.brand}
           {/* Reviews: {item.reviews.length} <br /> */}
           Likes: {item.likes} <br />
         </Typography>
@@ -82,16 +91,25 @@ export default function ProductCard({ item }) {
           {item.likes}
           <FavoriteIcon color={item.liked_by_user ? "error" : "black"} />
         </IconButton>
-        {item.is_author ? (
-          <>
-            <IconButton onClick={() => deleteProduct(item.id)}>
-              <DeleteIcon />
-            </IconButton>
-            <IconButton onClick={() => navigate(`/edit/${item.id}`)}>
-              <EditIcon />
-            </IconButton>
-          </>
-        ) : null}
+        <IconButton>
+          <LocalGroceryStoreIcon
+            onClick={() => {
+              addToCart(item);
+              checkShoeInCart(item.id);
+            }}
+            color={shoeState ? "primary" : "secondary"}
+          />
+        </IconButton>
+        {/* {item.is_author ? ( */}
+        <>
+          <IconButton onClick={() => deleteProduct(item.id)}>
+            <DeleteIcon />
+          </IconButton>
+          <IconButton onClick={() => navigate(`/edit/${item.id}`)}>
+            <EditIcon />
+          </IconButton>
+        </>
+        {/* ) : null} */}
 
         <ExpandMore
           expand={expanded}

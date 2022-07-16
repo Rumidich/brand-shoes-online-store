@@ -9,7 +9,6 @@ import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
@@ -18,6 +17,14 @@ import { authContext } from "../../contexts/authContext";
 import Loader from "../Loader/Loader";
 import ShopIcon from "@mui/icons-material/Shop";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+
+import { VscAdd, VscAccount } from "react-icons/vsc";
+
+import { FiShoppingCart } from "react-icons/fi";
+
+import { BsShop } from "react-icons/bs";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -60,6 +67,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function NavBar() {
+  const { handleLogout } = React.useContext(authContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -101,7 +109,13 @@ export default function NavBar() {
       onClose={handleMenuClose}>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+      <MenuItem
+        onClick={() => {
+          handleMenuClose();
+          handleLogout();
+        }}>
+        Log Out
+      </MenuItem>
     </Menu>
   );
 
@@ -124,10 +138,15 @@ export default function NavBar() {
       <MenuItem>
         <IconButton size="large" color="inherit">
           <Badge color="error">
-            <ShopIcon />
+            <BsShop />
           </Badge>
         </IconButton>
         <p>Shop</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton>
+          <FiShoppingCart />
+        </IconButton>
       </MenuItem>
       <MenuItem>
         <IconButton
@@ -135,10 +154,10 @@ export default function NavBar() {
           aria-label="show 17 new notifications"
           color="inherit">
           <Badge badgeContent={17} color="error">
-            <AddCircleIcon />
+            <VscAdd />
           </Badge>
         </IconButton>
-        <p>Add Product</p>
+        <p>Add</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -147,15 +166,14 @@ export default function NavBar() {
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit">
-          <AccountCircle />
+          <VscAccount />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
     </Menu>
   );
   const navigate = useNavigate();
-  const { currentUser, checkAuth, loading, handleLogout } =
-    React.useContext(authContext);
+  const { currentUser, checkAuth, loading } = React.useContext(authContext);
   React.useEffect(() => {
     if (localStorage.getItem("tokens")) {
       checkAuth();
@@ -167,81 +185,83 @@ export default function NavBar() {
   }
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}>
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}>
-            Sneakers Store
-          </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              onClick={() => navigate("/products")}
-              size="large"
-              aria-label="shop"
-              color="inherit">
-              <Badge>
-                <ShopIcon />
-                <Typography>Shop</Typography>
-              </Badge>
-            </IconButton>
-            <IconButton
-              onClick={() => navigate("/add")}
-              size="large"
-              color="inherit">
-              <Badge>
-                <AddCircleIcon />
-                <Typography>Add Product</Typography>
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit">
-              <AccountCircle />
-            </IconButton>
-          </Box>
+    <>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="fixed" style={{ backgroundColor: "black" }}>
+          <Toolbar>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: { xs: "none", sm: "block" } }}>
+              Sneakers Store
+            </Typography>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+              />
+            </Search>
+            <Box sx={{ flexGrow: 1 }} />
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              <IconButton
+                onClick={() => navigate("/products")}
+                size="large"
+                aria-label="shop"
+                color="inherit">
+                <Badge>
+                  <BsShop color="accent" />
+                  <Typography></Typography>
+                </Badge>
+              </IconButton>
+              <MenuItem>
+                <IconButton>
+                  <FiShoppingCart
+                    style={{ color: "white" }}
+                    onClick={() => navigate("/cart")}
+                  />
+                </IconButton>
+              </MenuItem>
+              <IconButton
+                onClick={() => navigate("/add")}
+                size="large"
+                color="inherit">
+                <Badge>
+                  <VscAdd />
+                  <Typography></Typography>
+                </Badge>
+              </IconButton>
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit">
+                <VscAccount />
+              </IconButton>
+            </Box>
 
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit">
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </Box>
+            <Box sx={{ display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit">
+                <MoreIcon />
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        {renderMobileMenu}
+        {renderMenu}
+      </Box>
+    </>
   );
 }

@@ -72,6 +72,12 @@ const AddProduct = () => {
           onChange={e => setDescription(e.target.value)}
         />
         <TextField
+          label="Brand"
+          variant="outlined"
+          value={brand}
+          onChange={e => setBrand(e.target.value)}
+        />
+        <TextField
           label="Price"
           variant="outlined"
           value={price}
