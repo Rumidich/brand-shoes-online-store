@@ -1,6 +1,5 @@
 import React, { useReducer } from "react";
 import axios from "axios";
-import { useFocusEffect } from "@chakra-ui/react";
 
 export const productsContext = React.createContext();
 
@@ -9,6 +8,9 @@ const INIT_STATE = {
   oneProduct: null,
   pages: 0,
   categories: [],
+  image: [],
+  favorites: [],
+  favoritesPages: 0,
 };
 
 function reducer(state = INIT_STATE, action) {
@@ -19,8 +21,17 @@ function reducer(state = INIT_STATE, action) {
         products: action.payload.results,
         pages: Math.ceil(action.payload.count / 5),
       };
+    case "GET_FAVORITES":
+      return {
+        ...state,
+        favorites: action.payload.results,
+        favoritesPages: Math.ceil(action.payload.count / 5),
+      };
     case "GET_CATEGORIES":
       return { ...state, categories: action.payload };
+
+    case "GET_IMAGE":
+      return { ...state, image: action.payload };
 
     case "GET_ONE_PRODUCT":
       return { ...state, oneProduct: action.payload };
@@ -36,6 +47,8 @@ const API = "https://morning-depths-08273.herokuapp.com";
 const ProductsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
+  //! Read
+  //! Read - Get Products
   async function getProducts() {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -50,6 +63,7 @@ const ProductsContextProvider = ({ children }) => {
         `${API}/products/${window.location.search}`,
         config
       );
+      console.log(res);
       dispatch({
         type: "GET_PRODUCTS",
         payload: res.data,
@@ -58,6 +72,7 @@ const ProductsContextProvider = ({ children }) => {
       console.log(err);
     }
   }
+  //! Read - Get Categories
   async function getCategories() {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -78,9 +93,28 @@ const ProductsContextProvider = ({ children }) => {
       console.log(err);
     }
   }
-  React.useEffect(() => {
-    getCategories();
-  }, []);
+  //! Read - Get Images
+  async function getImage() {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //configuration
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios(`${API}/image/`, config);
+      // console.log(res);
+      dispatch({
+        type: "GET_IMAGE",
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   //! Create
   async function addProduct(newProduct, navigate) {
     try {
@@ -93,9 +127,28 @@ const ProductsContextProvider = ({ children }) => {
         },
       };
       const res = await axios.post(`${API}/products/`, newProduct, config);
-      console.log(res);
+      // console.log(res);
       navigate("/products");
       getProducts();
+      getImage();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function addComment(comment, productId) {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //config
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios.post(`${API}/comments/`, comment, config);
+      console.log(res);
+      getOneProduct(productId);
     } catch (err) {
       console.log(err);
     }
@@ -114,6 +167,23 @@ const ProductsContextProvider = ({ children }) => {
       };
       await axios.delete(`${API}/products/${id}/`, config);
       getProducts();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function deleteComment(reviewId, productId) {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //config
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      await axios.delete(`${API}/comments/${reviewId}/`, config);
+      getOneProduct(productId);
     } catch (err) {
       console.log(err);
     }
@@ -176,7 +246,7 @@ const ProductsContextProvider = ({ children }) => {
           Authorization,
         },
       };
-      const res = await axios(`${API}/products/${id}/toggle_like/`, config);
+      const res = await axios(`${API}/likes/`, config);
       getProducts();
     } catch (err) {
       console.log(err);
@@ -195,11 +265,33 @@ const ProductsContextProvider = ({ children }) => {
           Authorization,
         },
       };
+      const res = await axios(`${API}/favorites/`, config);
+      getProducts();
+      getFavorites();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function getFavorites() {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //config
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
       const res = await axios(
-        `${API}/products/${id}/toggle_favorites/`,
+        `${API}/favorites/${window.location.search}`,
         config
       );
-      getProducts();
+      dispatch({
+        type: "GET_FAVORITES",
+        payload: res.data,
+      });
+      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -232,14 +324,21 @@ const ProductsContextProvider = ({ children }) => {
         pages: state.pages,
         categories: state.categories,
         oneProduct: state.oneProduct,
+        favorites: state.favorites,
+        favoritesPages: state.favoritesPages,
+        image: state.image,
         getProducts,
         getCategories,
+        getImage,
         addProduct,
         deleteProduct,
         getOneProduct,
         updateProduct,
         toggleLike,
         toggleFavorites,
+        getFavorites,
+        addComment,
+        deleteComment,
       }}>
       {children}
     </productsContext.Provider>

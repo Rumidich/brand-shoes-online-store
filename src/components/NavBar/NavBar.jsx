@@ -15,10 +15,7 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../../contexts/authContext";
 import Loader from "../Loader/Loader";
-import ShopIcon from "@mui/icons-material/Shop";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import BookmarksIcon from "@mui/icons-material/Bookmarks";
 
 import { VscAdd, VscAccount } from "react-icons/vsc";
 
@@ -158,6 +155,14 @@ export default function NavBar() {
           </Badge>
         </IconButton>
         <p>Add</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton size="large" color="inherit">
+          <Badge color="error">
+            <BookmarksIcon />
+          </Badge>
+        </IconButton>
+        <p>Favorites</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
