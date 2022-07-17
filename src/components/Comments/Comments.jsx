@@ -1,12 +1,18 @@
 import { Box, Button, Divider, TextField, Typography } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { productsContext } from "../../contexts/productsContext";
+import { commentsContext } from "../../contexts/commentsContext";
 
-const Comments = ({ comments }) => {
+const Comments = () => {
   const { id } = useParams();
   const [newComment, setNewComment] = useState("");
-  const { addComment, deleteComment } = useContext(productsContext);
+  const { getComments, comments, addComment, deleteComment } =
+    useContext(commentsContext);
+  // const [author, setAuthor] = useState("");
+
+  useEffect(() => {
+    getComments();
+  }, []);
 
   function handleSave() {
     const comment = {
@@ -16,6 +22,7 @@ const Comments = ({ comments }) => {
     addComment(comment, id);
     setNewComment("");
   }
+  console.log(newComment);
 
   return (
     <Box>
@@ -29,7 +36,7 @@ const Comments = ({ comments }) => {
           Post
         </Button>
       </Box>
-      <Typography variant="h5">Comments ({comments.length})</Typography>
+      <Typography variant="h5">Comments ({comments.length}) </Typography>
       <Box>
         {comments.map(item => (
           <Box marginBottom="20px">

@@ -19,8 +19,8 @@ const EditProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const {
-    getCategories,
-    categories,
+    // getCategories,
+    // categories,
     updateProduct,
     getOneProduct,
     oneProduct,
@@ -29,9 +29,9 @@ const EditProduct = () => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  // const [category, setCategory] = useState("");
   const [size, setSize] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     // getCategories();
@@ -42,22 +42,20 @@ const EditProduct = () => {
       setTitle(oneProduct.title);
       setPrice(oneProduct.price);
       setDescription(oneProduct.description);
-      // setCategory(oneProduct.category.id);
+      // setCategory(oneProduct.category);
       setSize(oneProduct.size);
       setImage(oneProduct.image);
     }
   }, [oneProduct]);
 
   function handleSave() {
-    let editedProduct = new FormData();
-    editedProduct.append("title", title);
-    editedProduct.append("description", description);
-    editedProduct.append("price", price);
-    // editedProduct.append("category", category);
-    editedProduct.append("size", size);
-    if (image) {
-      editedProduct.append("image", image);
-    }
+    let editedProduct = {
+      title,
+      description,
+      price,
+      size,
+      image,
+    };
     updateProduct(id, editedProduct, navigate);
   }
 
@@ -89,6 +87,12 @@ const EditProduct = () => {
           value={size}
           onChange={e => setSize(e.target.value)}
         />
+        <TextField
+          label="Image"
+          variant="outlined"
+          value={image}
+          onChange={e => setImage(e.target.value)}
+        />
         {/* <TextField
           label="Category"
           variant="outlined"
@@ -110,7 +114,7 @@ const EditProduct = () => {
             ))}
           </Select>
         </FormControl> */}
-        <Box>
+        {/* <Box>
           <IconButton
             color="primary"
             aria-label="upload picture"
@@ -124,7 +128,7 @@ const EditProduct = () => {
             <PhotoCamera />
           </IconButton>
           {image ? <Typography variant="span">{image.name}</Typography> : null}
-        </Box>
+        </Box> */}
         <Button variant="contained" color="secondary" onClick={handleSave}>
           Save
         </Button>

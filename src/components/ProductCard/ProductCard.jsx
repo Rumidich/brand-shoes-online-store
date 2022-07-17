@@ -22,7 +22,6 @@ import { useNavigate } from "react-router-dom";
 
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import { cartContext } from "../../contexts/cartContext";
-import { useFocusEffect } from "@chakra-ui/react";
 
 const ExpandMore = styled(props => {
   const { expand, ...other } = props;
@@ -40,8 +39,7 @@ export default function ProductCard({ item }) {
   const [shoeState, setShoeState] = React.useState(checkShoeInCart(item.id));
 
   const navigate = useNavigate();
-  const { deleteProduct, toggleLike, toggleFavorites } =
-    React.useContext(productsContext);
+  const { deleteProduct } = React.useContext(productsContext);
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -50,7 +48,7 @@ export default function ProductCard({ item }) {
 
   // console.log(image);
   return (
-    <Card sx={{ maxWidth: 345, margin: "20px" }}>
+    <Card sx={{ maxWidth: 300, margin: "20px" }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -64,12 +62,12 @@ export default function ProductCard({ item }) {
             <MoreVertIcon />
           </IconButton>
         }
-        title={item.author}
+        // title={item.author}
       />
       <CardMedia
         component="img"
         height="194"
-        // image={.image}
+        image={item.image}
         alt="product"
       />
       <CardContent>
@@ -78,21 +76,21 @@ export default function ProductCard({ item }) {
           Price: {item.price} <br />
           Size: {item.size} <br />
           Description: {item.description} <br />
-          Category: {item.category.title} <br />
-          Comments: {item.comments.length} <br />
+          Category: {item.category} <br />
+          Comments: {item.comments} <br />
           Likes: {item.like} <br />
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton onClick={() => toggleFavorites(item.favorites.id)}>
+        {/* <IconButton onClick={() => toggleFavorites(item.favorites.id)}>
           {item.favorites ? <BookmarkIcon /> : <BookmarkBorderIcon />}
-        </IconButton>
+        </IconButton> */}
 
-        <IconButton onClick={() => toggleLike(item.like.id)}>
+        {/* <IconButton onClick={() => toggleLike(item.like.id)}>
           {item.like}
           <FavoriteIcon color={item.like ? "error" : "black"} />
         </IconButton>
-        {/* {item.is_author ? ( */}
+        {item.is_author ? ( */}
         <>
           <IconButton onClick={() => deleteProduct(item.id)}>
             <DeleteIcon />

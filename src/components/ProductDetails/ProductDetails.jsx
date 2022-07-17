@@ -28,10 +28,8 @@ const ProductsDetails = () => {
         Description: {oneProduct.description}
       </Typography>
       <Typography variant="h5">Author: {oneProduct.author}</Typography>
-      <Typography variant="h5">
-        Category: {oneProduct.category.title}
-      </Typography>
-      <img src={oneProduct.image} alt="product" />
+      <Typography variant="h5">Category: {oneProduct.category}</Typography>
+      <img width="400px" src={oneProduct.image} alt="product" />
       <Comments comments={oneProduct.comments} />
     </Container>
   );
