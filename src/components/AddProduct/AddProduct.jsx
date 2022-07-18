@@ -90,12 +90,12 @@ const AddProduct = () => {
           value={size}
           onChange={e => setSize(e.target.value)}
         />
-        <TextField
+        {/* <TextField
           label="Brand"
           variant="outlined"
           value={brand}
           onChange={e => setBrand(e.target.value)}
-        />
+        /> */}
         {/* <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
           <Select

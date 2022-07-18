@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import { cartContext } from "../../contexts/cartContext";
-import { useFocusEffect } from "@chakra-ui/react";
+// import { useFocusEffect } from "@chakra-ui/react";
 
 const ExpandMore = styled(props => {
   const { expand, ...other } = props;
@@ -69,7 +69,7 @@ export default function ProductCard({ item }) {
       <CardMedia
         component="img"
         height="194"
-        // image={.image}
+        image={item.image}
         alt="product"
       />
       <CardContent>

@@ -12,13 +12,13 @@ import Menu from "@mui/material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { authContext } from "../../contexts/authContext";
 import Loader from "../Loader/Loader";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
-
+import { useEffect } from "react";
 import { VscAdd, VscAccount } from "react-icons/vsc";
-
+import { productsContext } from "../../contexts/productsContext";
 import { FiShoppingCart } from "react-icons/fi";
 
 import { BsShop } from "react-icons/bs";
@@ -64,6 +64,31 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function NavBar() {
+  const { getProducts, products, pages } = React.useContext(productsContext);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = React.useState(
+    searchParams.get("q") ? searchParams.get("q") : ""
+  );
+
+  const [currentPage, setCurrentPage] = React.useState(
+    searchParams.get("_page") ? +searchParams.get("_page") : 1
+  );
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+  React.useEffect(() => {
+    setSearchParams({
+      q: search,
+      _page: currentPage,
+      _limit: 6,
+    });
+  }, [search, currentPage]);
+  useEffect(() => {
+    getProducts();
+  }, [searchParams]);
+  // console.log(products);
+
   const { handleLogout } = React.useContext(authContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -206,8 +231,10 @@ export default function NavBar() {
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
-                placeholder="Search…"
+                placeholder="I am Looking for…"
                 inputProps={{ "aria-label": "search" }}
+                value={search}
+                onChange={e => setSearch(e.target.value)}
               />
             </Search>
             <Box sx={{ flexGrow: 1 }} />
