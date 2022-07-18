@@ -5,7 +5,7 @@ const Main = () => {
   return (
     <Container style={{ marginTop: "100px" }}>
       <Box>
-        <Typography>Some</Typography>
+        <Typography>Main Page</Typography>
       </Box>
     </Container>
   );

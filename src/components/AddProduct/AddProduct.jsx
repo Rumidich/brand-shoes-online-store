@@ -17,43 +17,29 @@ import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const navigate = useNavigate();
-  const { getCategories, categories, addProduct } = useContext(productsContext);
+  const { addProduct, categories, getCategories } = useContext(productsContext);
 
   const [title, setTitle] = useState("");
   const [size, setSize] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [image, setImage] = useState(null);
+  // const [category, setCategory] = useState("");
+  const [image, setImage] = useState("");
   const [brand, setBrand] = useState("");
 
-  useEffect(() => {
-    getCategories();
-  }, []);
-  console.log(categories);
+  // useEffect(() => {
+  //   getCategories();
+  // }, []);
+  // console.log(categories);
 
   function handleSave() {
     let newProduct = new FormData();
-    // if (
-    //   !title.trim("") ||
-    //   !size.trim("") ||
-    //   !price.trim("") ||
-    //   !description.trim("") ||
-    //   !category.trim("") ||
-    //   !image.trim("") ||
-    //   !brand.trim("")
-    // ) {
-    //   alert("All fields are required to be filled in ");
-    // } else {
     newProduct.append("title", title);
+    // newProduct.append("category", category);
     newProduct.append("description", description);
     newProduct.append("price", price);
-    newProduct.append("size", size);
-    newProduct.append("brand", brand);
-    newProduct.append("category", category);
     newProduct.append("image", image);
     addProduct(newProduct, navigate);
-    // }
   }
 
   return (
@@ -109,15 +95,21 @@ const AddProduct = () => {
                 {item.title}
               </MenuItem>
             ))}
-          </Select> */}
-
-        <TextField
+          </Select>
+        </FormControl> */}
+        {/* <TextField
           label="Category"
           variant="outlined"
           value={category}
           onChange={e => setCategory(e.target.value)}
-        />
-        {/* </FormControl> */}
+        /> */}
+        {/* <TextField
+          label="Image"
+          variant="outlined"
+          value={image}
+          onChange={e => setImage(e.target.value)}
+        /> */}
+
         <Box>
           <IconButton
             color="primary"

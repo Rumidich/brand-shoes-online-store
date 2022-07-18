@@ -15,7 +15,6 @@ const App = () => {
         <ProductsContextProvider>
           <BrowserRouter>
             <Navbar />
-            {/* <Cardimage /> */}
             <Main />
             <Routing />
             <Footer />

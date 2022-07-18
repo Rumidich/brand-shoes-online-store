@@ -11,7 +11,7 @@ const Footer = () => {
         </h3>
 
         <p className="footer-links">
-          <Link to="#" class="link-1">
+          <Link to="#" className="link-1">
             Home
           </Link>
 
