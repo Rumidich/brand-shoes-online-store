@@ -93,27 +93,27 @@ const ProductsContextProvider = ({ children }) => {
       console.log(err);
     }
   }
-  //! Read - Get Images
-  async function getImage() {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //configuration
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      const res = await axios(`${API}/image/`, config);
-      // console.log(res);
-      dispatch({
-        type: "GET_IMAGE",
-        payload: res.data,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // //! Read - Get Images
+  // async function getImage() {
+  //   try {
+  //     const tokens = JSON.parse(localStorage.getItem("tokens"));
+  //     //configuration
+  //     const Authorization = `Bearer ${tokens.access}`;
+  //     const config = {
+  //       headers: {
+  //         Authorization,
+  //       },
+  //     };
+  //     const res = await axios(`${API}/image/`, config);
+  //     // console.log(res);
+  //     dispatch({
+  //       type: "GET_IMAGE",
+  //       payload: res.data,
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   //! Create
   async function addProduct(newProduct, navigate) {
@@ -130,7 +130,7 @@ const ProductsContextProvider = ({ children }) => {
       // console.log(res);
       navigate("/products");
       getProducts();
-      getImage();
+      // getImage();
     } catch (err) {
       console.log(err);
     }
@@ -172,7 +172,7 @@ const ProductsContextProvider = ({ children }) => {
     }
   }
 
-  async function deleteComment(reviewId, productId) {
+  async function deleteComment(id, productId) {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
       //config
@@ -182,7 +182,7 @@ const ProductsContextProvider = ({ children }) => {
           Authorization,
         },
       };
-      await axios.delete(`${API}/comments/${reviewId}/`, config);
+      await axios.delete(`${API}/comments/${id}/`, config);
       getOneProduct(productId);
     } catch (err) {
       console.log(err);
@@ -329,7 +329,6 @@ const ProductsContextProvider = ({ children }) => {
         image: state.image,
         getProducts,
         getCategories,
-        getImage,
         addProduct,
         deleteProduct,
         getOneProduct,

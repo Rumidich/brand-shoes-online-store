@@ -23,6 +23,7 @@ import { useNavigate } from "react-router-dom";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import { cartContext } from "../../contexts/cartContext";
 
+
 const ExpandMore = styled(props => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;

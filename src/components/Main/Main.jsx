@@ -77,6 +77,11 @@ const Main = () => {
         </main>
       </>
     </>
+    <Container style={{ marginTop: "100px" }}>
+      <Box>
+        <Typography>Main Page</Typography>
+      </Box>
+    </Container>
   );
 };
 

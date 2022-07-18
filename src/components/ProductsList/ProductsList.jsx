@@ -39,11 +39,12 @@ const ProductsList = () => {
       </Box>
       <Box display={"flex"} justifyContent={"center"}>
         <Pagination
+          className="pagination"
           page={currentPage}
           onChange={(e, page) => setCurrentPage(page)}
           count={pages}
           variant="outlined"
-          color="secondary"
+          color="warning"
         />
       </Box>
     </Container>
