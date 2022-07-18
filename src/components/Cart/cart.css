@@ -13,7 +13,7 @@ body {
   overflow: scroll;
 }
 
-img {
+#im {
   max-width: 100%;
   vertical-align: middle;
   border-radius: 4px;
@@ -28,7 +28,7 @@ a:hover {
   color: #f58551;
 }
 
-button {
+.bt {
   background-color: #16cc9b;
   border: 2px solid #16cc9b;
   color: #ffffff;
@@ -36,20 +36,20 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.bt:hover {
   background-color: #f58551;
   border-color: #f58551;
 }
 
-button:hover::after {
+.bt:hover::after {
   right: -5px;
 }
 
-button:focus {
+.bt:focus {
   outline: none;
 }
 
-ul {
+.ul {
   padding: 0;
   margin: 0;
   list-style-type: none;
@@ -96,6 +96,7 @@ input {
 .quantity,
 .remove {
   float: left;
+  color: black;
 }
 
 .col.left {

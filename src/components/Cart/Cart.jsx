@@ -27,7 +27,10 @@ function Cart() {
                   <div className="thumbnail">
                     {/* <img src={product.item.image} alt={product.item.title} />
                      */}
-                    <img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/d5f168f9-f953-4419-ac7a-f0def128176e/renew-run-2-road-running-shoe-jlw8gb.png" />
+                    <img
+                      id="im"
+                      src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/d5f168f9-f953-4419-ac7a-f0def128176e/renew-run-2-road-running-shoe-jlw8gb.png"
+                    />
                   </div>
                   <div className="detail">
                     <div className="name">
@@ -48,6 +51,7 @@ function Cart() {
                       }
                     />
                     <input
+                      id="in"
                       type="text"
                       className="quantity"
                       step="1"
@@ -84,7 +88,7 @@ function Cart() {
           <div className="promotion">
             <label htmlFor="promo-code">Have A Promo Code?</label>
             <input type="text" />
-            <button type="button" />
+            <button className="bt" type="button" />
           </div>
 
           <div className="summary">
@@ -100,7 +104,12 @@ function Cart() {
           </div>
 
           <div className="checkout">
-            <button type="button">Check Out</button>
+            <button
+              className="bt"
+              onClick={() => navigate("/payment")}
+              type="button">
+              Check Out
+            </button>
           </div>
         </section>
       </>

@@ -1,16 +1,12 @@
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { authContext } from "../../contexts/authContext";
@@ -22,46 +18,33 @@ import { productsContext } from "../../contexts/productsContext";
 import { FiShoppingCart } from "react-icons/fi";
 
 import { BsShop } from "react-icons/bs";
+import { productsContext } from "../../contexts/productsContext";
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "auto",
-  },
-}));
+export default function NavBar() {
+  const { getProducts, products, pages } = React.useContext(productsContext);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = React.useState(
+    searchParams.get("q") ? searchParams.get("q") : ""
+  );
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
+  const [currentPage, setCurrentPage] = React.useState(
+    searchParams.get("_page") ? +searchParams.get("_page") : 1
+  );
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-}));
+  useEffect(() => {
+    getProducts();
+  }, []);
+  React.useEffect(() => {
+    setSearchParams({
+      q: search,
+      _page: currentPage,
+      _limit: 6,
+    });
+  }, [search, currentPage]);
+  useEffect(() => {
+    getProducts();
+  }, [searchParams]);
+  // console.log(products);
 
 export default function NavBar() {
   const { getProducts, products, pages } = React.useContext(productsContext);
@@ -204,11 +187,11 @@ export default function NavBar() {
   );
   const navigate = useNavigate();
   const { currentUser, checkAuth, loading } = React.useContext(authContext);
-  React.useEffect(() => {
-    if (localStorage.getItem("tokens")) {
-      checkAuth();
-    }
-  }, []);
+  // React.useEffect(() => {
+  //   if (localStorage.getItem("tokens")) {
+  //     checkAuth();
+  //   }
+  // }, []);
 
   if (loading) {
     return <Loader />;
@@ -217,12 +200,34 @@ export default function NavBar() {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="fixed" style={{ backgroundColor: "black" }}>
+        <AppBar
+          className="appBar"
+          position="fixed"
+          style={{
+            backgroundColor: "white",
+            color: "black",
+            height: "45px",
+          }}>
           <Toolbar>
             <Typography
-              variant="h6"
+              onClick={() => navigate("/")}
+              variant="h7"
               noWrap
               component="div"
+
+              sx={{
+                marginBottom: "20px",
+                display: { xs: "none", sm: "block" },
+              }}>
+              <img
+                style={{
+                  width: "60px",
+                  color: "white",
+                  height: "51px",
+                  backgroundColor: "white",
+                }}
+                src="https://t3.ftcdn.net/jpg/01/36/55/48/360_F_136554899_bI9RjRJeAdCUoAgyIcNdMz8UvorxxohP.jpg"
+
               sx={{ display: { xs: "none", sm: "block" } }}>
               Sneakers Store
             </Typography>
@@ -235,10 +240,15 @@ export default function NavBar() {
                 inputProps={{ "aria-label": "search" }}
                 value={search}
                 onChange={e => setSearch(e.target.value)}
+
               />
-            </Search>
+            </Typography>
             <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Box
+              sx={{
+                marginBottom: "20px",
+                display: { xs: "none", md: "flex" },
+              }}>
               <IconButton
                 onClick={() => navigate("/products")}
                 size="large"
@@ -252,7 +262,7 @@ export default function NavBar() {
               <MenuItem>
                 <IconButton>
                   <FiShoppingCart
-                    style={{ color: "white" }}
+                    style={{ color: "black" }}
                     onClick={() => navigate("/cart")}
                   />
                 </IconButton>

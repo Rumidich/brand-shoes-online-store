@@ -32,7 +32,7 @@ const Login = () => {
         <Typography variant="h5" color={"gold"}>
           Login
         </Typography>
-        {error ? <Alert severity="error">{error}</Alert> : null}
+        {/* {error ? <Alert severity="error">{error}</Alert> : null} */}
         <TextField
           value={email}
           onChange={e => setEmail(e.target.value)}
