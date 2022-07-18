@@ -61,7 +61,7 @@ const ProductsContextProvider = ({ children }) => {
         },
       };
       const res = await axios.post(`${API}/products/`, newProduct, config);
-      // console.log(res);
+      console.log(res);
       navigate("/products");
       getProducts();
     } catch (err) {

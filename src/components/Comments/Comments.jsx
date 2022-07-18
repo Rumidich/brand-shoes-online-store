@@ -23,33 +23,40 @@ const Comments = ({ comments }) => {
   console.log(newComment);
 
   return (
-    <Box>
+    <Box sx={{ marginTop: "30px" }}>
       <Box>
         <TextField
           label="New Comment"
           value={newComment}
           onChange={e => setNewComment(e.target.value)}
         />
-        <Button variant="outlined" onClick={handleSave}>
+        <Button
+          sx={{ marginLeft: "10px", marginTop: "8px" }}
+          variant="outlined"
+          onClick={handleSave}>
           Post
         </Button>
       </Box>
-      <Typography variant="h5">Comments ({comments.length}) </Typography>
+      <Typography variant="h6" sx={{ marginTop: "20px" }}>
+        {" "}
+        All Comments ({comments.length}){" "}
+      </Typography>{" "}
+      <br />
       <Box>
         {comments.map(item => (
           <Box marginBottom="20px">
-            <Typography variant="h6">Author: {item.author}</Typography>
-            <Typography variant="p">Comment: {item.text}</Typography> <br />
-            <Typography variant="p">Posted: {item.create_date}</Typography>
+            <Typography>Author: {item.author}</Typography>
+            <Typography>Quote: {item.text}</Typography>
+            <Typography>Posted: {item.create_date}</Typography>
             <br />
-            {item.is_author ? (
-              <Button
-                color="error"
-                variant="contained"
-                onClick={() => deleteComment(item.id, id)}>
-                Delete
-              </Button>
-            ) : null}
+            {/* {item.is_author ? ( */}
+            <Button
+              color="error"
+              variant="outlined"
+              onClick={() => deleteComment(item.id, id)}>
+              Delete
+            </Button>
+            {/* ) : null} */}
             <Divider variant="inset" />
           </Box>
         ))}

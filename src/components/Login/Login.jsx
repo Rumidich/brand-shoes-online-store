@@ -27,10 +27,10 @@ const Login = () => {
       <Box
         display={"flex"}
         flexDirection={"column"}
-        marginTop={"50px"}
+        marginTop={"80px"}
         alignItems={"center"}>
         <Typography variant="h5" color={"gold"}>
-          Login
+          Sign-in
         </Typography>
         {/* {error ? <Alert severity="error">{error}</Alert> : null} */}
         <TextField
@@ -38,6 +38,7 @@ const Login = () => {
           onChange={e => setEmail(e.target.value)}
           variant="outlined"
           label="Email"
+          sx={{ marginTop: "20px" }}
         />
         <TextField
           value={password}
@@ -45,9 +46,20 @@ const Login = () => {
           variant="outlined"
           label="Password"
         />
-        <Button variant="contained" onClick={handleSave} color={"error"}>
+        <Button
+          sx={{ marginTop: "20px" }}
+          variant="contained"
+          onClick={handleSave}
+          color={"error"}>
           Login
         </Button>
+      </Box>
+      <Box marginTop={"20px"}>
+        <Typography>
+          Don't have your account yet? Please
+          <Button onClick={() => navigate("/registration")}>Sign-up</Button>
+          here
+        </Typography>
       </Box>
     </Container>
   );

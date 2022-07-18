@@ -6,7 +6,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { productsContext } from "../../contexts/productsContext";
 // import InputLabel from "@mui/material/InputLabel";
 // import MenuItem from "@mui/material/MenuItem";
@@ -27,10 +27,10 @@ const AddProduct = () => {
   const [image, setImage] = useState("");
   const [brand, setBrand] = useState("");
 
-  // useEffect(() => {
-  //   getCategories();
-  // }, []);
-  // console.log(categories);
+  useEffect(() => {
+    getCategories();
+  }, []);
+  console.log(categories);
 
   function handleSave() {
     let newProduct = new FormData();
@@ -38,14 +38,19 @@ const AddProduct = () => {
     // newProduct.append("category", category);
     newProduct.append("description", description);
     newProduct.append("price", price);
+    newProduct.append("brand", brand);
     newProduct.append("image", image);
     addProduct(newProduct, navigate);
   }
 
   return (
     <Container maxWidth="sm">
-      <Box display={"flex"} flexDirection={"column"} marginTop={"70px"}>
-        <Typography variant="h6">Add product</Typography>
+      <Box
+        display={"flex"}
+        flexDirection={"column"}
+        marginTop={"80px"}
+        marginBottom={"20px"}>
+        <Typography variant="h6">Add Product</Typography>
         <TextField
           label="Title"
           variant="outlined"

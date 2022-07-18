@@ -37,13 +37,15 @@ const Registration = () => {
   }
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" sx={{ marginTop: "90px" }}>
       <Box
         display={"flex"}
         flexDirection={"column"}
         margin={"50px"}
         alignItems={"center"}>
-        <Typography variant="h5">Register</Typography>
+        <Typography variant="h5" color="gold">
+          Sign-up
+        </Typography>
         {error ? (
           <Box>
             {error.map((item, index) => (
@@ -59,6 +61,7 @@ const Registration = () => {
           onChange={e => setName(e.target.value)}
           variant="outlined"
           label="Name"
+          sx={{ marginTop: "20px" }}
         />
         <TextField
           value={email}
@@ -78,9 +81,20 @@ const Registration = () => {
           variant="outlined"
           label="Password confirmation"
         />
-        <Button onClick={handleSave} variant="contained" color="warning">
-          Register
+        <Button
+          sx={{ marginTop: "20px" }}
+          onClick={handleSave}
+          variant="contained"
+          color="warning">
+          Sign-up now
         </Button>
+        <Box marginTop={"20px"}>
+          <Typography>
+            Already have an acoount? Please
+            <Button onClick={() => navigate("/login")}>Sign-in</Button>
+            here
+          </Typography>
+        </Box>
       </Box>
     </Container>
   );
