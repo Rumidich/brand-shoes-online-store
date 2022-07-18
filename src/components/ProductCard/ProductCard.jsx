@@ -50,29 +50,27 @@ export default function ProductCard({ item }) {
   // console.log(image);
   return (
     <Card sx={{ maxWidth: 345, margin: "20px" }}>
-      {/* <CardHeader
+      <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {item.author.slice(0, 1)}
+            {/* {item.author.slice(0, 1)} */}
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings">
+          <IconButton
+            aria-label="settings"
+            onClick={() => navigate(`/products/${item.id}`)}>
             <MoreVertIcon />
           </IconButton>
         }
         title={item.author}
-      /> */}
-      {/* {item.image.map(img => (
-        <CardMedia
-          key={img.id}
-          component="img"
-          height="194"
-          image={img.image}
-          alt="product"
-        />
-      ))} */}
-
+      />
+      <CardMedia
+        component="img"
+        height="194"
+        image={item.image}
+        alt="product"
+      />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           Title: {item.title} <br />
@@ -80,28 +78,18 @@ export default function ProductCard({ item }) {
           Size: {item.size} <br />
           Description: {item.description} <br />
           Category: {item.category.title} <br />
-          Brand: {item.brand}
-          {/* Reviews: {item.reviews.length} <br /> */}
-          Likes: {item.likes} <br />
+          Comments: {item.comments.length} <br />
+          Likes: {item.like} <br />
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton onClick={() => toggleFavorites(item.id)}>
-          {item.favorite_by_user ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+        <IconButton onClick={() => toggleFavorites(item.favorites.id)}>
+          {item.favorites ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
 
-        <IconButton onClick={() => toggleLike(item.id)}>
-          {item.likes}
-          <FavoriteIcon color={item.liked_by_user ? "error" : "black"} />
-        </IconButton>
-        <IconButton>
-          <LocalGroceryStoreIcon
-            onClick={() => {
-              addToCart(item);
-              checkShoeInCart(item.id);
-            }}
-            color={shoeState ? "primary" : "secondary"}
-          />
+        <IconButton onClick={() => toggleLike(item.like.id)}>
+          {item.like}
+          <FavoriteIcon color={item.like ? "error" : "black"} />
         </IconButton>
         {/* {item.is_author ? ( */}
         <>

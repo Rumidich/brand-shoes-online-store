@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import AddProduct from "./components/AddProduct/AddProduct";
-import Cart from "./components/Cart/Cart";
 import EditProduct from "./components/EditProduct/EditProduct";
+import Favorites from "./components/Favorites/Favorites";
 import Loader from "./components/Loader/Loader";
 import Login from "./components/Login/Login";
 import Main from "./components/Main/Main";
+import Cart from "./components/Cart/Cart";
+import ProductsDetails from "./components/ProductDetails/ProductDetails";
 import ProductsList from "./components/ProductsList/ProductsList";
 import Registration from "./components/Registration/Registration";
 import SuccessfullRegister from "./components/SuccessfullRegister/SuccessfullRegister";
@@ -57,6 +59,7 @@ const Routing = () => {
           currentUser ? <AddProduct /> : <Navigate to="/login" replace />
         }
       />
+      <Route path="/favorites" element={<Favorites />} />
       <Route path="/edit/:id" element={<EditProduct />} />
       <Route path="/cart" element={<Cart />} />
       {/* <Route path="/favorites" element={<Favorites />} /> */}
