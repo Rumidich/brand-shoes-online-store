@@ -22,7 +22,6 @@ import { useNavigate } from "react-router-dom";
 
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import { cartContext } from "../../contexts/cartContext";
-import { useFocusEffect } from "@chakra-ui/react";
 
 const ExpandMore = styled(props => {
   const { expand, ...other } = props;
@@ -47,7 +46,7 @@ export default function ProductCard({ item }) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+  // console.log(item);
   // console.log(image);
   return (
     <Card sx={{ maxWidth: 345, margin: "20px" }}>
@@ -64,12 +63,16 @@ export default function ProductCard({ item }) {
         }
         title={item.author}
       /> */}
-      <CardMedia
-        component="img"
-        height="194"
-        // image={.image}
-        alt="product"
-      />
+      {/* {item.image.map(img => (
+        <CardMedia
+          key={img.id}
+          component="img"
+          height="194"
+          image={img.image}
+          alt="product"
+        />
+      ))} */}
+
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           Title: {item.title} <br />

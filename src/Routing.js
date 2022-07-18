@@ -10,6 +10,8 @@ import ProductsList from "./components/ProductsList/ProductsList";
 import Registration from "./components/Registration/Registration";
 import SuccessfullRegister from "./components/SuccessfullRegister/SuccessfullRegister";
 import { authContext } from "./contexts/authContext";
+import Payment from "./components/Payment/Payment";
+import LoginAndSignUp from "./components/LoginAndSignUp/LoginAndSignUp";
 
 const Routing = () => {
   const { loading, currentUser } = useContext(authContext);
@@ -57,6 +59,11 @@ const Routing = () => {
       />
       <Route path="/edit/:id" element={<EditProduct />} />
       <Route path="/cart" element={<Cart />} />
+      {/* <Route path="/favorites" element={<Favorites />} /> */}
+      <Route path="/payment" element={<Payment />} />
+      {/* <Route path="/address" element={<SimpleMap />} /> */}
+      {/* <Route path="/products/:id" element={<ProductsDetails />} /> */}
+      <Route path="/test" element={<LoginAndSignUp />} />
     </Routes>
   );
 };

@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { PhotoCamera } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -117,6 +117,8 @@ const AddProduct = () => {
             aria-label="upload picture"
             component="label">
             <input
+              // value={image}
+              name="file"
               hidden
               accept="image/*"
               type="file"

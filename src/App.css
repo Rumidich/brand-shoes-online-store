@@ -1,38 +1,284 @@
-.App {
+.font {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: xx-large;
+  position: absolute;
+  color: rgba(24, 24, 24, 0.289);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+#innerpage {
+  margin: 70px 20px 30px;
+  width: 97%;
+  height: 100vh;
+  background-image: linear-gradient(
+      rgba(22, 22, 22, 0.206),
+      rgba(4, 4, 4, 0.192)
+    ),
+    url("./components/assets/inerren.jpg");
+  /* url("./components/assets/nowhite.jpg"); */
+  background-position: center;
+  background-size: cover;
+  padding-left: 8%;
+  padding-right: 8%;
+  box-sizing: border-box;
+}
+.innerpage {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.row {
+  display: flex;
+  height: 88%;
+}
+.column {
+  margin-top: 350px;
+  flex-basis: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.h1 {
+  color: rgb(255, 255, 255);
+  font-size: 50px;
+}
+.p {
+  color: #fff;
+  font-size: 7px;
+  line-height: 15px;
+}
+.button {
+  width: 180px;
+  color: #000;
+  font-size: 12px;
+  padding: 12px 0;
+  background: #fff;
+  border: 0;
+  border-radius: 20px;
+  outline: none;
+  margin-top: 30px;
+}
+.button:hover {
+  background-color: black;
+  color: #fff;
+}
+.card {
+  width: 200px;
+  height: 140px;
+  display: flex;
+  border-radius: 10px;
+  padding: 15px 25px;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-position: center;
+  background-size: cover;
+  transition: transform 0.5s;
+}
+.card1 {
+  background-image: url("https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/files/23.png");
+}
+.card2 {
+  background-image: url("https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/files/11.png");
+}
+.card3 {
+  background-image: url("https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/files/9.png");
+}
+/* .card4 {
+  background-image: url("https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/files/50.png");
+  object-fit: contain;
+} */
+.card:hover {
+  transform: translateY(-10px);
+}
+h5 {
+  color: rgb(3, 3, 3);
+}
+
+/* Resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Utilities */
+
+.landing-page-title {
+  font-size: 2.25rem;
+  font-weight: 300;
+  color: var(--white);
+}
+
+.page-subtitle {
+  font-size: 1.3125rem;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+@media screen and (min-width: 760px) {
+  body {
+    font-size: 1.125rem;
+  }
+  .landing-page-title {
+    font-size: 3.5rem;
+  }
+  page-subtitle {
+    font-size: 1.75rem;
+  }
+}
+
+/* Layout */
+
+.wrapper {
+  width: 90%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.flex,
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-column {
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+@media screen and (min-width: 520px) {
+  .wrapper {
+    max-width: 420px;
+  }
+}
+
+@media screen and (min-width: 760px) {
+  .wrapper {
+    max-width: 740px;
+  }
+  .flex {
+    flex-direction: row;
+  }
+
+  .landing-page {
+    width: 65%;
+    margin-right: 20px;
+  }
+  .landing-page2 {
+    width: 70%;
+    margin-right: 20px;
+  }
+}
+@media screen and (max-width: 760px) {
+  .row,
+  .col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  /* .col {
+    margin: 0 20vw;
+  } */
+  .card {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    border-radius: 10px;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-position: center;
+    background-size: cover;
+    transition: transform 0.5s;
+    display: none;
+  }
+}
+/* General styles */
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+main {
+  margin: 0 20px;
+}
+/* .darkener {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  padding-bottom: 1.5rem;
+} */
+
+.landing-page {
+  background-image: url("https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80");
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  margin-bottom: 2rem;
+  transition: transform 0.5s;
+  /* background: rgba(0, 0, 0, 0.65); */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.landing-page2 {
+  transition: transform 0.5s;
+  background-image: url("https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG5pa2UlMjBzaG9lc3xlbnwwfHwwfHw%3D&w=1000&q=80");
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  margin-bottom: 2rem;
+}
+
+@media screen and (min-width: 760px) {
+  .landing-page {
+    height: initial;
+    min-height: 100vh;
+    margin-bottom: 0;
+  }
+
+  .flex-column {
+    justify-content: center;
+  }
+
+  .top-logo,
+  .landing-page .page-subtitle {
+    margin-bottom: auto;
+  }
+
+  .landing-page-title {
+    margin: 2rem 0 0;
+  }
+
+  .landing-page .page-subtitle {
+    margin-top: 1rem;
   }
 }
-
-.App-header {
-  background-color: #282c34;
+.landing-page2 {
+  height: initial;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-bottom: 0;
+}
+
+.flex-column2 {
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.top-logo2,
+.landing-page2 .page-subtitle2 {
+  margin-bottom: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.landing-page-title2 {
+  margin: 2rem 0 0;
+}
+
+.landing-page2 .page-subtitle2 {
+  margin-top: 1rem;
 }

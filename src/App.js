@@ -4,24 +4,21 @@ import Navbar from "./components/NavBar/NavBar";
 import ProductsContextProvider from "./contexts/productsContext";
 import Routing from "./Routing";
 import AuthContextProvider from "./contexts/authContext";
-import Main from "./components/Main/Main";
 import CartContextProvider from "./contexts/cartContext";
 import Footer from "./components/Footer/Footer";
 
 const App = () => {
   return (
     <AuthContextProvider>
-      <CartContextProvider>
-        <ProductsContextProvider>
+      <ProductsContextProvider>
+        <CartContextProvider>
           <BrowserRouter>
             <Navbar />
-            {/* <Cardimage /> */}
-            <Main />
             <Routing />
             <Footer />
           </BrowserRouter>
-        </ProductsContextProvider>
-      </CartContextProvider>
+        </CartContextProvider>
+      </ProductsContextProvider>
     </AuthContextProvider>
   );
 };
