@@ -12,64 +12,41 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { authContext } from "../../contexts/authContext";
 import Loader from "../Loader/Loader";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
-import { useEffect } from "react";
+import BookmarksTwoToneIcon from "@mui/icons-material/BookmarksTwoTone";
+// import { useEffect } from "react";
+
 import { VscAdd, VscAccount } from "react-icons/vsc";
-import { productsContext } from "../../contexts/productsContext";
+
 import { FiShoppingCart } from "react-icons/fi";
 
 import { BsShop } from "react-icons/bs";
 import { productsContext } from "../../contexts/productsContext";
+import { cartContext } from "../../contexts/cartContext";
 
 export default function NavBar() {
   const { getProducts, products, pages } = React.useContext(productsContext);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [search, setSearch] = React.useState(
-    searchParams.get("q") ? searchParams.get("q") : ""
-  );
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // const [search, setSearch] = React.useState(
+  //   searchParams.get("q") ? searchParams.get("q") : ""
+  // );
 
-  const [currentPage, setCurrentPage] = React.useState(
-    searchParams.get("_page") ? +searchParams.get("_page") : 1
-  );
+  // const [currentPage, setCurrentPage] = React.useState(
+  //   searchParams.get("_page") ? +searchParams.get("_page") : 1
+  // );
 
-  useEffect(() => {
-    getProducts();
-  }, []);
-  React.useEffect(() => {
-    setSearchParams({
-      q: search,
-      _page: currentPage,
-      _limit: 6,
-    });
-  }, [search, currentPage]);
-  useEffect(() => {
-    getProducts();
-  }, [searchParams]);
-  // console.log(products);
-
-export default function NavBar() {
-  const { getProducts, products, pages } = React.useContext(productsContext);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [search, setSearch] = React.useState(
-    searchParams.get("q") ? searchParams.get("q") : ""
-  );
-
-  const [currentPage, setCurrentPage] = React.useState(
-    searchParams.get("_page") ? +searchParams.get("_page") : 1
-  );
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-  React.useEffect(() => {
-    setSearchParams({
-      q: search,
-      _page: currentPage,
-      _limit: 6,
-    });
-  }, [search, currentPage]);
-  useEffect(() => {
-    getProducts();
-  }, [searchParams]);
+  // useEffect(() => {
+  //   getProducts();
+  // }, []);
+  // React.useEffect(() => {
+  //   setSearchParams({
+  //     q: search,
+  //     _page: currentPage,
+  //     _limit: 6,
+  //   });
+  // }, [search, currentPage]);
+  // useEffect(() => {
+  //   getProducts();
+  // }, [searchParams]);
   // console.log(products);
 
   const { handleLogout } = React.useContext(authContext);
@@ -123,7 +100,6 @@ export default function NavBar() {
       </MenuItem>
     </Menu>
   );
-
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
@@ -167,10 +143,10 @@ export default function NavBar() {
       <MenuItem>
         <IconButton size="large" color="inherit">
           <Badge color="error">
-            <BookmarksIcon />
+            <BookmarksTwoToneIcon />
           </Badge>
+          <p>Favorites</p>
         </IconButton>
-        <p>Favorites</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -186,6 +162,12 @@ export default function NavBar() {
     </Menu>
   );
   const navigate = useNavigate();
+  const { getCart, count } = React.useContext(cartContext);
+
+  React.useEffect(() => {
+    getCart();
+  }, []);
+
   const { currentUser, checkAuth, loading } = React.useContext(authContext);
   // React.useEffect(() => {
   //   if (localStorage.getItem("tokens")) {
@@ -214,7 +196,6 @@ export default function NavBar() {
               variant="h7"
               noWrap
               component="div"
-
               sx={{
                 marginBottom: "20px",
                 display: { xs: "none", sm: "block" },
@@ -227,20 +208,6 @@ export default function NavBar() {
                   backgroundColor: "white",
                 }}
                 src="https://t3.ftcdn.net/jpg/01/36/55/48/360_F_136554899_bI9RjRJeAdCUoAgyIcNdMz8UvorxxohP.jpg"
-
-              sx={{ display: { xs: "none", sm: "block" } }}>
-              Sneakers Store
-            </Typography>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="I am Looking for…"
-                inputProps={{ "aria-label": "search" }}
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-
               />
             </Typography>
             <Box sx={{ flexGrow: 1 }} />
@@ -259,12 +226,25 @@ export default function NavBar() {
                   <Typography></Typography>
                 </Badge>
               </IconButton>
+              <IconButton
+                onClick={() => navigate("/favorites")}
+                size="large"
+                aria-label="shop"
+                color="inherit">
+                <Badge>
+                  <BookmarksTwoToneIcon color="accent" />
+                  <Typography></Typography>
+                </Badge>
+              </IconButton>
               <MenuItem>
-                <IconButton>
-                  <FiShoppingCart
-                    style={{ color: "black" }}
-                    onClick={() => navigate("/cart")}
-                  />
+                <IconButton
+                  style={{ color: "black" }}
+                  color="success"
+                  aria-label="add to shopping cart"
+                  onClick={() => navigate("/cart")}>
+                  <Badge badgeContent={count} color="error">
+                    <FiShoppingCart />
+                  </Badge>
                 </IconButton>
               </MenuItem>
               <IconButton

@@ -27,7 +27,7 @@ const ProductsDetails = () => {
       <Typography variant="h5">
         Description: {oneProduct.description}
       </Typography>
-      {/* <Typography variant="h5">Author: {oneProduct.author}</Typography> */}
+      <Typography variant="h5">Author: {oneProduct.author}</Typography>
       <Typography variant="h5">
         Category: {oneProduct.category.title}
       </Typography>

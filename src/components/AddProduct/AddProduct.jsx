@@ -6,12 +6,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { productsContext } from "../../contexts/productsContext";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+// import InputLabel from "@mui/material/InputLabel";
+// import MenuItem from "@mui/material/MenuItem";
+// import FormControl from "@mui/material/FormControl";
+// import Select from "@mui/material/Select";
 import { PhotoCamera } from "@mui/icons-material";
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -44,7 +44,7 @@ const AddProduct = () => {
 
   return (
     <Container maxWidth="sm">
-      <Box display={"flex"} flexDirection={"column"}>
+      <Box display={"flex"} flexDirection={"column"} marginTop={"70px"}>
         <Typography variant="h6">Add product</Typography>
         <TextField
           label="Title"

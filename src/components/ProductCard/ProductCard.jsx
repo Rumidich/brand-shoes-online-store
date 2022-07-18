@@ -19,10 +19,8 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { productsContext } from "../../contexts/productsContext";
 import { useNavigate } from "react-router-dom";
-
-import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
+import AddShoppingCartTwoToneIcon from "@mui/icons-material/AddShoppingCartTwoTone";
 import { cartContext } from "../../contexts/cartContext";
-
 
 const ExpandMore = styled(props => {
   const { expand, ...other } = props;
@@ -40,7 +38,7 @@ export default function ProductCard({ item }) {
   const [shoeState, setShoeState] = React.useState(checkShoeInCart(item.id));
 
   const navigate = useNavigate();
-  const { deleteProduct, toggleLike, toggleFavorites } =
+  const { deleteProduct, toggleLike, addToFavorites, toggleFavorites } =
     React.useContext(productsContext);
   const [expanded, setExpanded] = React.useState(false);
 
@@ -75,12 +73,12 @@ export default function ProductCard({ item }) {
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           Title: {item.title} <br />
-          Price: {item.price} <br />
+          Price: {item.price} KGS <br />
           Size: {item.size} <br />
-          Description: {item.description} <br />
+          {/* Description: {item.description} <br /> */}
           Category: {item.category.title} <br />
           Comments: {item.comments.length} <br />
-          Likes: {item.like} <br />
+          Likes: {item.likes} <br />
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -90,7 +88,7 @@ export default function ProductCard({ item }) {
 
         <IconButton onClick={() => toggleLike(item.like.id)}>
           {item.like}
-          <FavoriteIcon color={item.like ? "error" : "black"} />
+          <FavoriteIcon color={item.like ? "error" : "secondary"} />
         </IconButton>
         {/* {item.is_author ? ( */}
         <>
@@ -100,9 +98,17 @@ export default function ProductCard({ item }) {
           <IconButton onClick={() => navigate(`/edit/${item.id}`)}>
             <EditIcon />
           </IconButton>
+          <IconButton
+            onClick={() => {
+              addToCart(item);
+              setShoeState(checkShoeInCart(item.id));
+            }}>
+            <AddShoppingCartTwoToneIcon
+              color={shoeState ? "secondary" : "success"}
+            />
+          </IconButton>
         </>
         {/* ) : null} */}
-
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}

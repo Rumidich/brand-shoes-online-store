@@ -51,37 +51,32 @@ const Main = () => {
         </div>
       </>
       <>
-        <main class="flex" style={{ display: "flex" }}>
-          <article class="landing-page">
-            <div class="darkener">
-              <div class="wrapper flex-column">
-                <p class="top-logo">Nike Some</p>
-                <h1 class="landing-page-title">
+        <main className="flex" style={{ display: "flex" }}>
+          <article className="landing-page">
+            <div className="darkener">
+              <div className="wrapper flex-column">
+                <p className="top-logo">Nike Some</p>
+                <h1 className="landing-page-title">
                   <strong></strong>
                 </h1>
-                <h2 class="page-subtitle">catalog</h2>
+                <h2 className="page-subtitle">catalog</h2>
               </div>
             </div>
           </article>
-          <article class="landing-page2">
-            <div class="darkener2">
-              <div class="wrapper2 flex-column2">
-                <p class="top-logo">Adidas Some</p>
-                <h1 class="landing-page-title">
+          <article className="landing-page2">
+            <div className="darkener2">
+              <div className="wrapper2 flex-column2">
+                <p className="top-logo">Adidas Some</p>
+                <h1 className="landing-page-title">
                   <strong></strong>
                 </h1>
-                <h2 class="page-subtitle">catalog</h2>
+                <h2 className="page-subtitle">catalog</h2>
               </div>
             </div>
           </article>
         </main>
       </>
     </>
-    <Container style={{ marginTop: "100px" }}>
-      <Box>
-        <Typography>Main Page</Typography>
-      </Box>
-    </Container>
   );
 };
 

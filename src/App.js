@@ -14,7 +14,6 @@ const App = () => {
         <CartContextProvider>
           <BrowserRouter>
             <Navbar />
-            <Main />
             <Routing />
             <Footer />
           </BrowserRouter>

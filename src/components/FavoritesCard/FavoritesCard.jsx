@@ -10,9 +10,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function FavoritesCard(item) {
   const navigate = useNavigate();
-  const { toggleFavorites } = React.useContext(productsContext);
+  const { toggleFavorites, addToFavorites } = React.useContext(productsContext);
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, marginTop: "60px" }}>
       <CardMedia
         component="img"
         height="140"

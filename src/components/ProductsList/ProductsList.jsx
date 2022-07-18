@@ -6,8 +6,8 @@ import Pagination from "@mui/material/Pagination";
 import { useSearchParams } from "react-router-dom";
 
 const ProductsList = () => {
-  // const { getImage, images } = useContext(imagesContext);
-  const { getProducts, products, pages } = useContext(productsContext);
+  const { getProducts, products, pages, getLikes } =
+    useContext(productsContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
   useEffect(() => {
@@ -24,7 +24,7 @@ const ProductsList = () => {
       page: currentPage,
     });
   }, [currentPage]);
-  // console.log(images);
+
   return (
     <Container>
       <Box
