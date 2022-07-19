@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="footer-distributed">
       <div className="footer-left">
         <h3>
-          Brand<span>shoes</span>
+          Sneakers<span>Store</span>
         </h3>
 
         <p className="footer-links">

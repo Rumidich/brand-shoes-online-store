@@ -8,10 +8,6 @@ import {
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { productsContext } from "../../contexts/productsContext";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import { PhotoCamera } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 

@@ -35,6 +35,10 @@ const ProductsList = () => {
   }, [search, currentPage, price]);
 
   return (
+
+    // <Container>
+    <div>
+
     <Container>
       <Box display={"flex"} flexDirection={"row"}>
         <Box
@@ -81,12 +85,14 @@ const ProductsList = () => {
           step={1000}
         />
       </Box>
+
       <Box
         display={"flex"}
         flexWrap={"wrap"}
-        justifyContent={"center"}
+        // justifyContent={"center"}
         flexDirection={"row"}
-        marginTop={"40px"}>
+        marginTop={"200px"}
+        marginLeft={"90px"}>
         {products.map(item => (
           <ProductCard key={item.id} item={item} />
         ))}
@@ -101,7 +107,8 @@ const ProductsList = () => {
           color="warning"
         />
       </Box>
-    </Container>
+    </div>
+    // </Container>
   );
 };
 
