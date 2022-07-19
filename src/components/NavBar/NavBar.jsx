@@ -13,15 +13,41 @@ import { authContext } from "../../contexts/authContext";
 import Loader from "../Loader/Loader";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import { useEffect } from "react";
-
 import { VscAdd, VscAccount } from "react-icons/vsc";
-
+import { productsContext } from "../../contexts/productsContext";
 import { FiShoppingCart } from "react-icons/fi";
 
 import { BsShop } from "react-icons/bs";
-import { productsContext } from "../../contexts/productsContext";
+import { Search } from "@mui/icons-material";
+import { StyledInput } from "@nextui-org/react";
 
-export default function NavBar() {
+// export default function NavBar() {
+//   const { getProducts, products, pages } = React.useContext(productsContext);
+//   const [searchParams, setSearchParams] = useSearchParams();
+//   const [search, setSearch] = React.useState(
+//     searchParams.get("q") ? searchParams.get("q") : ""
+//   );
+
+//   const [currentPage, setCurrentPage] = React.useState(
+//     searchParams.get("_page") ? +searchParams.get("_page") : 1
+//   );
+
+//   useEffect(() => {
+//     getProducts();
+//   }, []);
+//   React.useEffect(() => {
+//     setSearchParams({
+//       q: search,
+//       _page: currentPage,
+//       _limit: 6,
+//     });
+//   }, [search, currentPage]);
+//   useEffect(() => {
+//     getProducts();
+//   }, [searchParams]);
+// console.log(products);
+
+const NavBar = () => {
   const { getProducts, products, pages } = React.useContext(productsContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = React.useState(
@@ -201,8 +227,21 @@ export default function NavBar() {
                   backgroundColor: "white",
                 }}
                 src="https://t3.ftcdn.net/jpg/01/36/55/48/360_F_136554899_bI9RjRJeAdCUoAgyIcNdMz8UvorxxohP.jpg"
+                sx={{ display: { xs: "none", sm: "block" } }}
               />
             </Typography>
+            {/* <Typography>
+              <Search />
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInput
+                placeholder="I am Looking for…"
+                inputProps={{ "aria-label": "search" }}
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+              />
+            </Typography> */}
             <Box sx={{ flexGrow: 1 }} />
             <Box
               sx={{
@@ -266,4 +305,6 @@ export default function NavBar() {
       </Box>
     </>
   );
-}
+};
+
+export default NavBar;
