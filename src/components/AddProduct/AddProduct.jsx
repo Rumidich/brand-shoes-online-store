@@ -6,6 +6,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import React, { useContext, useEffect, useState } from "react";
 import { productsContext } from "../../contexts/productsContext";
 import { PhotoCamera } from "@mui/icons-material";
@@ -19,9 +23,9 @@ const AddProduct = () => {
   const [size, setSize] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  // const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
-  const [brand, setBrand] = useState("");
+  // const [brand, setBrand] = useState("");
 
   useEffect(() => {
     getCategories();
@@ -45,8 +49,8 @@ const AddProduct = () => {
     newProduct.append("description", description);
     newProduct.append("price", price);
     newProduct.append("size", size);
-    newProduct.append("brand", brand);
-    newProduct.append("category", category);
+    // newProduct.append("brand", brand);
+    // newProduct.append("category", category);
     newProduct.append("image", image);
     addProduct(newProduct, navigate);
     // }
@@ -68,12 +72,12 @@ const AddProduct = () => {
           value={description}
           onChange={e => setDescription(e.target.value)}
         />
-        <TextField
+        {/* <TextField
           label="Brand"
           variant="outlined"
           value={brand}
           onChange={e => setBrand(e.target.value)}
-        />
+        /> */}
         <TextField
           label="Price"
           variant="outlined"
@@ -100,14 +104,14 @@ const AddProduct = () => {
                 {item.title}
               </MenuItem>
             ))}
-          </Select> */}
-        <TextField
+          </Select>
+        </FormControl> */}
+        {/* <TextField
           label="Category"
           variant="outlined"
           value={category}
           onChange={e => setCategory(e.target.value)}
-        />
-        {/* </FormControl> */}
+        /> */}
         <Box>
           <IconButton
             color="primary"

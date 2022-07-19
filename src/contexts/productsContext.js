@@ -286,7 +286,7 @@ const ProductsContextProvider = ({ children }) => {
   }
 
   //! likes functionality
-  async function toggleLike() {
+  async function toggleLike(id) {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
       //configuration
@@ -299,30 +299,30 @@ const ProductsContextProvider = ({ children }) => {
 
       const res = await axios(`${API}/products/${id}/like/`, config);
       getProducts();
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async function toggleLikePost(id) {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //configuration
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      const res = await axios.post(`${API}/products/${id}/like/`, config);
-
-      const res = await axios(`${API}/likes/`, config);
       console.log(res);
-      getProducts();
     } catch (err) {
       console.log(err);
     }
   }
+
+  // async function toggleLikePost(id) {
+  //   try {
+  //     const tokens = JSON.parse(localStorage.getItem("tokens"));
+  //     //configuration
+  //     const Authorization = `Bearer ${tokens.access}`;
+  //     const config = {
+  //       headers: {
+  //         Authorization,
+  //       },
+  //     };
+  //     const res = await axios.post(`${API}/products/${id}/like/`, config);
+
+  //     console.log(res);
+  //     getProducts();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   //! Add to favorites functionality
 
@@ -336,7 +336,7 @@ const ProductsContextProvider = ({ children }) => {
           Authorization,
         },
       };
-      const res = await axios(`${API}/favorites/`, config);
+      const res = await axios(`${API}/products/${id}/favorite/`, config);
       console.log(res);
       getProducts();
       getFavorites();
@@ -367,11 +367,10 @@ const ProductsContextProvider = ({ children }) => {
         addComment,
         deleteComment,
 
-        toggleLikePost,
+        // toggleLikePost,
 
         addToFavorites,
         getLikes,
-
       }}>
       {children}
     </productsContext.Provider>

@@ -40,7 +40,6 @@ export default function ProductCard({ item }) {
   const navigate = useNavigate();
 
   const { deleteProduct, toggleLike, addToFavorites, toggleFavorites } =
-
     React.useContext(productsContext);
   const [expanded, setExpanded] = React.useState(false);
 
@@ -76,14 +75,14 @@ export default function ProductCard({ item }) {
         alt="product"
       />
       <CardContent>
-
         <Typography style={{ height: "10px", padding: "0px", margin: "0" }}>
           <span style={{ fontWeight: "bold", padding: "0px", margin: "0" }}>
             {item.title}
           </span>
-          <br />${item.price}
-
-        <Typography variant="body2" color="text.secondary">
+          <br />
+          {item.price}
+        </Typography>
+        {/* <Typography variant="body2" color="text.secondary">
           Title: {item.title} <br />
           Price: {item.price} KGS <br />
           Size: {item.size} <br />
@@ -92,8 +91,7 @@ export default function ProductCard({ item }) {
           Category: {item.category} <br />
           Comments: {item.comments.length} <br />
           Likes: {item.like} <br />
-
-        </Typography>
+        </Typography> */}
       </CardContent>
       <CardActions disableSpacing>
         <IconButton onClick={() => addToFavorites(item.favorites.id)}>
@@ -103,7 +101,7 @@ export default function ProductCard({ item }) {
         <IconButton
           onClick={() => {
             toggleLike(item.like.id);
-            toggleLikePost(item.like.id);
+            // toggleLikePost(item.like.id);
           }}>
           {item.like}
           <FavoriteIcon color={item.like ? "error" : "primary"} />
