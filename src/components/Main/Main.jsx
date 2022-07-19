@@ -50,9 +50,15 @@ const Main = () => {
         <div>
           {" "}
           <div className="columnchik">
-            <div className="card card1">{/* <h5>Nike Some</h5> */}</div>
-            <div className="card card2">{/* <h5>Nike Some</h5> */}</div>
-            <div className="card card3">{/* <h5>Nike some</h5> */}</div>
+            <div onClick={() => navigate("/products")} className="card card1">
+              {/* <h5>Nike Some</h5> */}
+            </div>
+            <div onClick={() => navigate("/products")} className="card card2">
+              {/* <h5>Nike Some</h5> */}
+            </div>
+            <div onClick={() => navigate("/products")} className="card card3">
+              {/* <h5>Nike some</h5> */}
+            </div>
             {/* <div className="card card4">
                 <h5>Nike some</h5>
               </div> */}
@@ -86,112 +92,32 @@ const Main = () => {
           <TelegramChat />
         </main>
       </>
-
-      <div class="contai">
-        <div
-          class="r1-c1 bg"
-          style={{ width: "600px", height: "700px", marginTop: "0px" }}
-          // style="background-image: url(https://assets.codepen.io/11614/grid1-1-b.jpg)">
-        ></div>
-        <div class="r3-c1">
-          <img
-            style={{ width: "300px", height: "300px" }}
-            src="https://i.ibb.co/R0Y8T8r/nike19.png"
-          />
+      <div className="desk">
+        <div class="contai">
+          <div class="r3-c1">
+            <img
+              onClick={() => navigate("/products")}
+              style={{ width: "300px", height: "300px" }}
+              src="https://i.ibb.co/R0Y8T8r/nike19.png"
+            />
+          </div>
+          <div class="r1-c3">
+            <img
+              onClick={() => navigate("/products")}
+              style={{ width: "300px", height: "300px", marginLeft: "100px" }}
+              src="https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/files/36.png"
+            />
+          </div>{" "}
+          <div class="r3-c2">
+            <img
+              onClick={() => navigate("/products")}
+              style={{ width: "300px", height: "300px" }}
+              src="https://i.ibb.co/ZMVHp6x/nike-air-solstice.png"
+            />
+          </div>
         </div>
-        <div class="r3-c2">
-          <img
-            style={{ width: "300px", height: "300px" }}
-            src="https://i.ibb.co/ZMVHp6x/nike-air-solstice.png"
-          />
-        </div>
-        {/* <div class="r1-c3">
-          <img
-            style={{ width: "300px", height: "300px" }}
-            src="https://assets.codepen.io/11614/grid1-3.jpg"
-          />
-        </div> */}
-        <div class="r1-c4">
-          <img
-            style={{ width: "300px", height: "300px" }}
-            src="https://co0kie.github.io/codepen/nike-product-page/nikeShoe.png"
-          />
-        </div>
-        {/* <div class="r2-c3">
-          <img
-            style={{ width: "300px", height: "300px" }}
-            src="https://s22.postimg.cc/5djzvught/n-purple-shoe.png"
-          />
-        </div> */}
-        <div class="r2-c4">
-          <img
-            style={{ width: "300px", height: "300px" }}
-            src="https://s22.postimg.cc/5djzvught/n-purple-shoe.png"
-          />
-        </div>
-        {/* <div class="r3-c4">
-          <img
-            style={{ width: "300px", height: "300px" }}
-            src="https://assets.codepen.io/11614/grid3-4.png"
-          />
-        </div> */}
       </div>
-      <main class="flex" style={{ display: "flex" }}>
-        <article class="landing1">
-          <div class="darkener">
-            <div class="wrapper flex-column">
-              <p class="top-logo">
-                <br />
-              </p>
-              <br />
-              <br />
-              <h1 class="landing-page-title">
-                <strong></strong>
-              </h1>
-              <h2 class="page-subtitle"></h2>
-            </div>
-          </div>
-        </article>
-        <article class="landing2">
-          <div class="darkener">
-            <div class="wrapper flex-column">
-              <p class="top-logo">
-                <br />
-              </p>
-              <br />
-              <br />
-              <h1 class="landing-page-title">
-                <strong></strong>
-              </h1>
-              <h2 class="page-subtitle"></h2>
-            </div>
-          </div>
-        </article>
-        <article class="landing3">
-          <div class="darkener2">
-            <div class="wrapper2 flex-column2">
-              <p class="top-logo">
-                <br />
-                <br />
-              </p>
-              <br />
-              <h1 class="landing-page-title">
-                <strong></strong>
-              </h1>
-              <h2 class="page-subtitle"></h2>
-            </div>
-          </div>
-        </article>
-        <TelegramChat />
-      </main>
     </>
-    // <>
-    // <Container style={{ marginTop: "100px" }}>
-    //   <Box>
-    //     <Typography>Main Page</Typography>
-    //   </Box>
-    // </Container>
-    // </>
   );
 };
 
