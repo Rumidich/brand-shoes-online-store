@@ -39,7 +39,7 @@ export default function ProductCard({ item }) {
   const [shoeState, setShoeState] = React.useState(checkShoeInCart(item.id));
 
   const navigate = useNavigate();
-  const { deleteProduct, toggleLike, toggleFavorites } =
+  const { deleteProduct, toggleLike, toggleLikePost, toggleFavorites } =
     React.useContext(productsContext);
   const [expanded, setExpanded] = React.useState(false);
 
@@ -48,12 +48,13 @@ export default function ProductCard({ item }) {
   };
   // console.log(item);
   // console.log(image);
+  console.log(toggleLike);
   return (
-    <Card sx={{ maxWidth: 345, margin: "20px" }}>
-      <CardHeader
+    <Card sx={{ width: 300, margin: "10px" }}>
+      {/* <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {/* {item.author.slice(0, 1)} */}
+            {item.author.slice(0, 1)}
           </Avatar>
         }
         action={
@@ -64,22 +65,19 @@ export default function ProductCard({ item }) {
           </IconButton>
         }
         title={item.author}
-      />
+      /> */}
       <CardMedia
         component="img"
-        height="194"
+        height="200"
         image={item.image}
         alt="product"
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          Title: {item.title} <br />
-          Price: {item.price} <br />
-          Size: {item.size} <br />
-          Description: {item.description} <br />
-          Category: {item.category.title} <br />
-          Comments: {item.comments.length} <br />
-          Likes: {item.like} <br />
+        <Typography style={{ height: "10px", padding: "0px", margin: "0" }}>
+          <span style={{ fontWeight: "bold", padding: "0px", margin: "0" }}>
+            {item.title}
+          </span>
+          <br />${item.price}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -87,7 +85,11 @@ export default function ProductCard({ item }) {
           {item.favorites ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
 
-        <IconButton onClick={() => toggleLike(item.like.id)}>
+        <IconButton
+          onClick={() => {
+            toggleLike(item.like.id);
+            toggleLikePost(item.like.id);
+          }}>
           {item.like}
           <FavoriteIcon color={item.like ? "error" : "black"} />
         </IconButton>
@@ -112,7 +114,14 @@ export default function ProductCard({ item }) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>{item.description}</Typography>
+          <Typography variant="body2" color="text.secondary">
+            {item.category.title}
+            Size: {item.size} <br />
+            Description: {item.description} <br />
+            Comments: {item.comments.length} <br />
+            Likes: {item.like} <br />
+          </Typography>
+          {/* <Typography paragraph>{item.description}</Typography> */}
         </CardContent>
       </Collapse>
     </Card>

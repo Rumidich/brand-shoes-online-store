@@ -26,13 +26,15 @@ const ProductsList = () => {
   }, [currentPage]);
   // console.log(images);
   return (
-    <Container>
+    // <Container>
+    <div>
       <Box
         display={"flex"}
         flexWrap={"wrap"}
-        justifyContent={"center"}
+        // justifyContent={"center"}
         flexDirection={"row"}
-        marginTop={"40px"}>
+        marginTop={"200px"}
+        marginLeft={"90px"}>
         {products.map(item => (
           <ProductCard key={item.id} item={item} />
         ))}
@@ -46,7 +48,8 @@ const ProductsList = () => {
           color="secondary"
         />
       </Box>
-    </Container>
+    </div>
+    // </Container>
   );
 };
 

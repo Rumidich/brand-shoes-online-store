@@ -197,7 +197,7 @@ export default function NavBar() {
                 style={{
                   width: "60px",
                   color: "white",
-                  height: "51px",
+                  height: "49px",
                   backgroundColor: "white",
                 }}
                 src="https://t3.ftcdn.net/jpg/01/36/55/48/360_F_136554899_bI9RjRJeAdCUoAgyIcNdMz8UvorxxohP.jpg"

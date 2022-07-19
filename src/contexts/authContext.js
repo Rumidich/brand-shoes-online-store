@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const authContext = React.createContext();
 
 const API = "https://morning-depths-08273.herokuapp.com";
 
 const AuthContextProvider = ({ children }) => {
+  // const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);

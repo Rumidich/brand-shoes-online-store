@@ -1,19 +1,21 @@
 .font {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
   font-size: xx-large;
   position: absolute;
   color: rgba(24, 24, 24, 0.289);
 }
-
+.fronts {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+@import url("https://fonts.googleapis.com/css?family=Kanit");
 * {
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
 }
 #innerpage {
-  margin: 70px 20px 30px;
-  width: 97%;
+  margin: 0 0px;
+  width: 100%;
   height: 100vh;
   background-image: linear-gradient(
       rgba(22, 22, 22, 0.206),
@@ -23,8 +25,8 @@
   /* url("./components/assets/nowhite.jpg"); */
   background-position: center;
   background-size: cover;
-  padding-left: 8%;
-  padding-right: 8%;
+  /* padding-left: 8%;
+  padding-right: 8%; */
   box-sizing: border-box;
 }
 .innerpage {
@@ -37,8 +39,8 @@
   display: flex;
   height: 88%;
 }
-.column {
-  margin-top: 350px;
+.columnchik {
+  /* margin-top: 350px; */
   flex-basis: 50%;
   display: flex;
   align-items: center;
@@ -53,7 +55,7 @@
   font-size: 7px;
   line-height: 15px;
 }
-.button {
+.buttonchik {
   width: 180px;
   color: #000;
   font-size: 12px;
@@ -62,13 +64,15 @@
   border: 0;
   border-radius: 20px;
   outline: none;
-  margin-top: 30px;
+  margin-top: 440px;
 }
-.button:hover {
+.buttonchik:hover {
   background-color: black;
   color: #fff;
 }
 .card {
+  /* background-color: rgb(255, 255, 255); */
+  margin: 0;
   width: 200px;
   height: 140px;
   display: flex;
@@ -81,13 +85,13 @@
   transition: transform 0.5s;
 }
 .card1 {
-  background-image: url("https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/files/23.png");
+  background-image: url("https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/files/39.png");
 }
 .card2 {
-  background-image: url("https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/files/11.png");
+  background-image: url("https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/files/23.png");
 }
 .card3 {
-  background-image: url("https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/files/9.png");
+  background-image: url("https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/files/8.png");
 }
 /* .card4 {
   background-image: url("https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/files/50.png");
@@ -99,14 +103,6 @@
 h5 {
   color: rgb(3, 3, 3);
 }
-
-/* Resets */
-* {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-/* Utilities */
 
 .landing-page-title {
   font-size: 2.25rem;
@@ -131,8 +127,6 @@ h5 {
     font-size: 1.75rem;
   }
 }
-
-/* Layout */
 
 .wrapper {
   width: 90%;
@@ -203,12 +197,13 @@ h5 {
 /* General styles */
 
 body {
-  font-family: "Source Sans Pro", sans-serif;
+  /* font-family: "Source Sans Pro", sans-serif; */
+  font-family: "Roboto", sans-serif;
   text-align: center;
 }
 
 main {
-  margin: 0 20px;
+  margin: 30px 20px;
 }
 /* .darkener {
   height: 100%;
@@ -218,10 +213,10 @@ main {
 } */
 
 .landing-page {
-  background-image: url("https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80");
+  background-image: url("https://images.complex.com/complex/image/upload/c_scale,f_auto,q_auto,w_1920/fl_lossy,pg_1/steph-curry_fuq88q.jpg?fimg-client-default");
   background-size: cover;
   background-position: center;
-  height: 50vh;
+  height: 20vh;
   margin-bottom: 2rem;
   transition: transform 0.5s;
   /* background: rgba(0, 0, 0, 0.65); */
@@ -229,13 +224,44 @@ main {
 
 .landing-page2 {
   transition: transform 0.5s;
-  background-image: url("https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG5pa2UlMjBzaG9lc3xlbnwwfHwwfHw%3D&w=1000&q=80");
+  background-image: url("https://media.voguebusiness.com/photos/624d570d32ac66386164d4e7/master/pass/tiktok-trends-tracker-voguebus-acielle_styledumonde-apr-22-story.jpg");
   background-size: cover;
   background-position: center;
-  height: 50vh;
+  height: 30vh;
   margin-bottom: 2rem;
 }
-
+.landing2 {
+  transition: transform 0.5s;
+  background-image: url("http://cdn.shopify.com/s/files/1/0099/5232/9785/products/cz1929-100-2_grande.jpg?v=1632887762");
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  width: 400px;
+  margin-bottom: 2rem;
+  margin: 20px;
+  margin-left: 50px;
+}
+.landing1 {
+  transition: transform 0.5s;
+  background-image: url("http://cdn.shopify.com/s/files/1/0221/8010/2244/products/Untitleddesign_1_grande.png?v=1654170664");
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  width: 400px;
+  margin-bottom: 2rem;
+  margin: 20px;
+  text-align: justify;
+}
+.landing3 {
+  transition: transform 0.5s;
+  background-image: url("https://cdn.shopify.com/s/files/1/0221/8010/2244/products/Untitleddesign_3_600x.jpg?v=1655738089");
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  width: 400px;
+  margin-bottom: 2rem;
+  margin: 20px;
+}
 @media screen and (min-width: 760px) {
   .landing-page {
     height: initial;
@@ -281,4 +307,111 @@ main {
 
 .landing-page2 .page-subtitle2 {
   margin-top: 1rem;
+}
+
+.contai {
+  margin: auto;
+  font-size: 0;
+  max-width: 1280px;
+  max-heigth: 380px;
+  /* background-color: #000; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 5px 5px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "r1-c1 r1-c1 r1-c3 r1-c4"
+    "r1-c1 r1-c1 r2-c3 r2-c4"
+    "r3-c1 r3-c2 r2-c3 r3-c4";
+}
+
+.r1-c1 {
+  grid-area: r1-c1;
+}
+
+.r3-c1 {
+  grid-area: r3-c1;
+}
+
+.r3-c2 {
+  grid-area: r3-c2;
+  width: 100%;
+}
+
+.r1-c3 {
+  grid-area: r1-c3;
+}
+
+.r1-c4 {
+  grid-area: r1-c4;
+}
+
+.r2-c3 {
+  grid-area: r2-c3;
+}
+
+.r2-c4 {
+  grid-area: r2-c4;
+}
+
+.r3-c4 {
+  grid-area: r3-c4;
+}
+/* img {
+  width: 100%;
+  height: auto;
+} */
+.r1-c1 {
+  background-image: url("https://media.self.com/photos/62601451abd68281a6081461/4:3/w_2560%2Cc_limit/addidas-allbirds-low-carbon-sneaker-collab.png");
+}
+.bg {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain;
+  display: flex;
+}
+.bg img {
+  width: 30%;
+  max-width: 200px;
+  margin: auto;
+}
+
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  .contai {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 28px 28px;
+    grid-template-areas:
+      "r1-c1 r1-c1 r1-c3"
+      "r1-c1 r1-c1 r2-c3"
+      "r3-c1 r3-c2 r2-c3"
+      "r1-c4 r2-c4 r3-c4";
+  }
+  .r1-c1 {
+    min-width: 346px;
+    min-height: 346px;
+  }
+}
+
+@media all and (max-width: 763px) and (orientation: portrait) {
+  .contai {
+    grid-template-columns: 1fr 1fr;
+    gap: 6vw 5vw;
+    grid-template-areas:
+      "r1-c1 r1-c1"
+      "r3-c1 r3-c2"
+      "r1-c4  r1-c3"
+      "r2-c3 r3-c4"
+      "r2-c3 r2-c4";
+  }
+  /* div {
+    height: auto;
+    height: 45vw;
+    overflow: visible;
+  } */
+  .bg {
+    width: 98vw;
+    height: 98vw;
+  }
 }
