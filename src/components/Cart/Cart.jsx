@@ -107,7 +107,7 @@ function Cart() {
           <div className="checkout">
             <button
               className="bt"
-              onClick={() => navigate("/payment")}
+              onClick={() => navigate("/order-form")}
               type="button">
               Check Out
             </button>

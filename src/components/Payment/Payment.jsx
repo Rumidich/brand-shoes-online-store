@@ -74,9 +74,7 @@ const Payment = () => {
               <input id="cvc" type="text" size="5" placeholder="123" required />
             </div>
 
-            <button
-              onClick={() => navigate("/products")}
-              className="buy-button">
+            <button onClick={() => navigate("/thank")} className="buy-button">
               Complete Purchase
             </button>
           </div>

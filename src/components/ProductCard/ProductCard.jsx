@@ -13,6 +13,7 @@ import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Rating from "@mui/material/Rating";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
@@ -39,6 +40,8 @@ export default function ProductCard({ item }) {
 
   const navigate = useNavigate();
 
+  const [value, setValue] = React.useState(5);
+
   const { deleteProduct, toggleLike, addToFavorites, toggleFavorites } =
     React.useContext(productsContext);
   const [expanded, setExpanded] = React.useState(false);
@@ -51,23 +54,7 @@ export default function ProductCard({ item }) {
 
   return (
     <Card sx={{ width: 300, margin: "10px" }}>
-      {/* <CardHeader
-        avatar={
-
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {item.author.slice(0, 1)}
-          </Avatar>
-
-        }
-        action={
-          <IconButton
-            aria-label="settings"
-            onClick={() => navigate(`/products/${item.id}`)}>
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={item.author}
-      /> */}
+      <CardHeader />
       <CardMedia
         component="img"
         height="200"
@@ -82,6 +69,17 @@ export default function ProductCard({ item }) {
           <br />
           {item.price}
         </Typography>
+        <br />
+        <br />
+
+        <Rating
+          name="simple-controlled"
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+        />
+
         {/* <Typography variant="body2" color="text.secondary">
           Title: {item.title} <br />
           Price: {item.price} KGS <br />
@@ -97,7 +95,6 @@ export default function ProductCard({ item }) {
         <IconButton onClick={() => addToFavorites(item.favorites.id)}>
           {item.favorites ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
-
         <IconButton
           onClick={() => {
             toggleLike(item.like.id);
@@ -122,6 +119,11 @@ export default function ProductCard({ item }) {
               color={shoeState ? "secondary" : "success"}
             />
           </IconButton>
+          <IconButton
+            aria-label="settings"
+            onClick={() => navigate(`/products/${item.id}`)}>
+            <MoreVertIcon />
+          </IconButton>
         </>
         <ExpandMore
           expand={expanded}
@@ -131,6 +133,7 @@ export default function ProductCard({ item }) {
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
+
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography variant="body2" color="text.secondary">

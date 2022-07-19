@@ -25,12 +25,12 @@ const AddProduct = () => {
   const [description, setDescription] = useState("");
   // const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
-  // const [brand, setBrand] = useState("");
+  const [brand, setBrand] = useState("");
 
-  useEffect(() => {
-    getCategories();
-  }, []);
-  console.log(categories);
+  // useEffect(() => {
+  //   getCategories();
+  // }, []);
+  // console.log(categories);
 
   function handleSave() {
     let newProduct = new FormData();
@@ -49,7 +49,7 @@ const AddProduct = () => {
     newProduct.append("description", description);
     newProduct.append("price", price);
     newProduct.append("size", size);
-    // newProduct.append("brand", brand);
+    newProduct.append("brand", brand);
     // newProduct.append("category", category);
     newProduct.append("image", image);
     addProduct(newProduct, navigate);
@@ -72,12 +72,12 @@ const AddProduct = () => {
           value={description}
           onChange={e => setDescription(e.target.value)}
         />
-        {/* <TextField
+        <TextField
           label="Brand"
           variant="outlined"
           value={brand}
           onChange={e => setBrand(e.target.value)}
-        /> */}
+        />
         <TextField
           label="Price"
           variant="outlined"
@@ -106,6 +106,7 @@ const AddProduct = () => {
             ))}
           </Select>
         </FormControl> */}
+
         {/* <TextField
           label="Category"
           variant="outlined"
@@ -118,7 +119,6 @@ const AddProduct = () => {
             aria-label="upload picture"
             component="label">
             <input
-              // value={image}
               name="file"
               hidden
               accept="image/*"

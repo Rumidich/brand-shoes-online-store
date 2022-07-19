@@ -61,9 +61,9 @@ const CartContextProvider = ({ children }) => {
       };
     }
     console.log(cart);
-    // cart.totalPrice = cart.shoes.reduce((prev, curr) => {
-    //   return prev + curr.subPrice;
-    // }, 0);
+    cart.totalPrice = cart.shoes.reduce((prev, curr) => {
+      return prev + curr.subPrice;
+    }, 0);
     dispatch({
       type: "GET_CART",
       payload: cart,
