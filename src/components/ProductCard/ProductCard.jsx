@@ -19,10 +19,8 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { productsContext } from "../../contexts/productsContext";
 import { useNavigate } from "react-router-dom";
-
-import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
+import AddShoppingCartTwoToneIcon from "@mui/icons-material/AddShoppingCartTwoTone";
 import { cartContext } from "../../contexts/cartContext";
-
 
 const ExpandMore = styled(props => {
   const { expand, ...other } = props;
@@ -40,23 +38,27 @@ export default function ProductCard({ item }) {
   const [shoeState, setShoeState] = React.useState(checkShoeInCart(item.id));
 
   const navigate = useNavigate();
-  const { deleteProduct, toggleLike, toggleLikePost, toggleFavorites } =
+
+  const { deleteProduct, toggleLike, addToFavorites, toggleFavorites } =
+
     React.useContext(productsContext);
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  // console.log(item);
-  // console.log(image);
-  console.log(toggleLike);
+
+  console.log(item);
+
   return (
     <Card sx={{ width: 300, margin: "10px" }}>
       {/* <CardHeader
         avatar={
+
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
             {item.author.slice(0, 1)}
           </Avatar>
+
         }
         action={
           <IconButton
@@ -74,15 +76,27 @@ export default function ProductCard({ item }) {
         alt="product"
       />
       <CardContent>
+
         <Typography style={{ height: "10px", padding: "0px", margin: "0" }}>
           <span style={{ fontWeight: "bold", padding: "0px", margin: "0" }}>
             {item.title}
           </span>
           <br />${item.price}
+
+        <Typography variant="body2" color="text.secondary">
+          Title: {item.title} <br />
+          Price: {item.price} KGS <br />
+          Size: {item.size} <br />
+          Brand: {item.brand} <br />
+          Gender: {item.gender} <br />
+          Category: {item.category} <br />
+          Comments: {item.comments.length} <br />
+          Likes: {item.like} <br />
+
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton onClick={() => toggleFavorites(item.favorites.id)}>
+        <IconButton onClick={() => addToFavorites(item.favorites.id)}>
           {item.favorites ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
 
@@ -92,9 +106,8 @@ export default function ProductCard({ item }) {
             toggleLikePost(item.like.id);
           }}>
           {item.like}
-          <FavoriteIcon color={item.like ? "error" : "black"} />
+          <FavoriteIcon color={item.like ? "error" : "primary"} />
         </IconButton>
-        {/* {item.is_author ? ( */}
         <>
           <IconButton onClick={() => deleteProduct(item.id)}>
             <DeleteIcon />
@@ -102,9 +115,16 @@ export default function ProductCard({ item }) {
           <IconButton onClick={() => navigate(`/edit/${item.id}`)}>
             <EditIcon />
           </IconButton>
+          <IconButton
+            onClick={() => {
+              addToCart(item);
+              setShoeState(checkShoeInCart(item.id));
+            }}>
+            <AddShoppingCartTwoToneIcon
+              color={shoeState ? "secondary" : "success"}
+            />
+          </IconButton>
         </>
-        {/* ) : null} */}
-
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}

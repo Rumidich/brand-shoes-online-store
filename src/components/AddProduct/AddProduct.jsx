@@ -13,34 +13,48 @@ import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const navigate = useNavigate();
-  const { addProduct, categories, getCategories } = useContext(productsContext);
+  const { getCategories, categories, addProduct } = useContext(productsContext);
 
   const [title, setTitle] = useState("");
   const [size, setSize] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  // const [category, setCategory] = useState("");
-  const [image, setImage] = useState("");
+  const [category, setCategory] = useState("");
+  const [image, setImage] = useState(null);
   const [brand, setBrand] = useState("");
 
-  // useEffect(() => {
-  //   getCategories();
-  // }, []);
-  // console.log(categories);
+  useEffect(() => {
+    getCategories();
+  }, []);
+  console.log(categories);
 
   function handleSave() {
     let newProduct = new FormData();
+    // if (
+    //   !title.trim("") ||
+    //   !size.trim("") ||
+    //   !price.trim("") ||
+    //   !description.trim("") ||
+    //   !category.trim("") ||
+    //   !image.trim("") ||
+    //   !brand.trim("")
+    // ) {
+    //   alert("All fields are required to be filled in ");
+    // } else {
     newProduct.append("title", title);
-    // newProduct.append("category", category);
     newProduct.append("description", description);
     newProduct.append("price", price);
+    newProduct.append("size", size);
+    newProduct.append("brand", brand);
+    newProduct.append("category", category);
     newProduct.append("image", image);
     addProduct(newProduct, navigate);
+    // }
   }
 
   return (
     <Container maxWidth="sm">
-      <Box display={"flex"} flexDirection={"column"}>
+      <Box display={"flex"} flexDirection={"column"} marginTop={"80px"}>
         <Typography variant="h6">Add product</Typography>
         <TextField
           label="Title"
@@ -72,12 +86,7 @@ const AddProduct = () => {
           value={size}
           onChange={e => setSize(e.target.value)}
         />
-        {/* <TextField
-          label="Brand"
-          variant="outlined"
-          value={brand}
-          onChange={e => setBrand(e.target.value)}
-        /> */}
+
         {/* <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
           <Select
@@ -87,25 +96,18 @@ const AddProduct = () => {
             label="Category"
             onChange={e => setCategory(e.target.value)}>
             {categories.map(item => (
-              <MenuItem key={item.id} value={item.id}>
+              <MenuItem key={item.title} value={item.title}>
                 {item.title}
               </MenuItem>
             ))}
-          </Select>
-        </FormControl> */}
-        {/* <TextField
+          </Select> */}
+        <TextField
           label="Category"
           variant="outlined"
           value={category}
           onChange={e => setCategory(e.target.value)}
-        /> */}
-        {/* <TextField
-          label="Image"
-          variant="outlined"
-          value={image}
-          onChange={e => setImage(e.target.value)}
-        /> */}
-
+        />
+        {/* </FormControl> */}
         <Box>
           <IconButton
             color="primary"

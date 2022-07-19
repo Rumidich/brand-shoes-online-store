@@ -21,17 +21,17 @@ const ProductsDetails = () => {
   console.log(oneProduct);
 
   return (
-    <Container>
-      <Typography variant="h5">Title: {oneProduct.title}</Typography>
-      <Typography variant="h5">Price: {oneProduct.price}</Typography>
-      <Typography variant="h5">
+    <Container sx={{ marginTop: "80px" }}>
+      <Typography variant="h6">Title: {oneProduct.title}</Typography>
+      <Typography variant="h6">Price: {oneProduct.price}</Typography>
+      <Typography variant="h6">
         Description: {oneProduct.description}
       </Typography>
-      {/* <Typography variant="h5">Author: {oneProduct.author}</Typography> */}
-      <Typography variant="h5">
+      <Typography variant="h6">Author: {oneProduct.author}</Typography>
+      <Typography variant="h6">
         Category: {oneProduct.category.title}
       </Typography>
-      <img width="300px" src={oneProduct.image} alt="product" />
+      <img width="250px" src={oneProduct.image} alt="product" />
       <Comments comments={oneProduct.comments} />
     </Container>
   );

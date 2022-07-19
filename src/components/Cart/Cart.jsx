@@ -6,6 +6,7 @@ import AddCircleOutlineTwoToneIcon from "@mui/icons-material/AddCircleOutlineTwo
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 
 import "./cart.css";
+import { Box, Input } from "@mui/material";
 
 function Cart() {
   const navigate = useNavigate();
@@ -18,18 +19,17 @@ function Cart() {
 
   return cart ? (
     <>
-      <section className="container">
+      <section className="container" style={{ marginTop: "80px" }}>
         <ul className="products">
           {cart.shoes.map(product => {
             return (
               <li className="row" key={product.item.id}>
                 <div className="col left">
                   <div className="thumbnail">
-                    {/* <img src={product.item.image} alt={product.item.title} />
-                     */}
                     <img
-                      id="im"
-                      src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/d5f168f9-f953-4419-ac7a-f0def128176e/renew-run-2-road-running-shoe-jlw8gb.png"
+                      width={"100px"}
+                      height={"100px"}
+                      src={product.item.image}
                     />
                   </div>
                   <div className="detail">
@@ -39,18 +39,18 @@ function Cart() {
                     <div className="description">
                       {product.item.description}
                     </div>
-                    <div className="price">${product.item.price}</div>
+                    <div className="price">{product.item.price} KGS</div>
                   </div>
                 </div>
 
                 <div className="col right">
                   <div className="quantity">
-                    <AddCircleOutlineTwoToneIcon
-                      onClick={() =>
-                        changeCount(product.count + 1, product.item.id)
+                    <RemoveCircleOutlineRoundedIcon
+                      onClick={e =>
+                        changeCount(product.count - 1, product.item.id)
                       }
                     />
-                    <input
+                    <Input
                       id="in"
                       type="text"
                       className="quantity"
@@ -59,9 +59,10 @@ function Cart() {
                       value={product.count}
                       // onChange={e => setCounter(counter + 1)}
                     />
-                    <RemoveCircleOutlineRoundedIcon
-                      onClick={e =>
-                        changeCount(product.count - 1, product.item.id)
+
+                    <AddCircleOutlineTwoToneIcon
+                      onClick={() =>
+                        changeCount(product.count + 1, product.item.id)
                       }
                     />
                   </div>
@@ -94,11 +95,11 @@ function Cart() {
           <div className="summary">
             <ul>
               <li>
-                Discount: <span>$0</span>
+                Discount: <span> 0 KGS</span>
               </li>
 
               <li className="total">
-                Total: <span>${cart.totalPrice}</span>
+                Total: <span>{cart.totalPrice} KGS</span>
               </li>
             </ul>
           </div>

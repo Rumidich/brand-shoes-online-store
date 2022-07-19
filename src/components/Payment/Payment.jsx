@@ -1,7 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../Payment/payment.css";
 
 const Payment = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="align-center">
       <div id="card">
@@ -17,7 +20,7 @@ const Payment = () => {
 
         <form action="" className="forms">
           <div className="card-number">
-            <label for="number">Card Number</label>
+            <label>Card Number</label>
             <input
               id="number"
               type="text"
@@ -28,7 +31,7 @@ const Payment = () => {
           </div>
 
           <div className="card-name">
-            <label for="name">Name</label>
+            <label>Name</label>
             <input
               id="name"
               type="text"
@@ -40,7 +43,7 @@ const Payment = () => {
 
           <div className="input-row">
             <div className="select-date">
-              <label for="date">Expiration</label>
+              <label>Expiration</label>
               <select name="" id="date">
                 <option value="00"></option>
                 <option value="01">01</option>
@@ -67,11 +70,15 @@ const Payment = () => {
             </div>
 
             <div className="card-cvc">
-              <label for="cvc">CVV</label>
+              <label>CVC</label>
               <input id="cvc" type="text" size="5" placeholder="123" required />
             </div>
 
-            <button className="buy-button">Complete Purchase</button>
+            <button
+              onClick={() => navigate("/products")}
+              className="buy-button">
+              Complete Purchase
+            </button>
           </div>
         </form>
       </div>
