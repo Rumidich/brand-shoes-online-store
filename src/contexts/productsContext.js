@@ -286,7 +286,7 @@ const ProductsContextProvider = ({ children }) => {
   }
 
   //! likes functionality
-  async function toggleLike(product) {
+  async function toggleLike() {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
       //configuration

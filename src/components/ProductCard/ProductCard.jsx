@@ -45,15 +45,12 @@ export default function ProductCard({ item }) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  // console.log(item);
-  // console.log(image);
+  console.log(item);
   return (
     <Card sx={{ maxWidth: 345, margin: "20px" }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {/* {item.author.slice(0, 1)} */}
-          </Avatar>
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"></Avatar>
         }
         action={
           <IconButton
@@ -75,22 +72,22 @@ export default function ProductCard({ item }) {
           Title: {item.title} <br />
           Price: {item.price} KGS <br />
           Size: {item.size} <br />
-          {/* Description: {item.description} <br /> */}
-          Category: {item.category.title} <br />
+          Brand: {item.brand} <br />
+          Gender: {item.gender} <br />
+          Category: {item.category} <br />
           Comments: {item.comments.length} <br />
-          Likes: {item.likes} <br />
+          Likes: {item.like} <br />
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton onClick={() => toggleFavorites(item.favorites.id)}>
+        <IconButton onClick={() => addToFavorites(item.favorites.id)}>
           {item.favorites ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
 
         <IconButton onClick={() => toggleLike(item.like.id)}>
           {item.like}
-          <FavoriteIcon color={item.like ? "error" : "secondary"} />
+          <FavoriteIcon color={item.like ? "error" : "primary"} />
         </IconButton>
-        {/* {item.is_author ? ( */}
         <>
           <IconButton onClick={() => deleteProduct(item.id)}>
             <DeleteIcon />
@@ -108,7 +105,6 @@ export default function ProductCard({ item }) {
             />
           </IconButton>
         </>
-        {/* ) : null} */}
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}

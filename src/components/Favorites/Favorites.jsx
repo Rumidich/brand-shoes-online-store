@@ -1,4 +1,4 @@
-import { Box, Container, Pagination } from "@mui/material";
+import { Box, Container, Pagination, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { productsContext } from "../../contexts/productsContext";
 import FavoritesCard from "../FavoritesCard/FavoritesCard";
@@ -32,12 +32,21 @@ const Favorites = () => {
 
   return (
     <Container>
+      <Box>
+        <Typography
+          variant="h3"
+          color={"gold"}
+          textAlign="center"
+          marginTop={"80px"}>
+          Favorites
+        </Typography>
+      </Box>
       <Box
         display={"flex"}
         flexWrap={"wrap"}
         justifyContent={"center"}
         flexDirection={"row"}
-        marginTop={"40px"}
+        marginTop={"20px"}
         alignItems={"start"}>
         {favorites.map(item => (
           <FavoritesCard key={item.id} item={item} />

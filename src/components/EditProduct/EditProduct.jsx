@@ -19,8 +19,8 @@ const EditProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const {
-    // getCategories,
-    // categories,
+    getCategories,
+    categories,
     updateProduct,
     getOneProduct,
     oneProduct,
@@ -31,6 +31,7 @@ const EditProduct = () => {
   const [description, setDescription] = useState("");
   // const [category, setCategory] = useState("");
   const [size, setSize] = useState("");
+  const [brand, setBrand] = useState("");
   const [image, setImage] = useState(null);
 
   useEffect(() => {
@@ -44,6 +45,7 @@ const EditProduct = () => {
       setDescription(oneProduct.description);
       // setCategory(oneProduct.category);
       setSize(oneProduct.size);
+      setBrand(oneProduct.brand);
       setImage(oneProduct.image);
     }
   }, [oneProduct]);
@@ -55,6 +57,7 @@ const EditProduct = () => {
     editedProduct.append("price", price);
     // editedProduct.append("category", category);
     editedProduct.append("size", size);
+    editedProduct.append("brand", brand);
     if (image) {
       editedProduct.append("image", image);
     }
@@ -89,18 +92,12 @@ const EditProduct = () => {
           value={size}
           onChange={e => setSize(e.target.value)}
         />
-        {/* <TextField
-          label="Image"
+        <TextField
+          label="Brand"
           variant="outlined"
-          value={image}
-          onChange={e => setImage(e.target.value)}
-        /> */}
-        {/* <TextField
-          label="Category"
-          variant="outlined"
-          value={size}
-          onChange={e => setCategory(e.target.value)}
-        /> */}
+          value={brand}
+          onChange={e => setBrand(e.target.value)}
+        />
         {/* <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
           <Select
@@ -110,7 +107,7 @@ const EditProduct = () => {
             label="Category"
             onChange={e => setCategory(e.target.value)}>
             {categories.map(item => (
-              <MenuItem key={item.id} value={item.id}>
+              <MenuItem key={item.title} value={item.title}>
                 {item.title}
               </MenuItem>
             ))}
