@@ -19,8 +19,8 @@ const EditProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const {
-    // getCategories,
-    // categories,
+    getCategories,
+    categories,
     updateProduct,
     getOneProduct,
     oneProduct,
@@ -31,7 +31,8 @@ const EditProduct = () => {
   const [description, setDescription] = useState("");
   // const [category, setCategory] = useState("");
   const [size, setSize] = useState("");
-  // const [image, setImage] = useState("");
+  const [brand, setBrand] = useState("");
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     // getCategories();
@@ -44,7 +45,8 @@ const EditProduct = () => {
       setDescription(oneProduct.description);
       // setCategory(oneProduct.category);
       setSize(oneProduct.size);
-      // setImage(oneProduct.image);
+      setBrand(oneProduct.brand);
+      setImage(oneProduct.image);
     }
   }, [oneProduct]);
 
@@ -55,15 +57,16 @@ const EditProduct = () => {
     editedProduct.append("price", price);
     // editedProduct.append("category", category);
     editedProduct.append("size", size);
-    // if (image) {
-    // editedProduct.append("image", image);
-    // }
+    editedProduct.append("brand", brand);
+    if (image) {
+      editedProduct.append("image", image);
+    }
     updateProduct(id, editedProduct, navigate);
   }
 
   return (
     <Container maxWidth="sm">
-      <Box display={"flex"} flexDirection={"column"}>
+      <Box display={"flex"} flexDirection={"column"} marginTop={"70px"}>
         <Typography variant="h6">Edit product</Typography>
         <TextField
           label="Title"
@@ -89,18 +92,12 @@ const EditProduct = () => {
           value={size}
           onChange={e => setSize(e.target.value)}
         />
-        {/* <TextField
-          label="Image"
+        <TextField
+          label="Brand"
           variant="outlined"
-          value={image}
-          onChange={e => setImage(e.target.value)}
-        /> */}
-        {/* <TextField
-          label="Category"
-          variant="outlined"
-          value={size}
-          onChange={e => setCategory(e.target.value)}
-        /> */}
+          value={brand}
+          onChange={e => setBrand(e.target.value)}
+        />
         {/* <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
           <Select
@@ -110,13 +107,13 @@ const EditProduct = () => {
             label="Category"
             onChange={e => setCategory(e.target.value)}>
             {categories.map(item => (
-              <MenuItem key={item.id} value={item.id}>
+              <MenuItem key={item.title} value={item.title}>
                 {item.title}
               </MenuItem>
             ))}
           </Select>
         </FormControl> */}
-        {/* <Box>
+        <Box>
           <IconButton
             color="primary"
             aria-label="upload picture"
@@ -130,7 +127,7 @@ const EditProduct = () => {
             <PhotoCamera />
           </IconButton>
           {image ? <Typography variant="span">{image.name}</Typography> : null}
-        </Box> */}
+        </Box>
         <Button variant="contained" color="secondary" onClick={handleSave}>
           Save
         </Button>

@@ -37,65 +37,10 @@ const Registration = () => {
   }
 
   return (
-    // <Container maxWidth="sm">
-    //   <Box
-    //     display={"flex"}
-    //     flexDirection={"column"}
-    //     margin={"50px"}
-    //     alignItems={"center"}>
-    //     <Typography variant="h5">Register</Typography>
-    //     {error ? (
-    //       <Box>
-    //         {error.map((item, index) => (
-    //           <Alert severity="error" key={item + index}>
-    //             {" "}
-    //             {item}
-    //           </Alert>
-    //         ))}
-    //       </Box>
-    //     ) : null}
-    //     <TextField
-    //       value={name}
-    //       onChange={e => setName(e.target.value)}
-    //       variant="outlined"
-    //       label="Name"
-    //     />
-    //     <TextField
-    //       value={email}
-    //       onChange={e => setEmail(e.target.value)}
-    //       variant="outlined"
-    //       label="Email"
-    //     />
-    //     <TextField
-    //       value={password}
-    //       onChange={e => setPassword(e.target.value)}
-    //       variant="outlined"
-    //       label="Password"
-    //     />
-    //     <TextField
-    //       value={passwordConfirm}
-    //       onChange={e => setPasswordConfirm(e.target.value)}
-    //       variant="outlined"
-    //       label="Password confirmation"
-    //     />
-    //     <Button onClick={handleSave} variant="contained" color="warning">
-    //       Register
-    //     </Button>
-    //   </Box>
-    // </Container>
     <div className="overlays">
       <div class="login-box">
         <h2>Login</h2>
-        {error ? (
-          <Box>
-            {error.map((item, index) => (
-              <Alert severity="error" key={item + index}>
-                {" "}
-                {item}
-              </Alert>
-            ))}
-          </Box>
-        ) : null}
+
         <form>
           <div class="user-box">
             <input

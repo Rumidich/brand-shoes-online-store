@@ -1,4 +1,4 @@
-import { Box, Container, ImageList } from "@mui/material";
+import { Box, Container, Slider, TextField } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { productsContext } from "../../contexts/productsContext";
 import ProductCard from "../ProductCard/ProductCard";
@@ -6,10 +6,16 @@ import Pagination from "@mui/material/Pagination";
 import { useSearchParams } from "react-router-dom";
 
 const ProductsList = () => {
-  // const { getImage, images } = useContext(imagesContext);
-  const { getProducts, products, pages } = useContext(productsContext);
+  const { getProducts, products, pages, getLikes } =
+    useContext(productsContext);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = useState(
+    searchParams.get("q") ? searchParams.get("q") : ""
+  );
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [price, setPrice] = useState([1, 20000]);
+
   useEffect(() => {
     getProducts();
   }, []);
@@ -21,13 +27,61 @@ const ProductsList = () => {
   }, []);
   useEffect(() => {
     setSearchParams({
+      q: search,
       page: currentPage,
+      price_from: price[0],
+      price_to: price[1],
     });
-  }, [currentPage]);
-  // console.log(images);
+  }, [search, currentPage, price]);
+
   return (
-    // <Container>
     <div>
+      <Box display={"flex"} flexDirection={"row"}>
+        <Box
+          component="form"
+          id="search"
+          sx={{
+            "& > :not(style)": { m: 1, width: "50ch" },
+            display: "flex",
+            flexDirection: "row",
+            marginTop: "50px",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+          noValidate
+          autoComplete="off">
+          <TextField
+            style={{ width: "400px" }}
+            value={search}
+            color="secondary"
+            onChange={e => setSearch(e.target.value)}
+            label="I am Looking for..."
+            variant="outlined"
+            margin="normal"
+          />
+        </Box>
+      </Box>
+
+      <Box
+        sx={{
+          marginTop: "50px",
+          width: "300px",
+        }}>
+        <Slider
+          id="slider"
+          getAriaLabel={() => "Temperature range"}
+          color="warning"
+          value={price}
+          onChange={(e, value) => {
+            setPrice(value);
+          }}
+          valueLabelDisplay="auto"
+          min={0}
+          max={20000}
+          step={1000}
+        />
+      </Box>
+
       <Box
         display={"flex"}
         flexWrap={"wrap"}
@@ -50,7 +104,6 @@ const ProductsList = () => {
         />
       </Box>
     </div>
-    // </Container>
   );
 };
 

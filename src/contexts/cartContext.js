@@ -15,7 +15,7 @@ function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         cart: action.payload,
-        // count: action.payload.shoes.length,
+        count: action.payload.shoes.length,
       };
     default:
       return state;
@@ -24,7 +24,7 @@ function reducer(state = INIT_STATE, action) {
 const CartContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
-  //!Add to cart
+  //! Create - Add to cart
   function addToCart(shoe) {
     let cart = JSON.parse(localStorage.getItem("cart"));
     if (!cart) {
@@ -43,7 +43,7 @@ const CartContextProvider = ({ children }) => {
     );
 
     if (isShoeInCart) {
-      cart.shoe = cart.shoes.filter(item => item.item.id !== newShoe.item.id);
+      cart.shoes = cart.shoes.filter(item => item.item.id !== newShoe.item.id);
     } else {
       cart.shoes.push(newShoe);
     }
@@ -51,7 +51,7 @@ const CartContextProvider = ({ children }) => {
     getCart();
   }
 
-  //! Get Cart
+  //! Read - Get Cart
   function getCart() {
     let cart = JSON.parse(localStorage.getItem("cart"));
     if (!cart) {
@@ -60,7 +60,7 @@ const CartContextProvider = ({ children }) => {
         totalPrice: 0,
       };
     }
-    // console.log(cart);
+    console.log(cart);
     cart.totalPrice = cart.shoes.reduce((prev, curr) => {
       return prev + curr.subPrice;
     }, 0);
@@ -111,6 +111,7 @@ const CartContextProvider = ({ children }) => {
     const isShoeInCart = cart.shoes.some(item => item.item.id === id);
     return isShoeInCart;
   }
+
   return (
     <cartContext.Provider
       value={{

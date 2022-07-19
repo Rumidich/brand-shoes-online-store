@@ -8,9 +8,9 @@ const INIT_STATE = {
   oneProduct: null,
   pages: 0,
   categories: [],
-  image: [],
   favorites: [],
   favoritesPages: 0,
+  likes: [],
 };
 
 function reducer(state = INIT_STATE, action) {
@@ -21,22 +21,22 @@ function reducer(state = INIT_STATE, action) {
         products: action.payload.results,
         pages: Math.ceil(action.payload.count / 5),
       };
+
     case "GET_FAVORITES":
       return {
         ...state,
         favorites: action.payload.results,
         favoritesPages: Math.ceil(action.payload.count / 5),
       };
+
     case "GET_CATEGORIES":
       return { ...state, categories: action.payload };
 
-    case "GET_IMAGE":
-      return { ...state, image: action.payload };
-
     case "GET_ONE_PRODUCT":
       return { ...state, oneProduct: action.payload };
-    // case "GET_IMAGES":
-    //   return { ...state, images: action.payload };
+
+    case "GET_LIKES":
+      return { ...state, likes: action.payload.results };
     default:
       return state;
   }
@@ -47,7 +47,68 @@ const API = "https://morning-depths-08273.herokuapp.com";
 const ProductsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
+  //! Create
+
+  //! Create a Product
+  async function addProduct(newProduct, navigate) {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //configuration
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios.post(`${API}/products/`, newProduct, config);
+      console.log(res);
+      navigate("/products");
+      getProducts();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  //! Create a Comment
+  async function addComment(comment, productId) {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //configuration
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios.post(`${API}/comments/`, comment, config);
+      // console.log(res);
+      getOneProduct(productId);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  // //! Add to Favorite
+  async function addToFavorites(favorites, productId) {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //configuration
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios.post(`${API}/favorites/`, favorites, config);
+      console.log(res);
+      getOneProduct(productId);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   //! Read
+
   //! Read - Get Products
   async function getProducts() {
     try {
@@ -63,7 +124,7 @@ const ProductsContextProvider = ({ children }) => {
         `${API}/products/${window.location.search}`,
         config
       );
-      console.log(res);
+      // console.log(res);
       dispatch({
         type: "GET_PRODUCTS",
         payload: res.data,
@@ -93,50 +154,9 @@ const ProductsContextProvider = ({ children }) => {
       console.log(err);
     }
   }
-  // //! Read - Get Images
-  // async function getImage() {
-  //   try {
-  //     const tokens = JSON.parse(localStorage.getItem("tokens"));
-  //     //configuration
-  //     const Authorization = `Bearer ${tokens.access}`;
-  //     const config = {
-  //       headers: {
-  //         Authorization,
-  //       },
-  //     };
-  //     const res = await axios(`${API}/image/`, config);
-  //     // console.log(res);
-  //     dispatch({
-  //       type: "GET_IMAGE",
-  //       payload: res.data,
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
 
-  //! Create
-  async function addProduct(newProduct, navigate) {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //configuration
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      const res = await axios.post(`${API}/products/`, newProduct, config);
-      // console.log(res);
-      navigate("/products");
-      getProducts();
-      // getImage();
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async function addComment(comment, productId) {
+  //! Read - Get Favorites
+  async function getFavorites() {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
       //config
@@ -146,15 +166,44 @@ const ProductsContextProvider = ({ children }) => {
           Authorization,
         },
       };
-      const res = await axios.post(`${API}/comments/`, comment, config);
+      const res = await axios(
+        `${API}/favorites/${window.location.search}`,
+        config
+      );
+      dispatch({
+        type: "GET_FAVORITES",
+        payload: res.data,
+      });
       console.log(res);
-      getOneProduct(productId);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  //! Read - Get Favorites
+  async function getLikes() {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //config
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios(`${API}/likes/${window.location.search}`, config);
+      dispatch({
+        type: "GET_LIKES",
+        payload: res.data.results,
+      });
+      console.log(res);
     } catch (err) {
       console.log(err);
     }
   }
 
   //! Delete
+  //! Delete a Product
   async function deleteProduct(id) {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -172,6 +221,7 @@ const ProductsContextProvider = ({ children }) => {
     }
   }
 
+  //! Delete a Comment
   async function deleteComment(id, productId) {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -201,7 +251,7 @@ const ProductsContextProvider = ({ children }) => {
         },
       };
       const res = await axios(`${API}/products/${id}`, config);
-      console.log(res);
+      // console.log(res);
       dispatch({
         type: "GET_ONE_PRODUCT",
         payload: res.data,
@@ -246,6 +296,7 @@ const ProductsContextProvider = ({ children }) => {
           Authorization,
         },
       };
+
       const res = await axios(`${API}/products/${id}/like/`, config);
       getProducts();
     } catch (err) {
@@ -264,6 +315,8 @@ const ProductsContextProvider = ({ children }) => {
         },
       };
       const res = await axios.post(`${API}/products/${id}/like/`, config);
+
+      console.log(res);
       getProducts();
     } catch (err) {
       console.log(err);
@@ -283,6 +336,7 @@ const ProductsContextProvider = ({ children }) => {
         },
       };
       const res = await axios(`${API}/favorites/`, config);
+      console.log(res);
       getProducts();
       getFavorites();
     } catch (err) {
@@ -290,50 +344,6 @@ const ProductsContextProvider = ({ children }) => {
     }
   }
 
-  async function getFavorites() {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //config
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      const res = await axios(
-        `${API}/favorites/${window.location.search}`,
-        config
-      );
-      dispatch({
-        type: "GET_FAVORITES",
-        payload: res.data,
-      });
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  // async function getImage() {
-  //   try {
-  //     const tokens = JSON.parse(localStorage.getItem("tokens"));
-  //     //configuration
-  //     const Authorization = `Bearer ${tokens.access}`;
-  //     const config = {
-  //       headers: {
-  //         Authorization,
-  //       },
-  //     };
-  //     const res = await axios(`${API}/image/${window.location.search}`, config);
-  //     dispatch({
-  //       type: "GET_IMAGES",
-  //       payload: res.data.results,
-  //     });
-  //     console.log(res);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
   return (
     <productsContext.Provider
       value={{
@@ -355,7 +365,11 @@ const ProductsContextProvider = ({ children }) => {
         getFavorites,
         addComment,
         deleteComment,
+
         toggleLikePost,
+
+        addToFavorites,
+        getLikes,
       }}>
       {children}
     </productsContext.Provider>

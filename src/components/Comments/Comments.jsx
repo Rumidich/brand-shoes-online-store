@@ -1,18 +1,16 @@
 import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { commentsContext } from "../../contexts/commentsContext";
+import { productsContext } from "../../contexts/productsContext";
 
-const Comments = () => {
+const Comments = ({ comments }) => {
   const { id } = useParams();
   const [newComment, setNewComment] = useState("");
-  const { getComments, comments, addComment, deleteComment } =
-    useContext(commentsContext);
-  // const [author, setAuthor] = useState("");
+  const { addComment, deleteComment } = useContext(productsContext);
 
-  useEffect(() => {
-    getComments();
-  }, []);
+  // useEffect(() => {
+  //   getComments();
+  // }, []);
 
   function handleSave() {
     const comment = {
@@ -25,29 +23,36 @@ const Comments = () => {
   console.log(newComment);
 
   return (
-    <Box>
+    <Box sx={{ marginTop: "30px" }}>
       <Box>
         <TextField
           label="New Comment"
           value={newComment}
           onChange={e => setNewComment(e.target.value)}
         />
-        <Button variant="outlined" onClick={handleSave}>
+        <Button
+          sx={{ marginLeft: "10px", marginTop: "8px" }}
+          variant="outlined"
+          onClick={handleSave}>
           Post
         </Button>
       </Box>
-      <Typography variant="h5">Comments ({comments.length}) </Typography>
+      <Typography variant="h6" sx={{ marginTop: "20px" }}>
+        {" "}
+        All Comments ({comments.length}){" "}
+      </Typography>{" "}
+      <br />
       <Box>
         {comments.map(item => (
           <Box marginBottom="20px">
-            <Typography variant="h6">Author: {item.author}</Typography>
-            <Typography variant="p">{item.text}</Typography> <br />
-            <Typography variant="p">{item.created_date}</Typography>
+            <Typography>Author: {item.author}</Typography>
+            <Typography>Quote: {item.text}</Typography>
+            <Typography>Posted: {item.create_date}</Typography>
             <br />
             {/* {item.is_author ? ( */}
             <Button
               color="error"
-              variant="contained"
+              variant="outlined"
               onClick={() => deleteComment(item.id, id)}>
               Delete
             </Button>
