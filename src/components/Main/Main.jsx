@@ -70,22 +70,22 @@ const Main = () => {
           <article className="landing-page">
             <div className="darkener">
               <div className="wrapper flex-column">
-                <p className="top-logo">Nike Some</p>
+                <p className="top-logo"></p>
                 <h1 className="landing-page-title">
                   <strong></strong>
                 </h1>
-                <h2 className="page-subtitle">catalog</h2>
+                <h2 className="page-subtitle"></h2>
               </div>
             </div>
           </article>
           <article className="landing-page2">
             <div className="darkener2">
               <div className="wrapper2 flex-column2">
-                <p className="top-logo">Adidas Some</p>
+                <p className="top-logo"></p>
                 <h1 className="landing-page-title">
                   <strong></strong>
                 </h1>
-                <h2 className="page-subtitle">catalog</h2>
+                <h2 className="page-subtitle"></h2>
               </div>
             </div>
           </article>
@@ -119,13 +119,58 @@ const Main = () => {
       </div>
     </>
 
-    // <>
-    // <Container style={{ marginTop: "100px" }}>
-    //   <Box>
-    //     <Typography>Main Page</Typography>
-    //   </Box>
-    // </Container>
-    // </>
+    // <div class="body-content">
+    //   <div class="two-picture-division">
+    //     <a href="#"><img src="https://images.ctfassets.net/q602vtcuu3w3/7rnjSHqBEcgbtJ2pZqZarm/c32a5cbe533a8aab72aee54689ddb7e3/190617-WK3-WGW-4-Update.jpg"></a>
+    //     <a href="#"><img src="https://images.ctfassets.net/q602vtcuu3w3/6vo26Ry1p3rcvSURCYBoJH/2fdc52ccb0ee69352d8e02ff905d592a/190603-WK1-LGW-1.jpg"></a>
+    //   </div>
+
+    //   <div class="three-div">
+    //     <a href="#">
+    //     <img src="https://images.ctfassets.net/q602vtcuu3w3/7btvNrhUWJrd5UWYSRHtJr/43f9ce8f23d39c839f9b0e34991d97cc/190603-WK1-MGW-5.jpg">
+    //   </a>
+    //     <a href="#">
+    //     <img src="https://images.ctfassets.net/q602vtcuu3w3/5674zBs4G9hFqVyg2ceT6y/83fd495152f58a7bd12e64d68e541dcd/190617-WK3-HGW-7.jpg">
+    //   </a>
+    //     <a href="#">
+    //     <img src="https://images.ctfassets.net/q602vtcuu3w3/3Rz4KD78yXurQYIyqx6oyC/be018c5eeecd2df0a81471bb81177d8d/190617-WK3-WGW-7.jpg">
+    //   </a>
+    //   </div>
+
+    //   <div class="exclusives-title">
+    //     <h2>EXCLUSIVES</h2>
+    //     <hr/>
+    //   </div>
+
+    //   <div class="exclusive">
+    //     <a href="#">
+    //     <img src="https://s7d5.scene7.com/is/image/UrbanOutfitters/46953022_086_b?$medium$&qlt=80&fit=constrain">
+    //       <p class="picture-description">Champion Cropped Hoodie Sweatshirt</p>
+    //   </a>
+    //     <a href="#">
+    //     <img src="https://s7d5.scene7.com/is/image/UrbanOutfitters/50534346_034_b?$medium$&qlt=80&fit=constrain">
+    //       <p class="picture-description">FILA Disruptor 2 Sock Mesh Sneaker</p>
+    //   </a>
+    //     <a href="#">
+    //     <img src="https://s7d5.scene7.com/is/image/UrbanOutfitters/51077311_070_b?$medium$&qlt=80&fit=constrain">
+    //       <p class="picture-description">Mia Colona Coin Pendant Necklace</p>
+    //   </a>
+    //     <a href="#">
+    //     <img src="https://s7d5.scene7.com/is/image/UrbanOutfitters/51357671_001_b?$medium$&qlt=80&fit=constrain">
+    //       <p class="picture-description">Champion Sports Trim Bike Short</p>
+    //   </a>
+    //     <a href="#">
+    //     <img src="https://s7d5.scene7.com/is/image/UrbanOutfitters/51272904_074_b?$medium$&qlt=80&fit=constrain">
+    //       <p class="picture-description">Champion Hood Logo Hoodie Sweatshirt</p>
+    //   </a>
+    //   </div>
+    // </div>    // <>
+    //     // <Container style={{ marginTop: "100px" }}>
+    //     //   <Box>
+    //     //     <Typography>Main Page</Typography>
+    //     //   </Box>
+    //     // </Container>
+    //     // </>
   );
 };
 

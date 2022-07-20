@@ -27,8 +27,8 @@ function Cart() {
                 <div className="col left">
                   <div className="thumbnail">
                     <img
-                      width={"100px"}
-                      height={"100px"}
+                      width={"300px"}
+                      height={"300px"}
                       src={product.item.image}
                     />
                   </div>
@@ -85,7 +85,7 @@ function Cart() {
         </ul>
       </section>
       <>
-        <section className="container">
+        <div className="con">
           <div className="promotion">
             <label htmlFor="promo-code">Have A Promo Code?</label>
             <input type="text" />
@@ -112,7 +112,7 @@ function Cart() {
               Check Out
             </button>
           </div>
-        </section>
+        </div>
       </>
     </>
   ) : (
