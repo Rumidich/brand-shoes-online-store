@@ -32,7 +32,9 @@ const AuthContextProvider = ({ children }) => {
       localStorage.setItem("email", email);
       setCurrentUser(email);
       navigate("/products");
+      console.log(res);
     } catch (err) {
+      console.log(err);
       setError([err.response.data.detail]);
     }
   }

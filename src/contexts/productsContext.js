@@ -10,7 +10,7 @@ const INIT_STATE = {
   categories: [],
   favorites: [],
   favoritesPages: 0,
-  likes: [],
+  like: [],
 };
 
 function reducer(state = INIT_STATE, action) {
@@ -36,7 +36,7 @@ function reducer(state = INIT_STATE, action) {
       return { ...state, oneProduct: action.payload };
 
     case "GET_LIKES":
-      return { ...state, likes: action.payload.results };
+      return { ...state, like: action.payload.results };
     default:
       return state;
   }
@@ -46,6 +46,54 @@ const API = "https://morning-depths-08273.herokuapp.com";
 
 const ProductsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
+
+  //! Read
+
+  //! Read - Get Products
+  async function getProducts() {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //configuration
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios(
+        `${API}/products/${window.location.search}`,
+        config
+      );
+      // console.log(res);
+      dispatch({
+        type: "GET_PRODUCTS",
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  //! Read - Get Categories
+  async function getCategories() {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      //configuration
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios(`${API}/category/`, config);
+      dispatch({
+        type: "GET_CATEGORIES",
+        payload: res.data.results,
+      });
+      // console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   //! Create
 
@@ -107,54 +155,6 @@ const ProductsContextProvider = ({ children }) => {
     }
   }
 
-  //! Read
-
-  //! Read - Get Products
-  async function getProducts() {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //configuration
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      const res = await axios(
-        `${API}/products/${window.location.search}`,
-        config
-      );
-      // console.log(res);
-      dispatch({
-        type: "GET_PRODUCTS",
-        payload: res.data,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  }
-  //! Read - Get Categories
-  async function getCategories() {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //configuration
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      const res = await axios(`${API}/category/`, config);
-      dispatch({
-        type: "GET_CATEGORIES",
-        payload: res.data.results,
-      });
-      // console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   //! Read - Get Favorites
   async function getFavorites() {
     try {
@@ -173,28 +173,6 @@ const ProductsContextProvider = ({ children }) => {
       dispatch({
         type: "GET_FAVORITES",
         payload: res.data,
-      });
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  //! Read - Get Favorites
-  async function getLikes() {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //config
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      const res = await axios(`${API}/likes/${window.location.search}`, config);
-      dispatch({
-        type: "GET_LIKES",
-        payload: res.data.results,
       });
       console.log(res);
     } catch (err) {
@@ -286,7 +264,7 @@ const ProductsContextProvider = ({ children }) => {
   }
 
   //! likes functionality
-  async function toggleLike(id) {
+  async function switchLike(id) {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
       //configuration
@@ -296,7 +274,6 @@ const ProductsContextProvider = ({ children }) => {
           Authorization,
         },
       };
-
       const res = await axios(`${API}/products/${id}/like/`, config);
       getProducts();
       console.log(res);
@@ -305,28 +282,9 @@ const ProductsContextProvider = ({ children }) => {
     }
   }
 
-  // async function toggleLikePost(id) {
-  //   try {
-  //     const tokens = JSON.parse(localStorage.getItem("tokens"));
-  //     //configuration
-  //     const Authorization = `Bearer ${tokens.access}`;
-  //     const config = {
-  //       headers: {
-  //         Authorization,
-  //       },
-  //     };
-  //     const res = await axios.post(`${API}/products/${id}/like/`, config);
-
-  //     console.log(res);
-  //     getProducts();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
   //! Add to favorites functionality
 
-  async function toggleFavorites(id) {
+  async function switchFavorites(id) {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
       //configuration
@@ -361,16 +319,12 @@ const ProductsContextProvider = ({ children }) => {
         deleteProduct,
         getOneProduct,
         updateProduct,
-        toggleLike,
-        toggleFavorites,
+        switchLike,
+        switchFavorites,
         getFavorites,
         addComment,
         deleteComment,
-
-        // toggleLikePost,
-
         addToFavorites,
-        getLikes,
       }}>
       {children}
     </productsContext.Provider>

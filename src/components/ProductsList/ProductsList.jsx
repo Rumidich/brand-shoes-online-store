@@ -1,4 +1,4 @@
-import { Box, Container, Slider, TextField } from "@mui/material";
+import { Box, Container, Slider, TextField, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { productsContext } from "../../contexts/productsContext";
 import ProductCard from "../ProductCard/ProductCard";
@@ -38,50 +38,50 @@ const ProductsList = () => {
     // <Container>
     <div>
       <Container>
-        <Box display={"flex"} flexDirection={"row"}>
+        <Box
+          component="form"
+          id="search"
+          sx={{
+            "& > :not(style)": { m: 1, width: "50ch" },
+            display: "flex",
+            flexDirection: "row",
+            marginTop: "80px",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+          }}
+          noValidate
+          autoComplete="off">
+          <TextField
+            style={{ width: "400px" }}
+            value={search}
+            color="secondary"
+            onChange={e => setSearch(e.target.value)}
+            label="I am Looking for..."
+            variant="outlined"
+            margin="normal"
+          />
           <Box
-            component="form"
-            id="search"
             sx={{
-              "& > :not(style)": { m: 1, width: "50ch" },
-              display: "flex",
-              flexDirection: "row",
-              marginTop: "50px",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-            noValidate
-            autoComplete="off">
-            <TextField
-              style={{ width: "400px" }}
-              value={search}
-              color="secondary"
-              onChange={e => setSearch(e.target.value)}
-              label="I am Looking for..."
-              variant="outlined"
-              margin="normal"
+              marginTop: "40px",
+              width: "200px",
+              justifyContent: "center",
+            }}>
+            <Typography>Filter by Price</Typography>
+            <Slider
+              id="slider"
+              getAriaLabel={() => "Temperature range"}
+              color="success"
+              size="medium"
+              value={price}
+              onChange={(e, value) => {
+                setPrice(value);
+              }}
+              valueLabelDisplay="auto"
+              min={0}
+              max={20000}
+              step={1000}
             />
           </Box>
-        </Box>
-
-        <Box
-          sx={{
-            marginTop: "50px",
-            width: "300px",
-          }}>
-          <Slider
-            id="slider"
-            getAriaLabel={() => "Temperature range"}
-            color="warning"
-            value={price}
-            onChange={(e, value) => {
-              setPrice(value);
-            }}
-            valueLabelDisplay="auto"
-            min={0}
-            max={20000}
-            step={1000}
-          />
         </Box>
 
         <Box
@@ -89,7 +89,7 @@ const ProductsList = () => {
           flexWrap={"wrap"}
           // justifyContent={"center"}
           flexDirection={"row"}
-          marginTop={"200px"}
+          marginTop={"50px"}
           marginLeft={"90px"}>
           {products.map(item => (
             <ProductCard key={item.id} item={item} />

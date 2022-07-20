@@ -40,10 +40,11 @@ export default function ProductCard({ item }) {
 
   const navigate = useNavigate();
 
+  const { deleteProduct, switchLike, switchFavorites } =
+    React.useContext(productsContext);
+
   const [value, setValue] = React.useState(5);
 
-  const { deleteProduct, toggleLike, addToFavorites, toggleFavorites } =
-    React.useContext(productsContext);
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -92,16 +93,15 @@ export default function ProductCard({ item }) {
         </Typography> */}
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton onClick={() => addToFavorites(item.favorites.id)}>
+        <IconButton onClick={() => switchFavorites(item.favorites.id)}>
           {item.favorites ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
         <IconButton
           onClick={() => {
-            toggleLike(item.like.id);
-            // toggleLikePost(item.like.id);
+            switchLike(item.like.id);
           }}>
           {item.like}
-          <FavoriteIcon color={item.like ? "error" : "primary"} />
+          <FavoriteIcon color={item.like.author ? "error" : "primary"} />
         </IconButton>
         <>
           <IconButton onClick={() => deleteProduct(item.id)}>
