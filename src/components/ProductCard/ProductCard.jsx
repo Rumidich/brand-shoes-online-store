@@ -43,7 +43,7 @@ export default function ProductCard({ item }) {
   const { deleteProduct, switchLike, switchFavorites } =
     React.useContext(productsContext);
 
-  const [value, setValue] = React.useState(5);
+  const [rating, setRating] = React.useState([1, 5]);
 
   const [expanded, setExpanded] = React.useState(false);
 
@@ -75,9 +75,13 @@ export default function ProductCard({ item }) {
 
         <Rating
           name="simple-controlled"
-          value={value}
+          valueLabelDisplay="auto"
+          value={rating}
+          min={0}
+          max={5}
+          step={1}
           onChange={(event, newValue) => {
-            setValue(newValue);
+            setRating(newValue);
           }}
         />
 
@@ -93,15 +97,15 @@ export default function ProductCard({ item }) {
         </Typography> */}
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton onClick={() => switchFavorites(item.favorites.id)}>
+        <IconButton onClick={() => switchFavorites(item.id)}>
           {item.favorites ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
         <IconButton
           onClick={() => {
-            switchLike(item.like.id);
+            switchLike(item.id);
           }}>
           {item.like}
-          <FavoriteIcon color={item.like.author ? "error" : "primary"} />
+          <FavoriteIcon color={item.like ? "error" : "primary"} />
         </IconButton>
         <>
           <IconButton onClick={() => deleteProduct(item.id)}>

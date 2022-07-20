@@ -10,14 +10,14 @@ import { useNavigate } from "react-router-dom";
 
 export default function FavoritesCard(item) {
   const navigate = useNavigate();
-  const { toggleFavorites, addToFavorites } = React.useContext(productsContext);
+  const { switchFavorites } = React.useContext(productsContext);
   return (
     <Card sx={{ maxWidth: 345, marginTop: "60px" }}>
       <CardMedia
         component="img"
         height="140"
         image={item.image}
-        alt="green iguana"
+        alt="green-iguana"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -32,7 +32,7 @@ export default function FavoritesCard(item) {
         <Button
           size="small"
           color="secondary"
-          onClick={() => toggleFavorites(item.id)}>
+          onClick={() => switchFavorites(item.id)}>
           Delete
         </Button>
         <Button

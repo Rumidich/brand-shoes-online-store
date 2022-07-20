@@ -34,11 +34,6 @@ function reducer(state = INIT_STATE, action) {
 
     case "GET_ONE_PRODUCT":
       return { ...state, oneProduct: action.payload };
-
-    case "GET_LIKES":
-      return { ...state, like: action.payload.results };
-    default:
-      return state;
   }
 }
 
@@ -64,7 +59,6 @@ const ProductsContextProvider = ({ children }) => {
         `${API}/products/${window.location.search}`,
         config
       );
-      // console.log(res);
       dispatch({
         type: "GET_PRODUCTS",
         payload: res.data,
@@ -136,30 +130,11 @@ const ProductsContextProvider = ({ children }) => {
     }
   }
 
-  // //! Add to Favorite
-  async function addToFavorites(favorites, productId) {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //configuration
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      const res = await axios.post(`${API}/favorites/`, favorites, config);
-      console.log(res);
-      getOneProduct(productId);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   //! Read - Get Favorites
   async function getFavorites() {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //config
+      //configuration
       const Authorization = `Bearer ${tokens.access}`;
       const config = {
         headers: {
@@ -203,7 +178,7 @@ const ProductsContextProvider = ({ children }) => {
   async function deleteComment(id, productId) {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //config
+      //configuration
       const Authorization = `Bearer ${tokens.access}`;
       const config = {
         headers: {
@@ -324,7 +299,6 @@ const ProductsContextProvider = ({ children }) => {
         getFavorites,
         addComment,
         deleteComment,
-        addToFavorites,
       }}>
       {children}
     </productsContext.Provider>

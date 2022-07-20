@@ -1,4 +1,4 @@
-import { Container, Typography } from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
@@ -30,10 +30,10 @@ const ProductsDetails = () => {
       <Typography variant="h6">Brand: {oneProduct.brand}</Typography>
       <Typography variant="h6">Category: {oneProduct.category}</Typography>
       <img width="250px" src={oneProduct.image} alt="product" />
-      <Comments
-        comments={oneProduct.comments}
-        rating={oneProduct.comments.rating}
-      />
+      <Comments comments={oneProduct.comments} />
+      <Button marginTop="20px" onClick={() => navigate("/products")}>
+        Back to Shop
+      </Button>
     </Container>
   );
 };

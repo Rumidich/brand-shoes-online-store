@@ -30,7 +30,7 @@ const AddProduct = () => {
   useEffect(() => {
     getCategories();
   }, []);
-  console.log(categories);
+  // console.log(categories);
 
   function handleSave() {
     let newProduct = new FormData();

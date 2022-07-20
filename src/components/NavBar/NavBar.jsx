@@ -8,16 +8,13 @@ import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { authContext } from "../../contexts/authContext";
 import Loader from "../Loader/Loader";
-import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import BookmarksTwoToneIcon from "@mui/icons-material/BookmarksTwoTone";
 import { VscAdd, VscAccount } from "react-icons/vsc";
 import { FiShoppingCart } from "react-icons/fi";
 import { BsShop } from "react-icons/bs";
-import { Search } from "@mui/icons-material";
-import { StyledInput } from "@nextui-org/react";
 import { cartContext } from "../../contexts/cartContext";
 
 export default function NavBar() {
@@ -141,11 +138,6 @@ export default function NavBar() {
   }, []);
 
   const { currentUser, checkAuth, loading } = React.useContext(authContext);
-  // React.useEffect(() => {
-  //   if (localStorage.getItem("tokens")) {
-  //     checkAuth();
-  //   }
-  // }, []);
 
   if (loading) {
     return <Loader />;

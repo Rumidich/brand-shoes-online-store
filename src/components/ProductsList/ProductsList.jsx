@@ -1,4 +1,14 @@
-import { Box, Container, Slider, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Slider,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { productsContext } from "../../contexts/productsContext";
 import ProductCard from "../ProductCard/ProductCard";
@@ -6,18 +16,20 @@ import Pagination from "@mui/material/Pagination";
 import { useSearchParams } from "react-router-dom";
 
 const ProductsList = () => {
-  const { getProducts, products, pages, getLikes } =
+  const { getProducts, getCategories, categories, products, pages } =
     useContext(productsContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = useState(
     searchParams.get("q") ? searchParams.get("q") : ""
   );
   const [currentPage, setCurrentPage] = useState(1);
+  const [category, setCategory] = React.useState("");
 
   const [price, setPrice] = useState([1, 20000]);
 
   useEffect(() => {
     getProducts();
+    getCategories();
   }, []);
   useEffect(() => {
     getProducts();
@@ -60,6 +72,25 @@ const ProductsList = () => {
             variant="outlined"
             margin="normal"
           />
+          <Box sx={{ minWidth: 100 }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Category</InputLabel>
+
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={category}
+                color="secondary"
+                label="Category"
+                onChange={e => setCategory(e.target.value)}>
+                {categories.map(item => (
+                  <MenuItem key={item.title} value={item.title}>
+                    {item.title}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
           <Box
             sx={{
               marginTop: "40px",
