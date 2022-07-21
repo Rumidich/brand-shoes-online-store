@@ -1,19 +1,4 @@
-/* * {
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 12px;
-}
-
-body {
-  margin: 20px 0;
-  padding: 0;
-  font-family: arial, sans-serif;
-  overflow: scroll;
-}
-
-#im {
+.im {
   max-width: 100%;
   vertical-align: middle;
   border-radius: 4px;
@@ -53,9 +38,9 @@ a:hover {
   padding: 0;
   margin: 0;
   list-style-type: none;
-} */
+}
 
-/* input {
+input {
   transition: all 0.25s linear;
 }
 
@@ -69,14 +54,23 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input {
   outline: none;
-} */
-
-.container {
+}
+.containe {
   width: 90%;
   margin: 0 auto;
   overflow: auto;
 }
 
+.conta {
+  margin-bottom: 80px;
+  width: 40%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
 .products {
   border-top: 1px solid #ddd;
 }
@@ -86,64 +80,68 @@ input {
   border-bottom: 1px solid #ddd;
 }
 
-.row {
+.rowq {
   position: relative;
   overflow: auto;
+  display: flex;
+  justify-content: center;
+
   width: 100%;
 }
 
-.col,
-.quantity,
-.remove {
+.colq,
+.quantityq,
+.removeqq {
   float: left;
-  color: black;
 }
 
-.col.left {
+.colq.left {
   width: 70%;
+  display: flex;
+  align-items: center;
 }
 
-.col.right {
+.colq.right {
   width: 30%;
   position: absolute;
   right: 0;
   top: calc(50% - 30px);
 }
 
-.detail {
+.detailq {
   padding: 0 0.5rem;
   line-height: 2.2rem;
 }
 
-.detail .name {
+.detailq .nameq {
   font-size: 1.2rem;
 }
 
-.detail .description {
+.detailq .descriptionq {
   color: #7d7d7d;
   font-size: 1rem;
 }
 
-.detail .price {
+.detailq .priceq {
   font-size: 1.5rem;
 }
 
-.quantity {
+.quantityq {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.remove {
+.removeq {
   width: 50%;
   text-align: center;
 }
 
-.remove svg {
+.removeq svg {
   width: 60px;
   height: 60px;
 }
 
-.quantity > input {
+.quantityq > input {
   display: inline-block;
   width: 60px;
   height: 60px;
@@ -155,90 +153,99 @@ input {
   font: 600 1.5rem Helvetica, Arial, sans-serif;
 }
 
-.quantity > input:hover,
-.quantity > input:focus {
+.quantityq > input:hover,
+.quantityq > input:focus {
   border-color: #f58551;
 }
 
-.close {
+.closeq {
   fill: #7d7d7d;
   transition: color 150ms linear, background-color 150ms linear,
     fill 150ms linear, 150ms opacity linear;
   cursor: pointer;
 }
 
-.close:hover {
+.closeq:hover {
   fill: #f58551;
 }
 
 /* --- SUMMARY --- */
-.promotion,
-.summary,
-.checkout {
+.promotionq,
+.summaryq,
+.chec {
   float: left;
-  width: 100%;
+  width: 70%;
   margin-top: 1.5rem;
 }
-
-.promotion > label {
+.chec {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.total {
+  display: flex;
+  justify-content: center;
+}
+.promotionq > label {
   float: left;
-  width: 100%;
+  width: 70%;
   margin-bottom: 1rem;
 }
 
-.promotion > input {
+.promotionq > input {
   float: left;
-  width: 80%;
+  width: 70%;
   font-size: 1rem;
   padding: 0.5rem 0 0.5rem 1.8rem;
   border: 2px solid #16cc9b;
   border-radius: 2rem 0 0 2rem;
 }
 
-.promotion:hover > input {
+.promotionq:hover > input {
   border-color: #f58551;
 }
 
-.promotion > button {
+.promotionq > button {
   float: left;
   width: 20%;
   padding: 0.5rem 0;
   border-radius: 0 2rem 2rem 0;
 }
 
-.promotion:hover > button {
+.promotionq:hover > button {
   border-color: #f58551;
   background-color: #f58551;
 }
 
-.promotion > button::after {
+.promotionq > button::after {
   content: "\276f";
   font-size: 1rem;
 }
 
-.summary {
+.summaryq {
   font-size: 1.2rem;
   text-align: right;
 }
 
-.summary ul li {
+.summaryq ul li {
   padding: 0.5rem 0;
 }
 
-.summary ul li span {
+.summaryq ul li span {
   display: inline-block;
   width: 30%;
 }
 
-.summary ul li.total {
+.summaryq ul li.total {
   font-weight: bold;
 }
 
-.checkout {
+.chec {
+  margin: 30px 0;
   text-align: right;
 }
 
-.checkout > button {
+.chec > button {
   font-size: 1.2rem;
   padding: 0.8rem 2.8rem;
   border-radius: 1.5rem;
@@ -254,66 +261,37 @@ input {
   border-radius: 5px;
 }
 
-/* --- SMALL SCREEN --- */
 @media all and (max-width: 599px) {
-  .thumbnail img {
-    display: none;
-  }
-
-  .quantity > input {
+  .quantityq > input {
     width: 40px;
     height: 40px;
     left: calc(50% - 20px);
   }
 
-  .remove svg {
+  .removeq svg {
     width: 40px;
     height: 40px;
   }
 }
 
-/* --- MEDIUM & LARGE SCREEN --- */
-@media all and (min-width: 600px) {
-  html {
-    font-size: 14px;
+@media screen and (max-width: 1280px) {
+  .promotionq {
+    display: flex;
+    display: none;
   }
-
-  .container {
-    width: 75%;
-    max-width: 960px;
+}
+@media screen and (max-width: 820px) {
+  .thumbnailq img {
+    width: 200px;
   }
-
-  .thumbnail,
-  .detail {
-    float: left;
-  }
-
-  .thumbnail {
-    width: 35%;
-  }
-
-  .detail {
-    width: 65%;
-  }
-
-  .promotion,
-  .summary {
-    width: 50%;
-  }
-
-  .checkout {
-    width: 100%;
-  }
-
-  .checkout,
-  .summary {
-    text-align: right;
+  .detailq {
+    display: none;
   }
 }
 
-/* --- LARGE SCREEN --- */
-@media all and (min-width: 992px) {
-  html {
-    font-size: 16px;
+@media screen and (max-width: 420px) {
+  .thumbnailq img {
+    width: 100px;
+    height: 100px;
   }
 }

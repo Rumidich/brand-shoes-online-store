@@ -15,14 +15,13 @@ const Login = () => {
     formData.append("password", password);
     handleLogin(formData, email, navigate);
   }
-  console.log(error);
+  // console.log(error);
 
   useEffect(() => {
     setError(false);
   }, []);
 
   return (
-
     <div className="overlays">
       <div class="login-box">
         <h2>Login</h2>

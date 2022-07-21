@@ -11,17 +11,12 @@ const Footer = () => {
         </h3>
 
         <p className="footer-links">
-          <Link to="#" className="link-1">
+          <Link to="/" className="link-1">
             Home
           </Link>
 
-          <Link to="#">Pricing</Link>
-
-          <Link to="#">About</Link>
-
-          <Link to="#">Faq</Link>
-
-          <Link to="#">Contact</Link>
+          <Link to="/products">Store</Link>
+          <Link to="/address">Address</Link>
         </p>
 
         <p className="footer-company-name">BrandShoes</p>

@@ -7,19 +7,22 @@ import AuthContextProvider from "./contexts/authContext";
 import CartContextProvider from "./contexts/cartContext";
 import Footer from "./components/Footer/Footer";
 import ForgotContextProvider from "./contexts/ForgotContext";
+import FavContextProvider from "./contexts/FavoriteContext";
 
 const App = () => {
   return (
     <AuthContextProvider>
       <ForgotContextProvider>
         <ProductsContextProvider>
-          <CartContextProvider>
-            <BrowserRouter>
-              <Navbar />
-              <Routing />
-              <Footer />
-            </BrowserRouter>
-          </CartContextProvider>
+          <FavContextProvider>
+            <CartContextProvider>
+              <BrowserRouter>
+                <Navbar />
+                <Routing />
+                <Footer />
+              </BrowserRouter>
+            </CartContextProvider>
+          </FavContextProvider>
         </ProductsContextProvider>
       </ForgotContextProvider>
     </AuthContextProvider>

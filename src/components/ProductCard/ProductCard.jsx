@@ -1,15 +1,13 @@
 import * as React from "react";
+import "../ProductCard/card.css";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -22,6 +20,7 @@ import { productsContext } from "../../contexts/productsContext";
 import { useNavigate } from "react-router-dom";
 import AddShoppingCartTwoToneIcon from "@mui/icons-material/AddShoppingCartTwoTone";
 import { cartContext } from "../../contexts/cartContext";
+import { favContext } from "../../contexts/FavoriteContext";
 
 const ExpandMore = styled(props => {
   const { expand, ...other } = props;
@@ -35,6 +34,7 @@ const ExpandMore = styled(props => {
 }));
 
 export default function ProductCard({ item }) {
+  const { addToFav } = React.useContext(favContext);
   const { checkShoeInCart, addToCart } = React.useContext(cartContext);
   const [shoeState, setShoeState] = React.useState(checkShoeInCart(item.id));
 
@@ -51,11 +51,10 @@ export default function ProductCard({ item }) {
     setExpanded(!expanded);
   };
 
-  console.log(item);
+  // console.log(item);
 
   return (
-    <Card sx={{ width: 300, margin: "10px" }}>
-      <CardHeader />
+    <Card id="carty" sx={{ width: 250, margin: "10px" }}>
       <CardMedia
         component="img"
         height="200"
@@ -84,20 +83,9 @@ export default function ProductCard({ item }) {
             setRating(newValue);
           }}
         />
-
-        {/* <Typography variant="body2" color="text.secondary">
-          Title: {item.title} <br />
-          Price: {item.price} KGS <br />
-          Size: {item.size} <br />
-          Brand: {item.brand} <br />
-          Gender: {item.gender} <br />
-          Category: {item.category} <br />
-          Comments: {item.comments.length} <br />
-          Likes: {item.like} <br />
-        </Typography> */}
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton onClick={() => switchFavorites(item.id)}>
+        <IconButton onClick={() => addToFav(item)}>
           {item.favorites ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
         <IconButton
@@ -147,7 +135,6 @@ export default function ProductCard({ item }) {
             Comments: {item.comments.length} <br />
             Likes: {item.like} <br />
           </Typography>
-          {/* <Typography paragraph>{item.description}</Typography> */}
         </CardContent>
       </Collapse>
     </Card>

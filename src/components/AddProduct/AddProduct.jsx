@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { PhotoCamera } from "@mui/icons-material";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const AddProduct = () => {
 
   const [title, setTitle] = useState("");
   const [size, setSize] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
@@ -55,30 +55,37 @@ const AddProduct = () => {
           Add Product
         </Typography>
         <TextField
+          style={{ marginTop: "20px" }}
           label="Title"
           variant="outlined"
           value={title}
           onChange={e => setTitle(e.target.value)}
         />
         <TextField
+          style={{ marginTop: "20px" }}
           label="Description"
           variant="outlined"
           value={description}
-          onChange={e => setDescription(e.target.value)}
+          onChange={e => {
+            setDescription(e.target.value);
+          }}
         />
         <TextField
+          style={{ marginTop: "20px" }}
           label="Brand"
           variant="outlined"
           value={brand}
           onChange={e => setBrand(e.target.value)}
         />
         <TextField
+          style={{ marginTop: "20px" }}
           label="Price"
           variant="outlined"
           value={price}
           onChange={e => setPrice(e.target.value)}
         />
         <TextField
+          style={{ marginTop: "20px", marginBottom: "20px" }}
           label="Size"
           variant="outlined"
           value={size}
@@ -103,6 +110,7 @@ const AddProduct = () => {
 
         <Box>
           <IconButton
+            style={{ marginTop: "20px", marginBottom: "20px" }}
             color="primary"
             aria-label="upload picture"
             component="label">

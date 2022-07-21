@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import AddProduct from "./components/AddProduct/AddProduct";
 import EditProduct from "./components/EditProduct/EditProduct";
-import Favorites from "./components/Favorites/Favorites";
 import Loader from "./components/Loader/Loader";
 import Login from "./components/Login/Login";
 import Main from "./components/Main/Main";
@@ -16,13 +15,15 @@ import Payment from "./components/Payment/Payment";
 import Forgot from "./components/Forgot/Forgot";
 import OrderForm from "./components/OrderForm/OrderForm";
 import ThankYou from "./components/ThankYou/ThankYou";
+import Fav from "./components/Fav/Fav";
+
+import SimpleMap from "./components/Address/Address";
 
 const Routing = () => {
   const { loading, currentUser } = useContext(authContext);
   if (loading) {
     return <Loader />;
   }
-  // console.log(currentUser);
 
   return (
     <Routes>
@@ -62,15 +63,15 @@ const Routing = () => {
         }
       />
 
-      <Route path="/favorites" element={<Favorites />} />
       <Route path="/edit/:id" element={<EditProduct />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/order-form" element={<OrderForm />} />
       <Route path="/payment" element={<Payment />} />
       <Route path="/forgot" element={<Forgot />} />
       <Route path="/thank" element={<ThankYou />} />
-      {/* <Route path="/address" element={<SimpleMap />} /> */}
+      <Route path="/address" element={<SimpleMap />} />
       <Route path="/products/:id" element={<ProductsDetails />} />
+      <Route path="/favorites" element={<Fav />} />
     </Routes>
   );
 };

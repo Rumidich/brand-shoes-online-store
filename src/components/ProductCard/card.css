@@ -1,0 +1,7 @@
+#carty {
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+#carty:hover {
+  box-shadow: 0px 8px 10px;
+}

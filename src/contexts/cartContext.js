@@ -15,7 +15,7 @@ function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         cart: action.payload,
-        count: action.payload.shoes.length,
+        // count: action.payload.shoes.length,
       };
     default:
       return state;
@@ -60,7 +60,7 @@ const CartContextProvider = ({ children }) => {
         totalPrice: 0,
       };
     }
-    console.log(cart);
+    // console.log(cart);
     cart.totalPrice = cart.shoes.reduce((prev, curr) => {
       return prev + curr.subPrice;
     }, 0);

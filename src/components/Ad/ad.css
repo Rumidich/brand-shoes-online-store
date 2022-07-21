@@ -1,0 +1,23 @@
+.news {
+  width: 98vw;
+}
+
+.news-scroll a {
+  text-decoration: none;
+}
+
+.dot {
+  height: 3px;
+  width: 6px;
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: 2px !important;
+  background-color: lightseagreen;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.container-fluid {
+  margin-top: 60px;
+  height: 1px;
+}

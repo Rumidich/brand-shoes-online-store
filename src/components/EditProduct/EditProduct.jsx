@@ -66,7 +66,11 @@ const EditProduct = () => {
 
   return (
     <Container maxWidth="sm">
-      <Box display={"flex"} flexDirection={"column"} marginTop={"70px"}>
+      <Box
+        display={"flex"}
+        flexDirection={"column"}
+        marginTop={"70px"}
+        marginBottom={"100px"}>
         <Typography variant="h6">Edit product</Typography>
         <TextField
           label="Title"

@@ -6,7 +6,7 @@ import AddCircleOutlineTwoToneIcon from "@mui/icons-material/AddCircleOutlineTwo
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 
 import "./cart.css";
-import { Box, Input } from "@mui/material";
+import { Input } from "@mui/material";
 
 function Cart() {
   const navigate = useNavigate();
@@ -16,35 +16,37 @@ function Cart() {
   React.useEffect(() => {
     getCart();
   }, []);
-
+  console.log(cart);
   return cart ? (
     <>
-      <section className="container" style={{ marginTop: "80px" }}>
+      <section
+        className="containe"
+        style={{ marginTop: "80px", color: "black" }}>
         <ul className="products">
           {cart.shoes.map(product => {
             return (
-              <li className="row" key={product.item.id}>
-                <div className="col left">
-                  <div className="thumbnail">
+              <li className="rowq" key={product.item.id}>
+                <div className="colq left">
+                  <div className="thumbnailq">
                     <img
-                      width={"100px"}
-                      height={"100px"}
+                      width={"250px"}
+                      height={"200px"}
                       src={product.item.image}
                     />
                   </div>
-                  <div className="detail">
-                    <div className="name">
+                  <div className="detailq">
+                    <div className="nameq">
                       <p>{product.item.title}</p>
                     </div>
-                    <div className="description">
+                    <div className="descriptionq">
                       {product.item.description}
                     </div>
-                    <div className="price">{product.item.price} KGS</div>
+                    <div className="priceq">{product.item.price} KGS</div>
                   </div>
                 </div>
 
-                <div className="col right">
-                  <div className="quantity">
+                <div className="colq right">
+                  <div className="quantityq">
                     <RemoveCircleOutlineRoundedIcon
                       onClick={e =>
                         changeCount(product.count - 1, product.item.id)
@@ -53,7 +55,7 @@ function Cart() {
                     <Input
                       id="in"
                       type="text"
-                      className="quantity"
+                      className="quantityq"
                       step="1"
                       // value={counter}
                       value={product.count}
@@ -66,11 +68,11 @@ function Cart() {
                       }
                     />
                   </div>
-                  <div className="remove">
+                  <div className="removeq">
                     <svg
                       onClick={() => deleteFromCart(product.item.id)}
                       version="1.1"
-                      className="close"
+                      className="closeq"
                       x="0px"
                       y="0px"
                       viewBox="0 0 60 60"
@@ -85,26 +87,24 @@ function Cart() {
         </ul>
       </section>
       <>
-        <section className="container">
-          <div className="promotion">
-            <label htmlFor="promo-code">Have A Promo Code?</label>
+        <section
+          className="conta"
+          style={{ marginTop: "80px", color: "black" }}>
+          <div className="promotionq">
+            <label style={{ marginLeft: "57px" }} htmlFor="promo-code">
+              Have A Promo Code?
+            </label>
             <input type="text" />
             <button className="bt" type="button" />
           </div>
 
-          <div className="summary">
+          <div className="summaryq">
             <ul>
-              <li>
-                Discount: <span> 0 KGS</span>
-              </li>
-
-              <li className="total">
-                Total: <span>{cart.totalPrice} KGS</span>
-              </li>
+              <li className="total">Total: {cart.totalPrice} KGS</li>
             </ul>
           </div>
 
-          <div className="checkout">
+          <div className="chec">
             <button
               className="bt"
               onClick={() => navigate("/order-form")}
