@@ -2,26 +2,16 @@ import React from "react";
 import TelegramChat from "../TelegramChat/TelegramChat";
 import { useNavigate } from "react-router-dom";
 import ".././../App.css";
+import Example from "../Carousel/Carousel";
+import CookieConsent from "react-cookie-consent";
+import Ad from "../Ad/Ad";
 
 const Main = () => {
   const navigate = useNavigate();
   return (
     <>
       <>
-        <div
-          style={{
-            backgroundColor: "rgb(238, 238, 238)",
-            marginTop: "46px",
-            color: "black",
-            height: "40px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}>
-          <h5 style={{ margin: "5px", fontWeight: "500" }}>New&Featured</h5>
-          <h5 style={{ margin: "5px", fontWeight: "500" }}>Men</h5>{" "}
-          <h5 style={{ margin: "5px", fontWeight: "500" }}>Women</h5>
-        </div>
+        <Ad />
         <div id="innerpage">
           <div className="innerpage">
             <div className="col">
@@ -90,6 +80,7 @@ const Main = () => {
           <TelegramChat />
         </main>
       </>
+      <Example />
       <div className="desk">
         <div class="contai">
           <div class="r3-c1">
@@ -116,60 +107,14 @@ const Main = () => {
           </div>
         </div>
       </div>
+      <CookieConsent style={{ background: "red" }} debug={true} expires={365}>
+        This site uses cookies. See our{" "}
+        <a href="https://trust-technique.com/privacy-policy/?gc_id=16599186704&utm_source=google&utm_medium=&utm_id=16599186704&utm_content=&utm_term=&creativeId=&gclid=Cj0KCQjw8uOWBhDXARIsAOxKJ2FPvVNqsax2X4XrXMjXLGEHToP6cPFnLg56w3-TCSOXOTPFbhC51TsaAvFJEALw_wcB&gclid=Cj0KCQjw8uOWBhDXARIsAOxKJ2FPvVNqsax2X4XrXMjXLGEHToP6cPFnLg56w3-TCSOXOTPFbhC51TsaAvFJEALw_wcB">
+          Privacy Policy
+        </a>{" "}
+        for more
+      </CookieConsent>
     </>
-
-    // <div class="body-content">
-    //   <div class="two-picture-division">
-    //     <a href="#"><img src="https://images.ctfassets.net/q602vtcuu3w3/7rnjSHqBEcgbtJ2pZqZarm/c32a5cbe533a8aab72aee54689ddb7e3/190617-WK3-WGW-4-Update.jpg"></a>
-    //     <a href="#"><img src="https://images.ctfassets.net/q602vtcuu3w3/6vo26Ry1p3rcvSURCYBoJH/2fdc52ccb0ee69352d8e02ff905d592a/190603-WK1-LGW-1.jpg"></a>
-    //   </div>
-
-    //   <div class="three-div">
-    //     <a href="#">
-    //     <img src="https://images.ctfassets.net/q602vtcuu3w3/7btvNrhUWJrd5UWYSRHtJr/43f9ce8f23d39c839f9b0e34991d97cc/190603-WK1-MGW-5.jpg">
-    //   </a>
-    //     <a href="#">
-    //     <img src="https://images.ctfassets.net/q602vtcuu3w3/5674zBs4G9hFqVyg2ceT6y/83fd495152f58a7bd12e64d68e541dcd/190617-WK3-HGW-7.jpg">
-    //   </a>
-    //     <a href="#">
-    //     <img src="https://images.ctfassets.net/q602vtcuu3w3/3Rz4KD78yXurQYIyqx6oyC/be018c5eeecd2df0a81471bb81177d8d/190617-WK3-WGW-7.jpg">
-    //   </a>
-    //   </div>
-
-    //   <div class="exclusives-title">
-    //     <h2>EXCLUSIVES</h2>
-    //     <hr/>
-    //   </div>
-
-    //   <div class="exclusive">
-    //     <a href="#">
-    //     <img src="https://s7d5.scene7.com/is/image/UrbanOutfitters/46953022_086_b?$medium$&qlt=80&fit=constrain">
-    //       <p class="picture-description">Champion Cropped Hoodie Sweatshirt</p>
-    //   </a>
-    //     <a href="#">
-    //     <img src="https://s7d5.scene7.com/is/image/UrbanOutfitters/50534346_034_b?$medium$&qlt=80&fit=constrain">
-    //       <p class="picture-description">FILA Disruptor 2 Sock Mesh Sneaker</p>
-    //   </a>
-    //     <a href="#">
-    //     <img src="https://s7d5.scene7.com/is/image/UrbanOutfitters/51077311_070_b?$medium$&qlt=80&fit=constrain">
-    //       <p class="picture-description">Mia Colona Coin Pendant Necklace</p>
-    //   </a>
-    //     <a href="#">
-    //     <img src="https://s7d5.scene7.com/is/image/UrbanOutfitters/51357671_001_b?$medium$&qlt=80&fit=constrain">
-    //       <p class="picture-description">Champion Sports Trim Bike Short</p>
-    //   </a>
-    //     <a href="#">
-    //     <img src="https://s7d5.scene7.com/is/image/UrbanOutfitters/51272904_074_b?$medium$&qlt=80&fit=constrain">
-    //       <p class="picture-description">Champion Hood Logo Hoodie Sweatshirt</p>
-    //   </a>
-    //   </div>
-    // </div>    // <>
-    //     // <Container style={{ marginTop: "100px" }}>
-    //     //   <Box>
-    //     //     <Typography>Main Page</Typography>
-    //     //   </Box>
-    //     // </Container>
-    //     // </>
   );
 };
 

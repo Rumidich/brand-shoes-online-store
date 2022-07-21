@@ -158,10 +158,7 @@ h5 {
 }
 
 .landing-page2 {
-  transition: transform 0.5s;
-  background-image: url("https://media.voguebusiness.com/photos/624d570d32ac66386164d4e7/master/pass/tiktok-trends-tracker-voguebus-acielle_styledumonde-apr-22-story.jpg");
-  background-size: cover;
-  background-position: center;
+  background-image: url("https://nypost.com/wp-content/uploads/sites/2/2022/05/moolah-kicks-08.jpg");
   height: 30vh;
   margin-bottom: 2rem;
 }
@@ -219,13 +216,12 @@ h5 {
     display: none;
   }
   .landing-page2 {
-    background-image: url("https://i.pinimg.com/originals/0c/a9/e0/0ca9e004d16763180513fe2ff94fb451.png");
+    background-image: url("https://nypost.com/wp-content/uploads/sites/2/2022/05/moolah-kicks-08.jpg");
 
     width: 100%;
     height: 300px;
     background-position: center;
     background-size: cover;
-    /* margin-right: 20px; */
   }
   .row,
   .col {
@@ -425,11 +421,7 @@ main {
       "r2-c3 r3-c4"
       "r2-c3 r2-c4";
   }
-  /* div {
-    height: auto;
-    height: 45vw;
-    overflow: visible;
-  } */
+
   .bg {
     width: 98vw;
     height: 98vw;

@@ -8,10 +8,9 @@ import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { authContext } from "../../contexts/authContext";
 import Loader from "../Loader/Loader";
-import BookmarksTwoToneIcon from "@mui/icons-material/BookmarksTwoTone";
 import { VscAdd, VscAccount } from "react-icons/vsc";
 import { BsCart2 } from "react-icons/bs";
 import { BsShop } from "react-icons/bs";
@@ -62,8 +61,8 @@ export default function NavBar() {
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}>
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
       <MenuItem
         onClick={() => {
           handleMenuClose();
@@ -134,7 +133,6 @@ export default function NavBar() {
   }, []);
 
   const { currentUser, checkAuth, loading } = React.useContext(authContext);
-  //
 
   if (loading) {
     return <Loader />;
@@ -165,7 +163,7 @@ export default function NavBar() {
                 style={{
                   width: "60px",
                   color: "white",
-                  height: "49px",
+                  height: "63px",
                   backgroundColor: "white",
                 }}
                 src="https://t3.ftcdn.net/jpg/01/36/55/48/360_F_136554899_bI9RjRJeAdCUoAgyIcNdMz8UvorxxohP.jpg"
@@ -197,7 +195,6 @@ export default function NavBar() {
                 color="inherit">
                 <Badge>
                   <FiBookmark />
-                  <Typography></Typography>
                 </Badge>
               </IconButton>
               {/* <MenuItem> */}

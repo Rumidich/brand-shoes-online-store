@@ -5,3 +5,30 @@
     margin: 0;
   }
 }
+
+#slider {
+  color: lightseagreen;
+}
+.search-box {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 3px solid lightseagreen;
+  border-radius: 10px;
+  outline: none;
+  font-size: 20px;
+  color: lightseagreen;
+  background: none;
+}
+#demo-simple-select {
+  border-radius: 10px;
+  color: lightseagreen;
+}
+#search {
+  display: flex;
+  flex-wrap: wrap;
+}

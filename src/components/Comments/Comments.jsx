@@ -10,17 +10,12 @@ const Comments = ({ comments }) => {
   const { addComment, deleteComment } = useContext(productsContext);
   const [rating, setRating] = React.useState("");
 
-  // useEffect(() => {
-  //   getComments();
-  // }, []);
-
   function handleSave() {
     const comment = {
       text: newComment,
-      rating: null,
       product: id,
     };
-    addComment(comment, rating, id);
+    addComment(comment, id);
     setNewComment("");
   }
   console.log(newComment);
@@ -60,14 +55,12 @@ const Comments = ({ comments }) => {
             <Typography>Posted: {item.create_date}</Typography>
 
             <br />
-            {/* {item.is_author ? ( */}
             <Button
               color="error"
               variant="outlined"
               onClick={() => deleteComment(item.id, id)}>
               Delete
             </Button>
-            {/* ) : null} */}
             <Divider variant="inset" />
           </Box>
         ))}
