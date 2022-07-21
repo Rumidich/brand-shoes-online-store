@@ -7,7 +7,6 @@ export const authContext = React.createContext();
 const API = "https://morning-depths-08273.herokuapp.com";
 
 const AuthContextProvider = ({ children }) => {
-  // const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -16,7 +15,6 @@ const AuthContextProvider = ({ children }) => {
     setLoading(true);
     try {
       const res = await axios.post(`${API}/account/registration/`, formData);
-      // console.log(res);
       navigate("/successfull-registration");
     } catch (err) {
       setError(Object.values(err.response.data).flat(2));
@@ -57,7 +55,7 @@ const AuthContextProvider = ({ children }) => {
         },
         config
       );
-      // console.log(res);
+
       const updatedTokens = {
         access: res.data.access,
         refresh: tokens.refresh,
@@ -66,7 +64,6 @@ const AuthContextProvider = ({ children }) => {
       const email = localStorage.getItem("email");
       setCurrentUser(email);
     } catch (err) {
-      // console.log(err);
       handleLogout();
     } finally {
       setLoading(false);

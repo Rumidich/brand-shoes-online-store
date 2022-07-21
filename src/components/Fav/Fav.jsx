@@ -7,16 +7,12 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import AddCircleOutlineTwoToneIcon from "@mui/icons-material/AddCircleOutlineTwoTone";
-import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 
-import "../Cart/cart.css";
-import { Input } from "@mui/material";
-import { favContext } from "../../contexts/FavoriteContext";
+import { favoriteContext } from "../../contexts/favoriteContext";
 
 export default function Fav() {
   const navigate = useNavigate();
-  const { getFav, fav, deleteFromFav } = React.useContext(favContext);
+  const { getFav, fav, deleteFromFav } = React.useContext(favoriteContext);
 
   React.useEffect(() => {
     getFav();
@@ -24,7 +20,6 @@ export default function Fav() {
   console.log(fav);
   return fav ? (
     <>
-      {" "}
       <section
         style={{
           marginTop: "80px",
@@ -52,8 +47,9 @@ export default function Fav() {
                     {product.item.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {product.item.price} <br />
-                    {product.item.author} <br />
+                    Price: {product.item.price} KGS <br />
+                    Size: {product.item.size} <br />
+                    Category: {product.item.category} <br />
                   </Typography>
                 </CardContent>
                 <CardActions>

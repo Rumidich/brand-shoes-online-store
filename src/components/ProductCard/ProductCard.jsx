@@ -20,7 +20,7 @@ import { productsContext } from "../../contexts/productsContext";
 import { useNavigate } from "react-router-dom";
 import AddShoppingCartTwoToneIcon from "@mui/icons-material/AddShoppingCartTwoTone";
 import { cartContext } from "../../contexts/cartContext";
-import { favContext } from "../../contexts/FavoriteContext";
+import { favoriteContext } from "../../contexts/favoriteContext";
 
 const ExpandMore = styled(props => {
   const { expand, ...other } = props;
@@ -34,24 +34,23 @@ const ExpandMore = styled(props => {
 }));
 
 export default function ProductCard({ item }) {
-  const { addToFav } = React.useContext(favContext);
   const { checkShoeInCart, addToCart } = React.useContext(cartContext);
   const [shoeState, setShoeState] = React.useState(checkShoeInCart(item.id));
 
   const navigate = useNavigate();
 
-  const { deleteProduct, switchLike, switchFavorites } =
-    React.useContext(productsContext);
+  const { deleteProduct, switchLike } = React.useContext(productsContext);
 
-  const [rating, setRating] = React.useState([1, 5]);
+  const { addToFav } = React.useContext(favoriteContext);
+  const [fav, setFav] = React.useState(false);
+
+  const [rating, setRating] = React.useState(5);
 
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
-  // console.log(item);
 
   return (
     <Card id="carty" sx={{ width: 250, margin: "10px" }}>
@@ -67,7 +66,7 @@ export default function ProductCard({ item }) {
             {item.title}
           </span>
           <br />
-          {item.price}
+          {item.price} KGS
         </Typography>
         <br />
         <br />
@@ -76,9 +75,6 @@ export default function ProductCard({ item }) {
           name="simple-controlled"
           valueLabelDisplay="auto"
           value={rating}
-          min={0}
-          max={5}
-          step={1}
           onChange={(event, newValue) => {
             setRating(newValue);
           }}
@@ -86,7 +82,26 @@ export default function ProductCard({ item }) {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton onClick={() => addToFav(item)}>
-          {item.favorites ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+          {!fav && (
+            <IconButton
+              onClick={() => {
+                setFav(!fav);
+              }}
+              aria-label="delete"
+              color="secondary">
+              <BookmarkBorderIcon></BookmarkBorderIcon>
+            </IconButton>
+          )}
+          {fav && (
+            <IconButton
+              onClick={() => {
+                setFav(!fav);
+              }}
+              aria-label="delete"
+              color="error">
+              <BookmarkIcon></BookmarkIcon>
+            </IconButton>
+          )}
         </IconButton>
         <IconButton
           onClick={() => {

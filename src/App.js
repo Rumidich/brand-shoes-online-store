@@ -7,14 +7,14 @@ import AuthContextProvider from "./contexts/authContext";
 import CartContextProvider from "./contexts/cartContext";
 import Footer from "./components/Footer/Footer";
 import ForgotContextProvider from "./contexts/ForgotContext";
-import FavContextProvider from "./contexts/FavoriteContext";
+import FavoriteContextProvider from "./contexts/favoriteContext";
 
 const App = () => {
   return (
     <AuthContextProvider>
       <ForgotContextProvider>
         <ProductsContextProvider>
-          <FavContextProvider>
+          <FavoriteContextProvider>
             <CartContextProvider>
               <BrowserRouter>
                 <Navbar />
@@ -22,7 +22,7 @@ const App = () => {
                 <Footer />
               </BrowserRouter>
             </CartContextProvider>
-          </FavContextProvider>
+          </FavoriteContextProvider>
         </ProductsContextProvider>
       </ForgotContextProvider>
     </AuthContextProvider>

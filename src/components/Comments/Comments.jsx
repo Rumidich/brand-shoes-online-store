@@ -1,5 +1,5 @@
 import { Box, Button, Divider, TextField, Typography } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { productsContext } from "../../contexts/productsContext";
 import Rating from "@mui/material/Rating";
@@ -8,7 +8,6 @@ const Comments = ({ comments }) => {
   const { id } = useParams();
   const [newComment, setNewComment] = useState("");
   const { addComment, deleteComment } = useContext(productsContext);
-  const [rating, setRating] = React.useState("");
 
   function handleSave() {
     const comment = {
@@ -27,13 +26,6 @@ const Comments = ({ comments }) => {
           label="New Comment"
           value={newComment}
           onChange={e => setNewComment(e.target.value)}
-        />
-        <Rating
-          name="simple-controlled"
-          value={rating}
-          onChange={(event, newValue) => {
-            setRating(newValue);
-          }}
         />
         <Button
           sx={{ marginLeft: "10px", marginTop: "8px" }}

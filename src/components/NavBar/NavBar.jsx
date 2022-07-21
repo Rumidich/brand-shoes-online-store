@@ -15,12 +15,9 @@ import { VscAdd, VscAccount } from "react-icons/vsc";
 import { BsCart2 } from "react-icons/bs";
 import { BsShop } from "react-icons/bs";
 import { FiBookmark } from "react-icons/fi";
-
-import { productsContext } from "../../contexts/productsContext";
 import { cartContext } from "../../contexts/cartContext";
 
 export default function NavBar() {
-  const { getProducts, products, pages } = React.useContext(productsContext);
   const { handleLogout } = React.useContext(authContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -61,8 +58,6 @@ export default function NavBar() {
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}>
-      {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
       <MenuItem
         onClick={() => {
           handleMenuClose();
@@ -132,7 +127,7 @@ export default function NavBar() {
     getCart();
   }, []);
 
-  const { currentUser, checkAuth, loading } = React.useContext(authContext);
+  const { loading } = React.useContext(authContext);
 
   if (loading) {
     return <Loader />;
@@ -197,17 +192,17 @@ export default function NavBar() {
                   <FiBookmark />
                 </Badge>
               </IconButton>
-              {/* <MenuItem> */}
-              <IconButton
-                style={{ color: "black" }}
-                color="success"
-                aria-label="add to shopping cart"
-                onClick={() => navigate("/cart")}>
-                <Badge badgeContent={count} color="error">
-                  <BsCart2 />
-                </Badge>
-              </IconButton>
-              {/* </MenuItem> */}
+              <MenuItem>
+                <IconButton
+                  style={{ color: "black" }}
+                  color="success"
+                  aria-label="add to shopping cart"
+                  onClick={() => navigate("/cart")}>
+                  <Badge badgeContent={count} color="error">
+                    <BsCart2 />
+                  </Badge>
+                </IconButton>
+              </MenuItem>
               <IconButton
                 onClick={() => navigate("/add")}
                 size="large"
@@ -218,7 +213,6 @@ export default function NavBar() {
                 </Badge>
               </IconButton>
               <IconButton
-                // size="large"
                 edge="end"
                 aria-label="account of current user"
                 aria-controls={menuId}

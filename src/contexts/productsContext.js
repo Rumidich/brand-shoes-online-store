@@ -8,9 +8,6 @@ const INIT_STATE = {
   oneProduct: null,
   pages: 0,
   categories: [],
-  favorites: [],
-  favoritesPages: 0,
-  like: [],
 };
 
 function reducer(state = INIT_STATE, action) {
@@ -20,13 +17,6 @@ function reducer(state = INIT_STATE, action) {
         ...state,
         products: action.payload.results,
         pages: Math.ceil(action.payload.count / 5),
-      };
-
-    case "GET_FAVORITES":
-      return {
-        ...state,
-        favorites: action.payload.results,
-        favoritesPages: Math.ceil(action.payload.count / 5),
       };
 
     case "GET_CATEGORIES":
@@ -130,31 +120,6 @@ const ProductsContextProvider = ({ children }) => {
     }
   }
 
-  //! Read - Get Favorites
-  async function getFavorites() {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //configuration
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      const res = await axios(
-        `${API}/favorites/${window.location.search}`,
-        config
-      );
-      dispatch({
-        type: "GET_FAVORITES",
-        payload: res.data,
-      });
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   //! Delete
   //! Delete a Product
   async function deleteProduct(id) {
@@ -204,7 +169,6 @@ const ProductsContextProvider = ({ children }) => {
         },
       };
       const res = await axios(`${API}/products/${id}`, config);
-      // console.log(res);
       dispatch({
         type: "GET_ONE_PRODUCT",
         payload: res.data,
@@ -257,27 +221,6 @@ const ProductsContextProvider = ({ children }) => {
     }
   }
 
-  //! Add to favorites functionality
-
-  async function switchFavorites(id) {
-    try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      //configuration
-      const Authorization = `Bearer ${tokens.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-      const res = await axios(`${API}/products/${id}/favorite/`, config);
-      console.log(res);
-      getProducts();
-      getFavorites();
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   return (
     <productsContext.Provider
       value={{
@@ -285,9 +228,6 @@ const ProductsContextProvider = ({ children }) => {
         pages: state.pages,
         categories: state.categories,
         oneProduct: state.oneProduct,
-        favorites: state.favorites,
-        favoritesPages: state.favoritesPages,
-        image: state.image,
         getProducts,
         getCategories,
         addProduct,
@@ -295,8 +235,6 @@ const ProductsContextProvider = ({ children }) => {
         getOneProduct,
         updateProduct,
         switchLike,
-        switchFavorites,
-        getFavorites,
         addComment,
         deleteComment,
       }}>
