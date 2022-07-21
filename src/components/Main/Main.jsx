@@ -26,6 +26,7 @@ const Main = () => {
           <div className="innerpage">
             <div className="col">
               <h1
+                id="h"
                 style={{ marginTop: "70px", fontSize: "50px" }}
                 className="fronts">
                 Sneakers Store
@@ -50,18 +51,15 @@ const Main = () => {
         <div>
           {" "}
           <div className="columnchik">
-            <div onClick={() => navigate("/products")} className="card card1">
-              {/* <h5>Nike Some</h5> */}
-            </div>
-            <div onClick={() => navigate("/products")} className="card card2">
-              {/* <h5>Nike Some</h5> */}
-            </div>
-            <div onClick={() => navigate("/products")} className="card card3">
-              {/* <h5>Nike some</h5> */}
-            </div>
-            {/* <div className="card card4">
-                <h5>Nike some</h5>
-              </div> */}
+            <div
+              onClick={() => navigate("/products")}
+              className="card card1"></div>
+            <div
+              onClick={() => navigate("/products")}
+              className="card card2"></div>
+            <div
+              onClick={() => navigate("/products")}
+              className="card card3"></div>
           </div>
         </div>
       </>
@@ -103,8 +101,9 @@ const Main = () => {
           </div>
           <div class="r1-c3">
             <img
+              id="centerimg"
               onClick={() => navigate("/products")}
-              style={{ width: "300px", height: "300px", marginLeft: "100px" }}
+              style={{ width: "300px", height: "300px" }}
               src="https://raw.githubusercontent.com/luisDanielRoviraContreras/img/master/files/36.png"
             />
           </div>{" "}

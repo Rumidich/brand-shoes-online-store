@@ -15,7 +15,6 @@
 }
 
 .sen {
-  margin-right: 20px;
 }
 .sticky-button {
   display: flex;
@@ -34,7 +33,7 @@
 
   height: 45px;
 
-  border: 2px solid #0091ea;
+  border: 2px solid #7fff08;
 
   background-color: #fefefe;
 
@@ -56,7 +55,7 @@
 .sticky-button a svg,
 .sticky-button label svg {
   margin: auto;
-  fill: #0091ea;
+  fill: #00ea27;
 }
 
 .sticky-button label svg.svg-2 {
@@ -89,7 +88,7 @@
   display: flex;
   align-items: center;
   padding: 15px 20px;
-  background-color: #0091ea;
+  background-color: #00ea00;
   overflow: hidden;
 }
 

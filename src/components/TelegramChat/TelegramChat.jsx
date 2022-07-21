@@ -10,10 +10,11 @@ const TelegramChat = () => {
         <label className="sen" htmlFor="offchat-menu">
           <img
             style={{
-              width: "80px",
-              height: "50px",
+              width: "50px",
+              height: "45px",
+              borderRadius: "100px",
             }}
-            src="https://logo-download.com/wp-content/data/images/png/Telegram-logo.png"
+            src="https://static.vecteezy.com/system/resources/previews/002/534/047/original/social-media-whatsapp-black-logo-mobile-app-icon-free-free-vector.jpg"
           />
         </label>
       </div>
@@ -65,7 +66,7 @@ const TelegramChat = () => {
 
         <a
           className="chat-button"
-          href="https://t.me/CodingTaggers"
+          href="https://wa.me/message/52KPNQFRU2TFP1"
           rel="nofollow noreferrer"
           target="_blank">
           <svg viewBox="0 0 32 32" style={{ fill: "#0091EA" }}>

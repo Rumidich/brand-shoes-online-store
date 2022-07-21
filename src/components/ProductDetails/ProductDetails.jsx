@@ -27,12 +27,13 @@ const ProductsDetails = () => {
       <Typography variant="h6">
         Description: {oneProduct.description}
       </Typography>
-      <Typography variant="h6">Author: {oneProduct.author}</Typography>
-      <Typography variant="h6">
-        Category: {oneProduct.category.title}
-      </Typography>
+      <Typography variant="h6">Brand: {oneProduct.brand}</Typography>
+      <Typography variant="h6">Category: {oneProduct.category}</Typography>
       <img width="250px" src={oneProduct.image} alt="product" />
-      <Comments comments={oneProduct.comments} />
+      <Comments
+        comments={oneProduct.comments}
+        rating={oneProduct.comments.rating}
+      />
     </Container>
   );
 };

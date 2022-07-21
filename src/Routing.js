@@ -14,6 +14,8 @@ import SuccessfullRegister from "./components/SuccessfullRegister/SuccessfullReg
 import { authContext } from "./contexts/authContext";
 import Payment from "./components/Payment/Payment";
 import Forgot from "./components/Forgot/Forgot";
+import OrderForm from "./components/OrderForm/OrderForm";
+import ThankYou from "./components/ThankYou/ThankYou";
 
 const Routing = () => {
   const { loading, currentUser } = useContext(authContext);
@@ -63,11 +65,12 @@ const Routing = () => {
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/edit/:id" element={<EditProduct />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/order-form" element={<OrderForm />} />
       <Route path="/payment" element={<Payment />} />
       <Route path="/forgot" element={<Forgot />} />
+      <Route path="/thank" element={<ThankYou />} />
       {/* <Route path="/address" element={<SimpleMap />} /> */}
       <Route path="/products/:id" element={<ProductsDetails />} />
- 
     </Routes>
   );
 };

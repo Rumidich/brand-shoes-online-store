@@ -2,11 +2,13 @@ import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { productsContext } from "../../contexts/productsContext";
+import Rating from "@mui/material/Rating";
 
 const Comments = ({ comments }) => {
   const { id } = useParams();
   const [newComment, setNewComment] = useState("");
   const { addComment, deleteComment } = useContext(productsContext);
+  const [rating, setRating] = React.useState("");
 
   // useEffect(() => {
   //   getComments();
@@ -15,9 +17,10 @@ const Comments = ({ comments }) => {
   function handleSave() {
     const comment = {
       text: newComment,
+      rating: null,
       product: id,
     };
-    addComment(comment, id);
+    addComment(comment, rating, id);
     setNewComment("");
   }
   console.log(newComment);
@@ -29,6 +32,13 @@ const Comments = ({ comments }) => {
           label="New Comment"
           value={newComment}
           onChange={e => setNewComment(e.target.value)}
+        />
+        <Rating
+          name="simple-controlled"
+          value={rating}
+          onChange={(event, newValue) => {
+            setRating(newValue);
+          }}
         />
         <Button
           sx={{ marginLeft: "10px", marginTop: "8px" }}
@@ -48,6 +58,7 @@ const Comments = ({ comments }) => {
             <Typography>Author: {item.author}</Typography>
             <Typography>Quote: {item.text}</Typography>
             <Typography>Posted: {item.create_date}</Typography>
+
             <br />
             {/* {item.is_author ? ( */}
             <Button

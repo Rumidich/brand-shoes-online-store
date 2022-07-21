@@ -1,4 +1,5 @@
-import { Box, Container, Slider, TextField } from "@mui/material";
+import { Box, Container, Slider, TextField, Typography } from "@mui/material";
+import "../ProductsList/forcards.css";
 import React, { useContext, useEffect, useState } from "react";
 import { productsContext } from "../../contexts/productsContext";
 import ProductCard from "../ProductCard/ProductCard";
@@ -33,10 +34,10 @@ const ProductsList = () => {
       price_to: price[1],
     });
   }, [search, currentPage, price]);
-
+  console.log(products);
   return (
     <div>
-      <Box display={"flex"} flexDirection={"row"}>
+      <Container>
         <Box
           component="form"
           id="search"
@@ -44,9 +45,9 @@ const ProductsList = () => {
             "& > :not(style)": { m: 1, width: "50ch" },
             display: "flex",
             flexDirection: "row",
-            marginTop: "50px",
+            marginTop: "80px",
             alignItems: "center",
-            justifyContent: "space-between",
+            justifyContent: "space-evenly",
           }}
           noValidate
           autoComplete="off">
@@ -59,50 +60,54 @@ const ProductsList = () => {
             variant="outlined"
             margin="normal"
           />
+          <Box
+            sx={{
+              marginTop: "40px",
+              width: "200px",
+              justifyContent: "center",
+            }}>
+            <Typography>Filter by Price</Typography>
+            <Slider
+              id="slider"
+              getAriaLabel={() => "Temperature range"}
+              color="success"
+              size="medium"
+              value={price}
+              onChange={(e, value) => {
+                setPrice(value);
+              }}
+              valueLabelDisplay="auto"
+              min={0}
+              max={20000}
+              step={1000}
+            />
+          </Box>
         </Box>
-      </Box>
 
-      <Box
-        sx={{
-          marginTop: "50px",
-          width: "300px",
-        }}>
-        <Slider
-          id="slider"
-          getAriaLabel={() => "Temperature range"}
-          color="warning"
-          value={price}
-          onChange={(e, value) => {
-            setPrice(value);
-          }}
-          valueLabelDisplay="auto"
-          min={0}
-          max={20000}
-          step={1000}
-        />
-      </Box>
-
-      <Box
-        display={"flex"}
-        flexWrap={"wrap"}
-        // justifyContent={"center"}
-        flexDirection={"row"}
-        marginTop={"200px"}
-        marginLeft={"90px"}>
-        {products.map(item => (
-          <ProductCard key={item.id} item={item} />
-        ))}
-      </Box>
-      <Box display={"flex"} justifyContent={"center"}>
-        <Pagination
-          className="pagination"
-          page={currentPage}
-          onChange={(e, page) => setCurrentPage(page)}
-          count={pages}
-          variant="outlined"
-          color="warning"
-        />
-      </Box>
+        <Box
+          className="forcards"
+          display={"flex"}
+          flexWrap={"wrap"}
+          // justifyContent={"center"}
+          flexDirection={"row"}
+          marginTop={"50px"}
+          // marginLeft={"90px"}
+        >
+          {products.map(item => (
+            <ProductCard key={item.id} item={item} />
+          ))}
+        </Box>
+        <Box display={"flex"} justifyContent={"center"}>
+          <Pagination
+            className="pagination"
+            page={currentPage}
+            onChange={(e, page) => setCurrentPage(page)}
+            count={pages}
+            variant="outlined"
+            color="warning"
+          />
+        </Box>
+      </Container>
     </div>
   );
 };

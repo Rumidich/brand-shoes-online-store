@@ -11,80 +11,17 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { authContext } from "../../contexts/authContext";
 import Loader from "../Loader/Loader";
-import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import BookmarksTwoToneIcon from "@mui/icons-material/BookmarksTwoTone";
-// import { useEffect } from "react";
-
 import { VscAdd, VscAccount } from "react-icons/vsc";
-
-import { FiShoppingCart } from "react-icons/fi";
-
+import { BsCart2 } from "react-icons/bs";
 import { BsShop } from "react-icons/bs";
-
-import { Search } from "@mui/icons-material";
-import { StyledInput } from "@nextui-org/react";
-
-// export default function NavBar() {
-//   const { getProducts, products, pages } = React.useContext(productsContext);
-//   const [searchParams, setSearchParams] = useSearchParams();
-//   const [search, setSearch] = React.useState(
-//     searchParams.get("q") ? searchParams.get("q") : ""
-//   );
-
-//   const [currentPage, setCurrentPage] = React.useState(
-//     searchParams.get("_page") ? +searchParams.get("_page") : 1
-//   );
-
-//   useEffect(() => {
-//     getProducts();
-//   }, []);
-//   React.useEffect(() => {
-//     setSearchParams({
-//       q: search,
-//       _page: currentPage,
-//       _limit: 6,
-//     });
-//   }, [search, currentPage]);
-//   useEffect(() => {
-//     getProducts();
-//   }, [searchParams]);
-// console.log(products);
-
-// const { getProducts, products, pages } = React.useContext(productsContext);
-// const [searchParams, setSearchParams] = useSearchParams();
-// const [search, setSearch] = React.useState(
-//   searchParams.get("q") ? searchParams.get("q") : ""
-// );
+import { FiBookmark } from "react-icons/fi";
 
 import { productsContext } from "../../contexts/productsContext";
 import { cartContext } from "../../contexts/cartContext";
 
 export default function NavBar() {
   const { getProducts, products, pages } = React.useContext(productsContext);
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const [search, setSearch] = React.useState(
-  //   searchParams.get("q") ? searchParams.get("q") : ""
-  // );
-
-  // const [currentPage, setCurrentPage] = React.useState(
-  //   searchParams.get("_page") ? +searchParams.get("_page") : 1
-  // );
-
-  // useEffect(() => {
-  //   getProducts();
-  // }, []);
-  // React.useEffect(() => {
-  //   setSearchParams({
-  //     q: search,
-  //     _page: currentPage,
-  //     _limit: 6,
-  //   });
-  // }, [search, currentPage]);
-  // useEffect(() => {
-  //   getProducts();
-  // }, [searchParams]);
-  // console.log(products);
-
   const { handleLogout } = React.useContext(authContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -153,47 +90,39 @@ export default function NavBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}>
       <MenuItem>
-        <IconButton size="large" color="inherit">
-          <Badge color="error">
+        <IconButton>
+          <Badge>
             <BsShop />
           </Badge>
         </IconButton>
-        <p>Shop</p>
       </MenuItem>
       <MenuItem>
         <IconButton>
-          <FiShoppingCart />
+          <BsCart2 />
         </IconButton>
       </MenuItem>
       <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit">
-          <Badge badgeContent={17} color="error">
+        <IconButton>
+          <Badge>
             <VscAdd />
           </Badge>
         </IconButton>
-        <p>Add</p>
       </MenuItem>
       <MenuItem>
-        <IconButton size="large" color="inherit">
-          <Badge color="error">
-            <BookmarksTwoToneIcon />
+        <IconButton>
+          <Badge>
+            <FiBookmark />
           </Badge>
-          <p>Favorites</p>
         </IconButton>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
-          size="large"
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit">
           <VscAccount />
         </IconButton>
-        <p>Profile</p>
       </MenuItem>
     </Menu>
   );
@@ -205,11 +134,7 @@ export default function NavBar() {
   }, []);
 
   const { currentUser, checkAuth, loading } = React.useContext(authContext);
-  // React.useEffect(() => {
-  //   if (localStorage.getItem("tokens")) {
-  //     checkAuth();
-  //   }
-  // }, []);
+  //
 
   if (loading) {
     return <Loader />;
@@ -224,7 +149,7 @@ export default function NavBar() {
           style={{
             backgroundColor: "white",
             color: "black",
-            height: "45px",
+            height: "52px",
           }}>
           <Toolbar>
             <Typography
@@ -247,22 +172,11 @@ export default function NavBar() {
                 sx={{ display: { xs: "none", sm: "block" } }}
               />
             </Typography>
-            {/* <Typography>
-              <Search />
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInput
-                placeholder="I am Looking for…"
-                inputProps={{ "aria-label": "search" }}
-                value={search}
-                onChange={e => setSearch(e.target.value)}
 
-              />
-            </Typography> */}
             <Box sx={{ flexGrow: 1 }} />
             <Box
               sx={{
+                marginLeft: "20px",
                 marginBottom: "20px",
                 display: { xs: "none", md: "flex" },
               }}>
@@ -282,21 +196,21 @@ export default function NavBar() {
                 aria-label="shop"
                 color="inherit">
                 <Badge>
-                  <BookmarksTwoToneIcon color="accent" />
+                  <FiBookmark />
                   <Typography></Typography>
                 </Badge>
               </IconButton>
-              <MenuItem>
-                <IconButton
-                  style={{ color: "black" }}
-                  color="success"
-                  aria-label="add to shopping cart"
-                  onClick={() => navigate("/cart")}>
-                  <Badge badgeContent={count} color="error">
-                    <FiShoppingCart />
-                  </Badge>
-                </IconButton>
-              </MenuItem>
+              {/* <MenuItem> */}
+              <IconButton
+                style={{ color: "black" }}
+                color="success"
+                aria-label="add to shopping cart"
+                onClick={() => navigate("/cart")}>
+                <Badge badgeContent={count} color="error">
+                  <BsCart2 />
+                </Badge>
+              </IconButton>
+              {/* </MenuItem> */}
               <IconButton
                 onClick={() => navigate("/add")}
                 size="large"
@@ -307,7 +221,7 @@ export default function NavBar() {
                 </Badge>
               </IconButton>
               <IconButton
-                size="large"
+                // size="large"
                 edge="end"
                 aria-label="account of current user"
                 aria-controls={menuId}

@@ -1,4 +1,5 @@
 import * as React from "react";
+import "../ProductCard/card.css";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -9,6 +10,8 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Rating from "@mui/material/Rating";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
@@ -35,23 +38,22 @@ export default function ProductCard({ item }) {
 
   const navigate = useNavigate();
 
-  const {
-    deleteProduct,
-    toggleLike,
-    addToFavorites,
-    toggleFavorites,
-    toggleLikePost,
-  } = React.useContext(productsContext);
+  const { deleteProduct, switchLike, switchFavorites } =
+    React.useContext(productsContext);
+
+  const [value, setValue] = React.useState(5);
+
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  console.log(item);
+  // console.log(item);
 
   return (
-    <Card sx={{ width: 300, margin: "10px" }}>
+    <Card id="carty" sx={{ width: 250, margin: "10px" }}>
+      {/* <CardHeader /> */}
       <CardMedia
         component="img"
         height="200"
@@ -63,31 +65,30 @@ export default function ProductCard({ item }) {
           <span style={{ fontWeight: "bold", padding: "0px", margin: "0" }}>
             {item.title}
           </span>
-          <br />${item.price}
+          <br />
+          {item.price}
         </Typography>
-        {/* <Typography variant="body2" color="text.secondary">
-          Title: {item.title} <br />
-          Price: {item.price} KGS <br />
-          Size: {item.size} <br />
-          Brand: {item.brand} <br />
-          Gender: {item.gender} <br />
-          Category: {item.category} <br />
-          Comments: {item.comments.length} <br />
-          Likes: {item.like} <br />
-        </Typography> */}
+        <br />
+        <br />
+
+        <Rating
+          name="simple-controlled"
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+        />
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton onClick={() => addToFavorites(item.favorites.id)}>
+        <IconButton onClick={() => switchFavorites(item.favorites.id)}>
           {item.favorites ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
-
         <IconButton
           onClick={() => {
-            toggleLike(item.like.id);
-            toggleLikePost(item.like.id);
+            switchLike(item.like.id);
           }}>
           {item.like}
-          <FavoriteIcon color={item.like ? "error" : "primary"} />
+          <FavoriteIcon color={item.like.author ? "error" : "primary"} />
         </IconButton>
         <>
           <IconButton onClick={() => deleteProduct(item.id)}>
@@ -105,6 +106,11 @@ export default function ProductCard({ item }) {
               color={shoeState ? "secondary" : "success"}
             />
           </IconButton>
+          <IconButton
+            aria-label="settings"
+            onClick={() => navigate(`/products/${item.id}`)}>
+            <MoreVertIcon />
+          </IconButton>
         </>
         <ExpandMore
           expand={expanded}
@@ -114,6 +120,7 @@ export default function ProductCard({ item }) {
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
+
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
